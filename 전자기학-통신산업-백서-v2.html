@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>전자기학 × 통신산업 백서 v2.0 — 삼성 네트워크사업부</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500;600&family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f8f6f0;
+  --bg-paper: #ffffff;
+  --bg-soft: #f1ede3;
+  --ink: #1a1d29;
+  --ink-soft: #4a4d5a;
+  --ink-muted: #8b8e99;
+  --rule: #d8d3c3;
+  --rule-soft: #ebe6d8;
+
+  /* 3-tier zones */
+  --theory-bg: #f0f4fb;
+  --theory-border: #c5d3e8;
+  --theory-accent: #1e3a8a;
+  --theory-tag: #1e40af;
+
+  --industry-bg: #fdf6e7;
+  --industry-border: #ead9b3;
+  --industry-accent: #92400e;
+  --industry-tag: #b45309;
+
+  --trend-bg: #ecf6ee;
+  --trend-border: #b8d8c0;
+  --trend-accent: #14532d;
+  --trend-tag: #166534;
+
+  --highlight: #fef3c7;
+  --link: #1e40af;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+
+body {
+  font-family: 'Crimson Pro', 'Noto Serif KR', Georgia, serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.75;
+  font-size: 17px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Subtle paper texture */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(180,166,120,0.04) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(180,166,120,0.03) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ─── HEADER ─── */
+.site-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(248,246,240,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--rule);
+  font-family: 'Noto Sans KR', sans-serif;
+}
+.header-inner {
+  max-width: 1080px; margin: 0 auto; padding: 14px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px;
+}
+.header-title {
+  font-family: 'Noto Serif KR', serif;
+  font-weight: 900; font-size: 14px; color: var(--theory-accent);
+  letter-spacing: -0.3px;
+  display: flex; align-items: baseline; gap: 8px;
+}
+.header-title .v {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 600;
+  color: var(--ink-muted);
+  background: var(--bg-soft);
+  padding: 2px 6px; border-radius: 3px;
+}
+.header-meta {
+  font-size: 10px; color: var(--ink-muted);
+  letter-spacing: 1px; text-transform: uppercase;
+}
+.progress-line {
+  position: absolute; bottom: 0; left: 0; height: 2px;
+  background: linear-gradient(90deg, var(--theory-accent), var(--industry-accent), var(--trend-accent));
+  width: 0%; transition: width 0.15s;
+}
+
+/* ─── TOC ─── */
+.toc-nav {
+  position: fixed; top: 49px; left: 0; right: 0; z-index: 99;
+  background: rgba(248,246,240,0.95);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--rule);
+  overflow-x: auto; scrollbar-width: none;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+.toc-nav::-webkit-scrollbar { display: none; }
+.toc-inner {
+  max-width: 1080px; margin: 0 auto; padding: 8px 16px;
+  display: flex; gap: 4px; min-width: max-content;
+}
+.toc-pill {
+  padding: 5px 11px; border-radius: 4px;
+  font-size: 11px; font-weight: 500;
+  color: var(--ink-muted); background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer; white-space: nowrap;
+  transition: all 0.2s; text-decoration: none;
+}
+.toc-pill:hover { color: var(--theory-accent); background: var(--bg-soft); }
+.toc-pill.active {
+  color: var(--theory-accent);
+  background: var(--bg-paper);
+  border-color: var(--rule);
+  font-weight: 600;
+}
+.toc-pill .num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; opacity: 0.7; margin-right: 4px;
+}
+
+/* ─── COVER ─── */
+.cover {
+  max-width: 720px; margin: 0 auto;
+  padding: 130px 32px 80px; text-align: center;
+}
+.cover-pre {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 4px; text-transform: uppercase;
+  color: var(--ink-muted); margin-bottom: 24px;
+}
+.cover h1 {
+  font-family: 'Noto Serif KR', serif;
+  font-size: clamp(32px, 6vw, 52px);
+  font-weight: 900; line-height: 1.2;
+  margin-bottom: 16px; letter-spacing: -1.2px;
+  color: var(--ink);
+}
+.cover h1 .em {
+  font-family: 'Crimson Pro', serif;
+  font-style: italic; font-weight: 700;
+  color: var(--theory-accent);
+}
+.cover .x {
+  font-family: 'Crimson Pro', serif;
+  font-weight: 400; font-style: italic;
+  color: var(--industry-accent);
+  margin: 0 8px;
+}
+.cover .lead {
+  font-family: 'Crimson Pro', 'Noto Serif KR', serif;
+  font-size: 17px; color: var(--ink-soft);
+  max-width: 540px; margin: 24px auto 0;
+  line-height: 1.7; font-style: italic;
+}
+.cover-meta {
+  margin-top: 36px; padding-top: 24px;
+  border-top: 1px solid var(--rule);
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 11px; color: var(--ink-muted);
+  letter-spacing: 1.5px; text-transform: uppercase;
+  display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;
+}
+.cover-meta span::before { content: '·'; margin-right: 8px; opacity: 0.5; }
+.cover-meta span:first-child::before { content: ''; margin: 0; }
+
+/* ─── PREAMBLE ─── */
+.preamble {
+  max-width: 680px; margin: 0 auto;
+  padding: 30px 32px 60px;
+}
+.preamble h2 {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 24px; font-weight: 900;
+  margin-bottom: 14px; letter-spacing: -0.5px;
+  color: var(--ink);
+}
+.preamble .label {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--theory-accent); margin-bottom: 8px;
+}
+.preamble p {
+  font-size: 16.5px; color: var(--ink-soft);
+  line-height: 1.85;
+}
+
+/* ─── CHAPTER ─── */
+.chapter {
+  max-width: 720px; margin: 0 auto;
+  padding: 70px 32px 30px;
+  border-top: 1px solid var(--rule);
+}
+.chapter:first-of-type { border-top: 2px solid var(--ink); }
+
+.ch-meta {
+  display: flex; align-items: baseline; gap: 14px;
+  margin-bottom: 8px;
+}
+.ch-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; font-weight: 600;
+  color: var(--ink-muted);
+  letter-spacing: 1px;
+}
+.ch-tag {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 3px;
+  background: var(--bg-soft);
+  color: var(--ink-muted);
+}
+
+.chapter h2 {
+  font-family: 'Noto Serif KR', serif;
+  font-size: clamp(26px, 4vw, 36px);
+  font-weight: 900; line-height: 1.25;
+  margin-bottom: 6px; letter-spacing: -0.8px;
+  color: var(--ink);
+}
+.chapter .ch-en {
+  font-family: 'Crimson Pro', serif;
+  font-size: 17px; font-style: italic;
+  color: var(--ink-muted);
+  margin-bottom: 24px;
+}
+
+/* ─── 3-TIER ZONES ─── */
+.zone {
+  border-radius: 8px;
+  padding: 24px 28px;
+  margin: 20px 0;
+  position: relative;
+}
+.zone-theory {
+  background: var(--theory-bg);
+  border-left: 3px solid var(--theory-accent);
+}
+.zone-industry {
+  background: var(--industry-bg);
+  border-left: 3px solid var(--industry-accent);
+}
+.zone-trend {
+  background: var(--trend-bg);
+  border-left: 3px solid var(--trend-accent);
+}
+
+.zone-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid;
+}
+.zone-theory .zone-header { border-color: var(--theory-border); }
+.zone-industry .zone-header { border-color: var(--industry-border); }
+.zone-trend .zone-header { border-color: var(--trend-border); }
+
+.zone-icon {
+  font-size: 18px;
+  display: inline-block;
+  width: 28px; height: 28px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 12px;
+}
+.zone-theory .zone-icon { background: var(--theory-accent); color: white; }
+.zone-industry .zone-icon { background: var(--industry-accent); color: white; }
+.zone-trend .zone-icon { background: var(--trend-accent); color: white; }
+
+.zone-label {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+}
+.zone-theory .zone-label { color: var(--theory-tag); }
+.zone-industry .zone-label { color: var(--industry-tag); }
+.zone-trend .zone-label { color: var(--trend-tag); }
+
+.zone-title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 16px; font-weight: 700;
+  color: var(--ink); margin-left: auto;
+  text-align: right;
+}
+
+.zone-body {
+  font-size: 15.5px;
+  line-height: 1.85;
+  color: var(--ink-soft);
+}
+
+.zone-body h4 {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 16px; font-weight: 700;
+  color: var(--ink); margin: 18px 0 8px;
+}
+.zone-body h4:first-child { margin-top: 0; }
+
+.zone-body p { margin-bottom: 12px; }
+.zone-body strong { color: var(--ink); font-weight: 600; }
+.zone-body em { font-style: italic; }
+.zone-body code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  background: rgba(0,0,0,0.05);
+  padding: 1px 5px;
+  border-radius: 3px;
+  color: var(--ink);
+}
+.zone-body ul, .zone-body ol { padding-left: 22px; margin: 10px 0; }
+.zone-body li { margin: 4px 0; }
+
+/* ─── EQUATIONS ─── */
+.katex-display {
+  margin: 16px 0 !important;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 4px 0;
+}
+.katex { font-size: 1.05em !important; }
+.zone-body .katex-display > .katex {
+  background: rgba(255,255,255,0.6);
+  padding: 12px 16px;
+  border-radius: 6px;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+/* ─── TABLE ─── */
+.tbl-wrap {
+  overflow-x: auto; margin: 14px 0;
+  border-radius: 6px;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: rgba(255,255,255,0.6);
+}
+table {
+  width: 100%; border-collapse: collapse;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13px;
+  min-width: 480px;
+}
+table thead { background: rgba(0,0,0,0.04); }
+table th {
+  padding: 8px 12px; text-align: left;
+  font-weight: 700; font-size: 11px;
+  text-transform: uppercase; letter-spacing: 0.5px;
+  color: var(--ink); 
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+table td {
+  padding: 8px 12px; 
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  color: var(--ink-soft); vertical-align: top;
+}
+table tr:last-child td { border-bottom: none; }
+table td:first-child { color: var(--ink); font-weight: 500; }
+
+/* ─── CALLOUT ─── */
+.implication {
+  background: rgba(255,255,255,0.7);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 6px;
+  padding: 14px 18px;
+  margin: 16px 0;
+  font-size: 14.5px;
+  line-height: 1.75;
+}
+.implication-label {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  margin-bottom: 6px;
+  display: inline-block;
+}
+.zone-theory .implication-label { color: var(--theory-tag); }
+.zone-industry .implication-label { color: var(--industry-tag); }
+.zone-trend .implication-label { color: var(--trend-tag); }
+
+/* ─── CITATION ─── */
+.cite {
+  font-family: 'Crimson Pro', serif;
+  font-style: italic;
+  color: var(--ink-muted);
+  font-size: 14px;
+}
+
+/* ─── APPENDIX ─── */
+.appendix {
+  max-width: 720px; margin: 0 auto;
+  padding: 60px 32px 40px;
+  border-top: 2px solid var(--ink);
+}
+.appendix h2 {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 26px; font-weight: 900;
+  margin-bottom: 24px;
+}
+.appendix h3 {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 16px; font-weight: 700;
+  margin: 24px 0 8px;
+  color: var(--theory-accent);
+}
+.appendix ul {
+  list-style: none; padding: 0;
+}
+.appendix li {
+  font-family: 'Crimson Pro', 'Noto Serif KR', serif;
+  font-size: 14px; line-height: 1.7;
+  color: var(--ink-soft);
+  padding: 4px 0;
+  padding-left: 16px;
+  text-indent: -16px;
+}
+.appendix li::before {
+  content: '·';
+  color: var(--ink-muted);
+  margin-right: 8px;
+}
+
+/* ─── FOOTER ─── */
+.site-footer {
+  max-width: 720px; margin: 0 auto;
+  padding: 30px 32px 60px;
+  border-top: 1px solid var(--rule);
+  text-align: center;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 11px; color: var(--ink-muted);
+  line-height: 1.7;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 700px) {
+  body { font-size: 16px; }
+  .cover { padding: 110px 20px 50px; }
+  .preamble { padding: 20px 20px 40px; }
+  .chapter { padding: 50px 20px 20px; }
+  .zone { padding: 20px 20px; }
+  .appendix { padding: 40px 20px 30px; }
+  .zone-header { flex-wrap: wrap; }
+  .zone-title { width: 100%; text-align: left; margin-left: 0; margin-top: 4px; font-size: 14px; }
+  .katex-display { font-size: 0.92em; }
+  .header-inner { padding: 12px 16px; }
+  .header-title { font-size: 12px; }
+  .header-meta { display: none; }
+}
+
+@media (max-width: 480px) {
+  body { font-size: 15px; }
+  .zone-body { font-size: 14.5px; }
+  .katex-display { font-size: 0.85em; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-title">
+      전자기학 × 통신산업 백서
+      <span class="v">v 2.0</span>
+    </div>
+    <div class="header-meta">YJ · Samsung Networks · 2026.04</div>
+  </div>
+  <div class="progress-line" id="progLine"></div>
+</header>
+
+<nav class="toc-nav">
+  <div class="toc-inner">
+    <a href="#preamble" class="toc-pill" data-target="preamble"><span class="num">00</span>서문</a>
+    <a href="#ch1" class="toc-pill" data-target="ch1"><span class="num">01</span>전하·전기장</a>
+    <a href="#ch2" class="toc-pill" data-target="ch2"><span class="num">02</span>자기장</a>
+    <a href="#ch3" class="toc-pill" data-target="ch3"><span class="num">03</span>맥스웰 방정식</a>
+    <a href="#ch4" class="toc-pill" data-target="ch4"><span class="num">04</span>전자기파 성질</a>
+    <a href="#ch5" class="toc-pill" data-target="ch5"><span class="num">05</span>전파 전파</a>
+    <a href="#ch6" class="toc-pill" data-target="ch6"><span class="num">06</span>안테나 이론</a>
+    <a href="#ch7" class="toc-pill" data-target="ch7"><span class="num">07</span>주파수·용량</a>
+    <a href="#ch8" class="toc-pill" data-target="ch8"><span class="num">08</span>변조·다중접속</a>
+    <a href="#ch9" class="toc-pill" data-target="ch9"><span class="num">09</span>링크 버짓</a>
+    <a href="#ch10" class="toc-pill" data-target="ch10"><span class="num">10</span>삼성 종합</a>
+    <a href="#refs" class="toc-pill" data-target="refs"><span class="num">📚</span>참고문헌</a>
+  </div>
+</nav>
+
+<!-- ═══════════════ COVER ═══════════════ -->
+<section class="cover">
+  <div class="cover-pre">Samsung Networks B2B Whitepaper</div>
+  <h1>전자기학 <span class="x">×</span><br><span class="em">통신산업의 학술적 연결</span></h1>
+  <p class="lead">학부 교양 전자기학(Griffiths · Pozar · Balanis · Rappaport · Goldsmith)의 표준 정의를 출발점으로, 5G/5G-Advanced 상용 인프라와 6G 표준화 동향(3GPP TR 38.901 · ITU-R IMT-2030 · Samsung 6G White Paper 2025)으로 연결한다.</p>
+  <div class="cover-meta">
+    <span>10개 챕터</span>
+    <span>3단 구조</span>
+    <span>학술 출처 검증</span>
+    <span>YJ 직무면접 대비</span>
+  </div>
+</section>
+
+<!-- ═══════════════ PREAMBLE ═══════════════ -->
+<section class="preamble" id="preamble">
+  <div class="label">서문 · Preamble</div>
+  <h2>이 백서를 읽는 법</h2>
+  <p>각 챕터는 동일한 3단 구조를 따른다. <strong style="color:var(--theory-accent)">[이론]</strong>은 표준 교과서의 정의와 수식을 그대로 제시하고, <strong style="color:var(--industry-accent)">[산업 연결]</strong>은 그 이론이 5G/5G-Advanced 상용 시스템에서 어떻게 구현되는지 보여주며, <strong style="color:var(--trend-accent)">[최신 동향 2025-2026]</strong>은 그것이 6G·AI-RAN·O-RAN 등 첨단 기술에서 어떻게 진화하는지를 1차 자료(IEEE 논문, 3GPP 사양, 벤더 백서) 기준으로 정리한다. 면접 관점에서는 [산업 연결]과 [최신 동향]이 핵심이지만, [이론]을 거쳐야 그 의미가 정확해진다.</p>
+</section>
+
+<!-- ═══════════════ CH1 ═══════════════ -->
+<section class="chapter" id="ch1">
+  <div class="ch-meta"><span class="ch-num">CHAPTER 01</span><span class="ch-tag">정전기학</span></div>
+  <h2>전하와 전기장</h2>
+  <div class="ch-en">Electric Charges and Fields</div>
+
+  <!-- THEORY -->
+  <div class="zone zone-theory">
+    <div class="zone-header">
+      <div class="zone-icon">T</div>
+      <div class="zone-label">[이론] Theory</div>
+      <div class="zone-title">쿨롱 법칙, 전기장, 전위, 가우스 법칙</div>
+    </div>
+    <div class="zone-body">
+      <h4>쿨롱 법칙 (Coulomb's Law)</h4>
+      <p>진공 중에 정지한 두 점전하 \(q_1, q_2\)가 거리 \(r\)만큼 떨어져 있을 때 작용하는 힘 (Griffiths §2.1):</p>
+      <p>$$\mathbf{F}_{12} = \frac{1}{4\pi\varepsilon_0}\frac{q_1 q_2}{r^2}\hat{\mathbf{r}}$$</p>
+      <p>진공 유전율 \(\varepsilon_0 \approx 8.854 \times 10^{-12}\) F/m.</p>
+
+      <h4>전기장 (Electric Field)</h4>
+      <p>시험전하 \(q\)에 작용하는 단위전하당 힘으로 정의:</p>
+      <p>$$\mathbf{E}(\mathbf{r}) \equiv \lim_{q\to 0}\frac{\mathbf{F}}{q} \quad [\text{V/m}]$$</p>
+      <p>연속 전하분포 \(\rho(\mathbf{r}')\)에 대해서는</p>
+      <p>$$\mathbf{E}(\mathbf{r}) = \frac{1}{4\pi\varepsilon_0}\int \frac{\rho(\mathbf{r}')(\mathbf{r}-\mathbf{r}')}{|\mathbf{r}-\mathbf{r}'|^3}\,dV'$$</p>
+
+      <h4>전위 (Voltage)</h4>
+      <p>정전계가 보존장(\(\nabla\times\mathbf{E} = 0\))이라는 사실로부터 스칼라 포텐셜이 정의된다:</p>
+      <p>$$V(\mathbf{r}) \equiv -\int_{\mathcal{O}}^{\mathbf{r}} \mathbf{E}\cdot d\mathbf{l}, \qquad \mathbf{E} = -\nabla V$$</p>
+      <p>두 점 사이의 전위차 = 단위 양전하를 옮기는 데 필요한 일 → 회로 이론의 "전압"의 물리적 기원.</p>
+
+      <h4>가우스 법칙 (Gauss's Law)</h4>
+      <p>$$\oint_{\partial V} \mathbf{E}\cdot d\mathbf{A} = \frac{Q_{\text{enc}}}{\varepsilon_0}, \quad \nabla\cdot\mathbf{E} = \frac{\rho}{\varepsilon_0}$$</p>
+    </div>
+  </div>
+
+  <!-- INDUSTRY -->
+  <div class="zone zone-industry">
+    <div class="zone-header">
+      <div class="zone-icon">I</div>
+      <div class="zone-label">[산업 연결] Industry Application</div>
+      <div class="zone-title">통신 인프라에서의 전기장 구현</div>
+    </div>
+    <div class="zone-body">
+      <ul>
+        <li><strong>도파관 (Waveguide)</strong>: 직사각형 도파관 TE/TM 모드는 경계조건(완전도체 벽에서 \(E_t = 0\))을 만족하는 \(\mathbf{E}\) 필드 분포로 결정된다 (Pozar §3.3). 5G/6G 기지국 RU와 안테나 사이의 mmWave 급전부, 위성통신 피더에 광범위 사용.</li>
+        <li><strong>마이크로스트립 라인</strong>: 기판 위 도체 패턴이 만드는 준-TEM 모드의 전기장 분포가 50 Ω 임피던스 정합과 안테나 급전 네트워크의 핵심.</li>
+        <li><strong>전력증폭기 (PA) 바이어스</strong>: 트랜지스터 게이트–드레인 사이 전기장이 채널 전류를 변조하여 RF 신호를 증폭. PA의 전압 효율(\(\eta_{\text{drain}}\))은 직접적으로 기지국 OPEX(전기료)와 연결.</li>
+        <li><strong>안테나 급전 (Antenna Feeding)</strong>: 다이폴 중앙 또는 패치 안테나 가장자리의 인가 전압이 전류 분포를 결정, 이로부터 방사 전기장 생성.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- TREND -->
+  <div class="zone zone-trend">
+    <div class="zone-header">
+      <div class="zone-icon">F</div>
+      <div class="zone-label">[최신 동향 2025-2026] Frontier</div>
+      <div class="zone-title">GaN/SiC 전력증폭기</div>
+    </div>
+    <div class="zone-body">
+      <p>5G FR2(24.25–52.6 GHz) 대역에서 PA의 PAE(Power-Added Efficiency)는 시스템 전력 효율의 결정적 요소. 최근 발표된 GaN MMIC PA 사례:</p>
+      <ul>
+        <li><strong>mmTron TMC211</strong> (2024–2025): 27–31 GHz, 단일 다이 50 W, PAE 30%, 이득 12 dB, OIP3 53 dBm — 동대역 단일 칩 PA 중 최고 선형성. 듀얼 칩 합성 대비 면적 60% 축소.</li>
+        <li><strong>GaN-on-Si MMIC for FR2</strong> (MDPI Electronics, 2025): 0.1 μm OMMIC 공정, 합성 변압기 정합망(STN) 적용으로 광대역 5G FR2 응용 최적화.</li>
+        <li><strong>3.5 GHz Sub-6 GaN Doherty PA</strong>: 37.1 dBm 출력, 39% PAE — 5G NR n78 대역 매크로셀 RU에 적합 (<em class="cite">Journal of Millimeterwave Communication, 2025</em>).</li>
+        <li><strong>6G FR3 cmWave 대응</strong>: 7–24 GHz "higher mid-band"용 GaN MMIC 광대역 연속모드 Doherty PA가 EuMIC 2024 발표.</li>
+      </ul>
+
+      <div class="implication">
+        <div class="implication-label">→ 산업적 의미</div>
+        기지국 전력의 약 70–80%가 PA에서 소비되므로, <strong>1%의 PAE 개선이 전 세계 수십만 셀사이트에 적용되면 연간 수천 GWh 절감</strong>. Samsung Networks가 강조하는 "Sustainable Network"(6G 4대 속성 중 하나) 가치 제안의 물리적 기반이 바로 이 PA 효율이며, GaN-on-Si는 SiC 대비 단가를 낮춰 mmWave 대규모 배포(64T64R Massive MIMO)의 BOM을 직접 결정.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CH2 ═══════════════ -->
+<section class="chapter" id="ch2">
+  <div class="ch-meta"><span class="ch-num">CHAPTER 02</span><span class="ch-tag">정자기학</span></div>
+  <h2>자기장</h2>
+  <div class="ch-en">Magnetic Fields</div>
+
+  <div class="zone zone-theory">
+    <div class="zone-header">
+      <div class="zone-icon">T</div>
+      <div class="zone-label">[이론] Theory</div>
+      <div class="zone-title">비오–사바르, 암페어, 로렌츠 힘</div>
+    </div>
+    <div class="zone-body">
+      <h4>비오–사바르 법칙 (Biot–Savart Law)</h4>
+      <p>정상전류 \(I\)가 흐르는 미소길이 \(d\mathbf{l}'\)이 점 \(\mathbf{r}\)에 만드는 자기장 (Griffiths §5.2):</p>
+      <p>$$d\mathbf{B}(\mathbf{r}) = \frac{\mu_0 I}{4\pi}\frac{d\mathbf{l}'\times(\mathbf{r}-\mathbf{r}')}{|\mathbf{r}-\mathbf{r}'|^3}$$</p>
+      <p>진공 투자율 \(\mu_0 = 4\pi \times 10^{-7}\) H/m.</p>
+
+      <h4>암페어 법칙 (Ampère's Law)</h4>
+      <p>$$\oint_C \mathbf{B}\cdot d\mathbf{l} = \mu_0 I_{\text{enc}}, \quad \nabla\times\mathbf{B} = \mu_0 \mathbf{J}$$</p>
+
+      <h4>로렌츠 힘 (Lorentz Force)</h4>
+      <p>전하 \(q\)가 속도 \(\mathbf{v}\)로 움직일 때 받는 힘:</p>
+      <p>$$\mathbf{F} = q(\mathbf{E} + \mathbf{v}\times\mathbf{B})$$</p>
+      <p>사이클로트론 운동, 마그네트론, 도파관 내 전자빔 진행, 전자기파 내 전하 입자 거동의 원리적 기반.</p>
+
+      <h4>자기 벡터퍼텐셜 (Vector Potential)</h4>
+      <p>\(\nabla\cdot\mathbf{B} = 0\)이므로 \(\mathbf{B} = \nabla\times\mathbf{A}\)로 정의되며, Coulomb 게이지 \(\nabla\cdot\mathbf{A} = 0\) 하에서 안테나 방사 계산의 출발점 (Balanis §3.2).</p>
+    </div>
+  </div>
+
+  <div class="zone zone-industry">
+    <div class="zone-header">
+      <div class="zone-icon">I</div>
+      <div class="zone-label">[산업 연결] Industry Application</div>
+      <div class="zone-title">통신 장비에서의 자기장 활용</div>
+    </div>
+    <div class="zone-body">
+      <ul>
+        <li><strong>인덕터 (Inductor)</strong>: 코일 내부 자기 에너지 저장 \(W = \frac{1}{2}LI^2\) — RF 정합망의 임피던스 변환, DC 바이어스의 RF 초크.</li>
+        <li><strong>트랜스포머·발룬 (Balun)</strong>: 상호 인덕턴스를 이용한 임피던스 변환과 평형/불평형 변환. mmWave PA의 차동 출력을 50 Ω 단일종단 안테나에 결합.</li>
+        <li><strong>페라이트 부품</strong>: 비가역적 자기 특성을 이용한 <strong>서큘레이터·아이솔레이터</strong> — TDD 시스템에서 송수신 분리, PA 보호.</li>
+        <li><strong>EMI 필터</strong>: 페라이트 비드(bead)를 이용한 고주파 공통모드 잡음 억제.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="zone zone-trend">
+    <div class="zone-header">
+      <div class="zone-icon">F</div>
+      <div class="zone-label">[최신 동향 2025-2026] Frontier</div>
+      <div class="zone-title">자성 메타물질·소형화 자기재료</div>
+    </div>
+    <div class="zone-body">
+      <ul>
+        <li><strong>자성 메타물질</strong>: 단위 셀이 파장보다 작은 인공 구조에서 음(−) 투자율을 구현, 안테나 소형화·서브파장 공진 실현. 최근 IEEE Trans. Antennas Propag.에서 6G THz 대역 자성 메타표면 기반 안테나 어레이 연구가 활발.</li>
+        <li><strong>저손실 페라이트</strong>: 5G FR1 64T64R Massive MIMO RU의 듀플렉서/서큘레이터 패키지에서 NiZn·MgZn 페라이트의 손실 탄젠트(\(\tan\delta\))가 0.001 이하로 낮춰져, 32×32·64×64 어레이의 발열 관리에 직접 기여.</li>
+        <li><strong>6G FR3(7–24 GHz) 자기재료</strong>: WRC-23에서 6G 후보로 식별된 7.125–8.4 GHz, 14.8–15.35 GHz에서 동작하는 광대역 페라이트 부품이 IEEE Microwave Magazine 등에서 활발 연구 중.</li>
+      </ul>
+
+      <div class="implication">
+        <div class="implication-label">→ 산업적 의미</div>
+        Massive MIMO 안테나 모듈(AAU)의 두께·무게를 결정하는 것이 페라이트와 인덕터 부품이며, 이는 통신타워 풍하중(wind load) 인허가와 직결된다. <strong>Samsung Networks의 슬림 vRAN 라디오 설계 경쟁력의 한 축</strong>이 바로 이 자성 부품 통합 기술이다.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CH3 ═══════════════ -->
+<section class="chapter" id="ch3">
+  <div class="ch-meta"><span class="ch-num">CHAPTER 03</span><span class="ch-tag">통합 전자기학</span></div>
+  <h2>맥스웰 방정식</h2>
+  <div class="ch-en">Maxwell's Equations</div>
+
+  <div class="zone zone-theory">
+    <div class="zone-header">
+      <div class="zone-icon">T</div>
+      <div class="zone-label">[이론] Theory</div>
+      <div class="zone-title">4개 방정식과 파동 방정식 유도</div>
+    </div>
+    <div class="zone-body">
+      <p>거시적 형태의 맥스웰 방정식 (Griffiths §7.3, Pozar §1.2):</p>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>법칙</th><th>미분형</th><th>물리적 의미</th></tr></thead>
+          <tbody>
+            <tr><td>Gauss (전기)</td><td>\(\nabla\cdot\mathbf{D} = \rho\)</td><td>전하가 전기장의 발산원</td></tr>
+            <tr><td>Gauss (자기)</td><td>\(\nabla\cdot\mathbf{B} = 0\)</td><td>자기 단극자 부재</td></tr>
+            <tr><td>Faraday</td><td>\(\nabla\times\mathbf{E} = -\partial\mathbf{B}/\partial t\)</td><td>시변 자기장 → 전기장 유도</td></tr>
+            <tr><td>Ampère–Maxwell</td><td>\(\nabla\times\mathbf{H} = \mathbf{J} + \partial\mathbf{D}/\partial t\)</td><td>전류·변위전류 → 자기장 유도</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>여기서 \(\mathbf{D} = \varepsilon\mathbf{E}, \mathbf{B} = \mu\mathbf{H}\) (선형·등방 매질).</p>
+
+      <h4>변위전류의 발견적 의의</h4>
+      <p>맥스웰의 수정 \(\partial\mathbf{D}/\partial t\) 항이 없으면 전류 연속방정식 \(\nabla\cdot\mathbf{J} + \partial\rho/\partial t = 0\)과 모순. 이 항의 도입으로 <strong>전자기파의 존재가 이론적으로 예측</strong>되었고, 1888년 헤르츠가 실험 확인.</p>
+
+      <h4>파동방정식 유도</h4>
+      <p>자유공간(\(\rho = 0, \mathbf{J} = 0\))에서 Faraday 양변에 \(\nabla\times\) 적용:</p>
+      <p>$$\nabla\times(\nabla\times\mathbf{E}) = -\frac{\partial}{\partial t}(\nabla\times\mathbf{B})$$</p>
+      <p>벡터 항등식 \(\nabla\times(\nabla\times\mathbf{E}) = \nabla(\nabla\cdot\mathbf{E}) - \nabla^2\mathbf{E}\)와 \(\nabla\cdot\mathbf{E} = 0\), Ampère–Maxwell \(\nabla\times\mathbf{B} = \mu_0\varepsilon_0 \partial\mathbf{E}/\partial t\)를 대입:</p>
+      <p>$$\nabla^2 \mathbf{E} - \mu_0\varepsilon_0 \frac{\partial^2 \mathbf{E}}{\partial t^2} = 0$$</p>
+      <p>이로부터 진공 광속:</p>
+      <p>$$c = \frac{1}{\sqrt{\mu_0\varepsilon_0}} \approx 2.998\times 10^8\ \text{m/s}$$</p>
+      <p>이는 <strong>전자기학과 광학을 통합한 19세기 물리학 최대 성과</strong>이다.</p>
+    </div>
+  </div>
+
+  <div class="zone zone-industry">
+    <div class="zone-header">
+      <div class="zone-icon">I</div>
+      <div class="zone-label">[산업 연결] Industry Application</div>
+      <div class="zone-title">통신 시스템에서의 직접 적용</div>
+    </div>
+    <div class="zone-body">
+      <ul>
+        <li><strong>FDTD (Finite-Difference Time-Domain) 시뮬레이션</strong>: Yee 격자(1966)로 미분형 맥스웰 방정식을 시간영역에서 직접 풀어 안테나 방사패턴, 전파 환경, EMC 분석. <strong>ANSYS HFSS, CST Studio, Remcom XFdtd</strong>가 산업 표준.</li>
+        <li><strong>MoM (Method of Moments)·FEM</strong>: 적분형 또는 약형(weak form) 맥스웰 방정식의 수치해. 안테나 어레이 설계 필수 도구.</li>
+        <li><strong>광학적 근사 (Geometric Optics)·Ray Tracing</strong>: 파장 ≪ 산란체 크기일 때 맥스웰 방정식의 점근 해. mmWave/sub-THz 채널 모델링과 디지털 트윈에 사용.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="zone zone-trend">
+    <div class="zone-header">
+      <div class="zone-icon">F</div>
+      <div class="zone-label">[최신 동향 2025-2026] Frontier</div>
+      <div class="zone-title">RIS, 양자전자기학, AI 기반 솔버</div>
+    </div>
+    <div class="zone-body">
+      <ul>
+        <li><strong>RIS (Reconfigurable Intelligent Surface)</strong>: 메타표면 단위 셀에 가변 임피던스 부하(varactor, PIN 다이오드)를 인가해 위상 응답을 동적 조절. <strong>본질적으로 비선형 맥스웰 방정식의 경계조건 제어 문제</strong>이며, 6G 핵심 후보 기술. (Basar et al., <em class="cite">IEEE Veh. Technol. Mag.</em> 2024)</li>
+        <li><strong>양자전자기학(QED) 기반 6G 연구</strong>: 단일광자 검출기 기반 양자 통신 채널, 양자 키 분배(QKD)와 무선 5G/6G의 융합 연구가 ETSI ISG QKD 등에서 진행.</li>
+        <li><strong>AI 기반 맥스웰 솔버</strong>: NVIDIA Modulus 등 물리정보 신경망(Physics-Informed Neural Network, PINN)이 FDTD를 보완. <strong>Samsung Research가 IEEE ICC 2025에서 GenAI 기반 디지털 트윈 자동 네트워크 평가 연구로 Best Paper Award 수상</strong>.</li>
+      </ul>
+
+      <div class="implication">
+        <div class="implication-label">→ 산업적 의미</div>
+        맥스웰 방정식 해법의 정확성·속도가 곧 신제품 개발 사이클(time-to-market)이다. Samsung Research가 강조하는 <strong>"Network Digital Twin"은 본질적으로 도시 규모 맥스웰 솔버</strong>이며, 운용비(OPEX) 30% 절감 가능성이 ITU-T 등에서 보고되었다.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CH4 ═══════════════ -->
+<section class="chapter" id="ch4">
+  <div class="ch-meta"><span class="ch-num">CHAPTER 04</span><span class="ch-tag">파동·편파</span></div>
+  <h2>전자기파의 성질</h2>
+  <div class="ch-en">Properties of Electromagnetic Waves</div>
+
+  <div class="zone zone-theory">
+    <div class="zone-header">
+      <div class="zone-icon">T</div>
+      <div class="zone-label">[이론] Theory</div>
+      <div class="zone-title">평면파, 위상속도/군속도, 편파</div>
+    </div>
+    <div class="zone-body">
+      <h4>평면파 해</h4>
+      <p>$$\mathbf{E}(\mathbf{r},t) = \mathbf{E}_0\, e^{j(\omega t - \mathbf{k}\cdot\mathbf{r})}$$</p>
+      <p>진공에서 분산관계: \(|\mathbf{k}| = \omega/c\), 그리고 \(\mathbf{E} \perp \mathbf{B} \perp \mathbf{k}\) (횡파).</p>
+
+      <h4>구면파</h4>
+      <p>점 송신원에서 \(r\) 떨어진 점의 장은 \(E \propto e^{-jkr}/r\). <strong>자유공간 경로손실의 \(r^2\) 의존성의 기원</strong>.</p>
+
+      <h4>위상속도와 군속도</h4>
+      <p>$$v_p = \omega/k, \qquad v_g = d\omega/dk$$</p>
+      <p>분산매질에서 \(v_p \neq v_g\). 도파관에서 \(v_p > c\), \(v_g < c\)이며 \(v_p \cdot v_g = c^2\) (Pozar §1.4).</p>
+
+      <h4>편파 (Polarization)</h4>
+      <p>전기장 벡터 끝점의 시간궤적:</p>
+      <ul>
+        <li><strong>선형 (Linear)</strong>: 두 직교 성분이 동위상</li>
+        <li><strong>원형 (Circular, RHCP/LHCP)</strong>: 위상차 \(\pm\pi/2\), 진폭 같음</li>
+        <li><strong>타원 (Elliptical)</strong>: 일반적인 경우</li>
+      </ul>
+      <p><strong>Stokes 파라미터</strong> \((S_0, S_1, S_2, S_3)\): 부분편파 광·전파를 4개 측정 가능 양으로 완전 기술. Poincaré 구(sphere) 위에서 시각화.</p>
+
+      <h4>ITU-R 전자기 스펙트럼 분류</h4>
+      <p>VLF (3–30 kHz), LF, MF, HF, VHF, UHF (300–3000 MHz), <strong>SHF (3–30 GHz, 마이크로파)</strong>, <strong>EHF (30–300 GHz, mmWave)</strong>, THF (300 GHz–3 THz, sub-THz/THz).</p>
+    </div>
+  </div>
+
+  <div class="zone zone-industry">
+    <div class="zone-header">
+      <div class="zone-icon">I</div>
+      <div class="zone-label">[산업 연결] Industry Application</div>
+      <div class="zone-title">편파 다이버시티와 다중화</div>
+    </div>
+    <div class="zone-body">
+      <ul>
+        <li><strong>편파 다이버시티</strong>: 수직(V)·수평(H) 또는 ±45° 슬랜트 편파를 동시 사용해 페이딩 무상관성 확보. 3GPP의 Cross-Polarization Discrimination(XPD) 모델은 TR 38.901에서 정의.</li>
+        <li><strong>이중편파 안테나</strong>: 5G 64T64R 어레이는 32 V + 32 H로 구성되어 SU/MU-MIMO에서 <strong>공간 자유도 두 배</strong>로 활용.</li>
+        <li><strong>위성통신 원형편파</strong>: 패러데이 회전(Faraday rotation)에 의한 편파 회전 영향을 받지 않도록 RHCP/LHCP 채택 — Iridium, Starlink, GPS 모두.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="zone zone-trend">
+    <div class="zone-header">
+      <div class="zone-icon">F</div>
+      <div class="zone-label">[최신 동향 2025-2026] Frontier</div>
+      <div class="zone-title">OAM과 편파 다중화</div>
+    </div>
+    <div class="zone-body">
+      <ul>
+        <li><strong>OAM (Orbital Angular Momentum) 통신</strong>: 전자기파의 위상이 방위각 \(\varphi\)에 대해 \(e^{j\ell\varphi}\)로 회전하는 vortex wave. 서로 다른 \(\ell\)(topological charge) 모드 간 직교성을 이용해 동일 주파수·시간·편파 자원에서 다중화 가능. <em class="cite">MDPI 2025</em>: 4×4 OAM-MIMO LoS 백홀 시연.</li>
+        <li><strong>THz-OAM 6G 후보 기술</strong>: ITU-R IMT-2030 권고안에서 <strong>OAM이 9개 enabling technology 중 하나</strong>로 식별됨 (arXiv 2402.10781).</li>
+        <li><strong>편파 다중화의 실용화</strong>: 위성–지상 백홀, FWA에서 V/H 또는 ±45° 다중화로 처리량 2배 확보.</li>
+      </ul>
+
+      <div class="implication">
+        <div class="implication-label">→ 산업적 의미</div>
+        한정된 주파수 자원에서 처리량 증가의 본질은 <strong>자유도(degree of freedom)의 발굴</strong>이며, 편파와 OAM은 시간·주파수·공간에 더해 추가 자유도를 제공한다. Samsung 6G White Paper가 강조하는 "Holographic MIMO"는 이러한 자유도 활용의 극단적 형태다.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CH5 ═══════════════ -->
+<section class="chapter" id="ch5">
+  <div class="ch-meta"><span class="ch-num">CHAPTER 05</span><span class="ch-tag">전파 채널</span></div>
+  <h2>전파 전파 특성</h2>
+  <div class="ch-en">Radio Wave Propagation</div>
+
+  <div class="zone zone-theory">
+    <div class="zone-header">
+      <div class="zone-icon">T</div>
+      <div class="zone-label">[이론] Theory</div>
+      <div class="zone-title">자유공간 손실, 회절, 페이딩, 도플러</div>
+    </div>
+    <div class="zone-body">
+      <h4>자유공간 경로손실 (FSPL)</h4>
+      <p>Friis 공식의 손실 형태 (Rappaport §4.3):</p>
+      <p>$$L_{\text{FSPL}}(\text{dB}) = 20\log_{10}\!\left(\frac{4\pi d}{\lambda}\right) = 32.45 + 20\log_{10}f_{\text{MHz}} + 20\log_{10}d_{\text{km}}$$</p>
+
+      <h4>Okumura–Hata 모델 (150 MHz–1500 MHz, 도시 매크로셀)</h4>
+      <p>$$L_{50}(\text{dB}) = 69.55 + 26.16\log_{10}f - 13.82\log_{10}h_b - a(h_m) + (44.9 - 6.55\log_{10}h_b)\log_{10}d$$</p>
+      <p><strong>COST-231 Hata</strong>: 1500–2000 MHz 확장. GSM·UMTS 셀 플래닝 표준.</p>
+
+      <h4>프레넬 회절 (Knife-Edge Diffraction)</h4>
+      <p>$$v = h\sqrt{\frac{2(d_1 + d_2)}{\lambda d_1 d_2}}, \quad L_{\text{knife}}(v) \approx 6.9 + 20\log_{10}\!\left(\sqrt{(v-0.1)^2 + 1} + v - 0.1\right)$$</p>
+
+      <h4>프레넬 반사계수</h4>
+      <p>평면 경계에서:</p>
+      <p>$$\Gamma_\perp = \frac{\eta_2\cos\theta_i - \eta_1\cos\theta_t}{\eta_2\cos\theta_i + \eta_1\cos\theta_t}, \quad \Gamma_\| = \frac{\eta_2\cos\theta_t - \eta_1\cos\theta_i}{\eta_2\cos\theta_t + \eta_1\cos\theta_i}$$</p>
+
+      <h4>산란</h4>
+      <p>입자크기 \(a \ll \lambda\) → Rayleigh 산란 (\(\sigma \propto 1/\lambda^4\)), \(a \sim \lambda\) → Mie 산란.</p>
+
+      <h4>다중경로 페이딩 분포</h4>
+      <ul>
+        <li><strong>Rayleigh fading</strong>: NLoS 환경, 진폭 PDF \(f(r) = (r/\sigma^2) \exp(-r^2/2\sigma^2)\)</li>
+        <li><strong>Rician fading</strong>: LoS 성분 존재, K-factor \(K\) = (직접파 전력)/(산란파 전력)</li>
+        <li><strong>Nakagami-\(m\)</strong>: 일반화된 분포 (\(m=1\): Rayleigh, \(m\to\infty\): AWGN)</li>
+      </ul>
+
+      <h4>도플러 효과</h4>
+      <p>이동 속도 \(v\), 입사각 \(\theta\)일 때 \(f_d = (v/\lambda)\cos\theta\) → 채널 시간상관 \(T_c \approx 0.423/f_{d,\max}\).</p>
+    </div>
+  </div>
+
+  <div class="zone zone-industry">
+    <div class="zone-header">
+      <div class="zone-icon">I</div>
+      <div class="zone-label">[산업 연결] Industry Application</div>
+      <div class="zone-title">표준 채널 모델</div>
+    </div>
+    <div class="zone-body">
+      <ul>
+        <li><strong>3GPP TR 38.901</strong>: 0.5–100 GHz 대역의 클러스터 기반 통계 채널모델. Large-scale parameters(delay spread, angular spread, Rician K-factor, shadow fading)를 시나리오(UMa, UMi, RMa, InH 등)별 정의.</li>
+        <li><strong>ITU-R P.2127</strong>: mmWave 도시 환경 다중경로·차단(blockage) 모델.</li>
+        <li><strong>Okumura–Hata, COST-231</strong>: LTE 셀 플래닝, FWA 커버리지 시뮬레이션의 표준.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="zone zone-trend">
+    <div class="zone-header">
+      <div class="zone-icon">F</div>
+      <div class="zone-label">[최신 동향 2025-2026] Frontier</div>
+      <div class="zone-title">6G 채널 모델 확장</div>
+    </div>
+    <div class="zone-body">
+      <ul>
+        <li><strong>3GPP Release 19 채널모델 확장</strong> (2025년 발표, arXiv 2507.19266): TR 38.901을 6G 대비 강화 — Suburban Macro(SMa), 현실적 UT 안테나, 클러스터·레이 변동성, <strong>근접장(near-field) 전파</strong>, <strong>공간 비정상성(spatial non-stationarity, SNS)</strong>, 모든 편파 변동 프레임워크 도입.</li>
+        <li><strong>WRC-23 6G 후보 대역</strong>: 4.4–4.8 GHz, 7.125–8.4 GHz, 14.8–15.35 GHz가 IMT-2030 잠재 대역 식별. 7–24 GHz는 "FR3" 또는 "upper mid-band"로 명명.</li>
+        <li><strong>Sub-THz 채널 측정</strong>: NYU WIRELESS, TU Braunschweig, KAIST 등이 140 GHz·300 GHz 실내·실외 측정 캠페인 수행. 분자 흡수(molecular absorption) 손실이 60 GHz(O₂), 183 GHz(H₂O) 등에서 수십 dB/km로 두드러짐.</li>
+        <li><strong>AI 기반 채널 추정</strong>: Samsung·SKT MOU(2025)에서 AI 기반 채널추정 핵심 6G 기술로 명시.</li>
+      </ul>
+
+      <div class="implication">
+        <div class="implication-label">→ 산업적 의미</div>
+        정확한 채널모델은 <strong>셀 반경, 사이트 수, CAPEX</strong>를 직접 결정한다. Verizon이 C-band(3.7–3.98 GHz, n77)를 525억 달러에 낙찰받은 것은 이 대역이 sub-6 GHz 커버리지와 mmWave 용량의 절충이기 때문이며, TR 38.901 UMa 모델 시뮬레이션 결과가 그 경제성의 정량적 근거가 된다.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CH6 ═══════════════ -->
+<section class="chapter" id="ch6">
+  <div class="ch-meta"><span class="ch-num">CHAPTER 06</span><span class="ch-tag">방사 시스템</span></div>
+  <h2>안테나 이론</h2>
+  <div class="ch-en">Antenna Theory</div>
+
+  <div class="zone zone-theory">
+    <div class="zone-header">
+      <div class="zone-icon">T</div>
+      <div class="zone-label">[이론] Theory</div>
+      <div class="zone-title">다이폴, 어레이, 빔포밍 가중치</div>
+    </div>
+    <div class="zone-body">
+      <h4>무한소 다이폴 (Hertzian Dipole) 방사장</h4>
+      <p>길이 \(l \ll \lambda\), 전류 \(I_0\)의 \(z\)축 다이폴이 만드는 원역장(far-field) (Balanis §4.2):</p>
+      <p>$$E_\theta = j\eta\frac{kI_0 l}{4\pi r}\sin\theta\, e^{-jkr}$$</p>
+      <p>방사패턴 \(|E_\theta|^2 \propto \sin^2\theta\). <strong>반파장 다이폴(λ/2)</strong>의 이득 \(G \approx 1.64\) (2.15 dBi).</p>
+
+      <h4>지향성 (Directivity)</h4>
+      <p>등방안테나 대비 최대방사방향의 강도비:</p>
+      <p>$$D = \frac{4\pi U_{\max}}{P_{\text{rad}}}, \qquad G = e_{\text{rad}}\cdot D$$</p>
+      <p>여기서 \(e_{\text{rad}}\): 방사효율.</p>
+
+      <h4>EIRP (Equivalent Isotropically Radiated Power)</h4>
+      <p>$$\text{EIRP} = P_t G_t \quad \text{(dBm: } P_t + G_t)$$</p>
+
+      <h4>Friis 전송공식</h4>
+      <p>자유공간 수신전력 (Balanis §2.17, 편파·정합 일치 가정):</p>
+      <p>$$P_r = P_t G_t G_r \left(\frac{\lambda}{4\pi d}\right)^2$$</p>
+
+      <h4>어레이 인자 (Array Factor)</h4>
+      <p>\(N\)개 동일 요소가 균일 간격 \(d\)로 \(z\)축 배치, 점진적 위상차 \(\beta\):</p>
+      <p>$$\text{AF}(\theta) = \sum_{n=0}^{N-1} a_n e^{jn(kd\cos\theta + \beta)} = \frac{\sin(N\psi/2)}{\sin(\psi/2)}\bigg|_{\psi = kd\cos\theta + \beta}$$</p>
+      <p>전체 패턴 = 단일요소 패턴 × AF (<strong>Pattern Multiplication</strong>).</p>
+
+      <h4>빔포밍 가중치 벡터</h4>
+      <p>\(N\) 요소 어레이에 대해</p>
+      <p>$$\mathbf{w} = [w_1, w_2, \ldots, w_N]^T, \quad y = \mathbf{w}^H \mathbf{x}$$</p>
+      <p>조향벡터 \(\mathbf{a}(\theta)\)에 대해 \(w_n = (1/N)a_n^*(\theta_0)\)으로 설정하면 \(\theta_0\) 방향 최대이득.</p>
+    </div>
+  </div>
+
+  <div class="zone zone-industry">
+    <div class="zone-header">
+      <div class="zone-icon">I</div>
+      <div class="zone-label">[산업 연결] Industry Application</div>
+      <div class="zone-title">Massive MIMO와 빔포밍 어레이</div>
+    </div>
+    <div class="zone-body">
+      <ul>
+        <li><strong>Samsung 64T64R Massive MIMO Radio</strong>: Verizon C-band 상용 배포 — 64 송수신 채널, <strong>32 V + 32 H 이중편파, 디지털 빔포밍</strong>으로 SU/MU-MIMO 동시 지원. 공간 자유도가 셀 용량을 약 5–7배 향상(Verizon-Samsung 트라이얼).</li>
+        <li><strong>mmWave 28 GHz·39 GHz 어레이</strong>: 5G FR2 NR n257/n258/n260/n261. 256–1024 요소 phased array, <strong>하이브리드 빔포밍(아날로그 RF + 디지털 BB) 구조</strong>로 RF 체인 수 절감 (Samsung·Verizon Home 5G).</li>
+        <li><strong>EIRP 한계</strong>: 28 GHz UE는 FCC §30.202 EIRP ≤ 43 dBm/100MHz, 기지국은 ≤ 75 dBm/100MHz까지 허용.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="zone zone-trend">
+    <div class="zone-header">
+      <div class="zone-icon">F</div>
+      <div class="zone-label">[최신 동향 2025-2026] Frontier</div>
+      <div class="zone-title">Holographic MIMO와 분산 MIMO</div>
+    </div>
+    <div class="zone-body">
+      <ul>
+        <li><strong>Holographic MIMO (H-MIMO)</strong>: λ/2 미만 간격으로 안테나 요소를 조밀 배치(거의 연속 개구면)해 6G용 초대형 자유도 확보. <em class="cite">Nature Communications 2025</em>: 프로그래머블 디지털 코딩 메타표면 기반 이중채널 근접장 H-MIMO 시연.</li>
+        <li><strong>Near-Field Beamforming</strong>: H-MIMO 개구면이 커지면 통신 거리가 Fraunhofer 거리 \(d_F = 2D^2/\lambda\) 안쪽이 되어 <strong>구면파 모델 필요</strong>. arXiv 2403.09411: 6G 근접장 채널모델.</li>
+        <li><strong>Distributed MIMO (D-MIMO)</strong>: Samsung-SKT MOU에서 <strong>핵심 6G 기술로 명시</strong>. 다수 RU가 협력 송수신해 셀 경계 사용자 성능 개선.</li>
+        <li><strong>Samsung-UCSB THz 프로토타입</strong>: 6G 테라헤르츠 무선통신 시연 (Samsung Newsroom).</li>
+        <li><strong>Reconfigurable Holographic Surface (RHS)-MIMO</strong>: IEEE OJ-COMS 특집호에서 6G 핵심 기술로 다룸.</li>
+      </ul>
+
+      <div class="implication">
+        <div class="implication-label">→ 산업적 의미</div>
+        안테나 공학은 통신 인프라에서 <strong>mmWave/sub-THz 셀 경제성을 결정짓는 단일 최대 변수</strong>다. Samsung Networks의 64T64R RU가 Verizon·Vodafone 입찰의 결정 요소가 되는 이유는 동일 사이트 그리드(예: Verizon AWS 1.7 GHz 사이트)에서 C-band 커버리지를 확보하려면 빔포밍 이득 ≥ 22 dBi 어레이가 필수이기 때문이다.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CH7 ═══════════════ -->
+<section class="chapter" id="ch7">
+  <div class="ch-meta"><span class="ch-num">CHAPTER 07</span><span class="ch-tag">정보이론</span></div>
+  <h2>주파수 대역과 채널 용량</h2>
+  <div class="ch-en">Spectrum and Channel Capacity</div>
+
+  <div class="zone zone-theory">
+    <div class="zone-header">
+      <div class="zone-icon">T</div>
+      <div class="zone-label">[이론] Theory</div>
+      <div class="zone-title">Shannon 정리, MIMO 용량</div>
+    </div>
+    <div class="zone-body">
+      <h4>Shannon 채널 용량 정리 (1948)</h4>
+      <p>AWGN 채널에서 대역폭 \(B\), 신호대잡음비 SNR일 때 오차 없이 전송 가능한 최대속도 (Goldsmith §4.1):</p>
+      <p>$$C = B\log_2(1 + \text{SNR}) \quad [\text{bit/s}]$$</p>
+
+      <h4>도출 개요</h4>
+      <p>연속 가우시안 입력 \(X \sim \mathcal{N}(0, P)\), 출력 \(Y = X + N\), \(N \sim \mathcal{N}(0, N_0 B)\). 상호정보량 \(I(X;Y) = \frac{1}{2}\log_2(1 + P/(N_0 B))\)이며 1초당 \(B\) 심볼 송신 시 \(C = B\log_2(1+\text{SNR})\).</p>
+
+      <h4>Spectral Efficiency</h4>
+      <p>\(\eta = C/B\) [bit/s/Hz].</p>
+
+      <h4>Fading 채널 용량</h4>
+      <ul>
+        <li><strong>Ergodic capacity</strong> (rapid fading, CSIR only): \(C_{\text{erg}} = \mathbb{E}[B \log_2(1 + \gamma|h|^2)]\)</li>
+        <li><strong>Outage capacity</strong> (slow fading): \(P_{\text{out}} = \Pr[\log_2(1+\text{SNR}) < R]\)</li>
+      </ul>
+
+      <h4>MIMO 채널 용량 (Telatar 1995)</h4>
+      <p>\(N_t \times N_r\) MIMO 채널 \(\mathbf{H} \in \mathbb{C}^{N_r \times N_t}\), CSIT 없을 때:</p>
+      <p>$$C = \log_2 \det\!\left(\mathbf{I}_{N_r} + \frac{\rho}{N_t}\mathbf{H}\mathbf{H}^H\right) \quad [\text{bit/s/Hz}]$$</p>
+      <p>여기서 \(\rho\) = SNR. CSIT 알 때는 water-filling으로 더 큰 용량. <strong>\(\min(N_t, N_r)\)에 비례하는 다중화 이득</strong>.</p>
+    </div>
+  </div>
+
+  <div class="zone zone-industry">
+    <div class="zone-header">
+      <div class="zone-icon">I</div>
+      <div class="zone-label">[산업 연결] Industry Application</div>
+      <div class="zone-title">5G 주파수 대역</div>
+    </div>
+    <div class="zone-body">
+      <ul>
+        <li><strong>5G NR FR1 (Sub-7 GHz)</strong>: 410 MHz–7.125 GHz. 주요 대역 <strong>n77 (3.3–4.2 GHz, C-band)</strong>, n78 (3.3–3.8 GHz), n79 (4.4–5.0 GHz), n41 (2.5 GHz, T-Mobile), n71 (600 MHz).</li>
+        <li><strong>5G NR FR2 (mmWave)</strong>: 24.25–52.6 GHz. n257 (28 GHz), n258 (26 GHz, EU), <strong>n260 (39 GHz, Verizon AT&T)</strong>, n261 (28 GHz, Verizon).</li>
+        <li><strong>3GPP Release 17/18/19</strong>: Release 18(2024 완료) — 5G-Advanced 출범, AI/ML for air interface, MIMO 확장. <strong>Release 19(2025년 12월 완료)</strong> — AI/ML 본격 통합, ISAC 채널 모델, ambient IoT, NES.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="zone zone-trend">
+    <div class="zone-header">
+      <div class="zone-icon">F</div>
+      <div class="zone-label">[최신 동향 2025-2026] Frontier</div>
+      <div class="zone-title">6G 후보 대역과 표준화</div>
+    </div>
+    <div class="zone-body">
+      <h4>WRC-23 (2023년 12월) 6G 후보 대역</h4>
+      <ul>
+        <li>Region 1·3: <strong>4.4–4.8 GHz</strong></li>
+        <li>Region 2·3: <strong>7.125–8.4 GHz</strong></li>
+        <li>글로벌: <strong>14.8–15.35 GHz</strong></li>
+      </ul>
+
+      <h4>핵심 동향</h4>
+      <ul>
+        <li><strong>6 GHz 논쟁</strong>: 5925–7125 MHz 대역에서 Wi-Fi 7(unlicensed) vs 5G/6G(licensed) 사용 갈등이 주요국 규제기관(FCC, Ofcom, ECC)에서 진행.</li>
+        <li><strong>3GPP Release 20 (2026)</strong>: 5G-Advanced 마지막 릴리스, 18개월 일정 — Stage-1 freeze 2025년 6월, Stage-2 80% 2026년 6월, Stage-3 2027년 3월.</li>
+        <li><strong>3GPP Release 21 (6G)</strong>: 2025년 Q3부터 21개월 SI(Study Item), 2026년 6월 WI 일정 결정. <strong>Ericsson 전망 — 2028년 말 사양 완성, 2029–2030년 첫 상용화</strong>.</li>
+        <li><strong>Ericsson Mobility Report (2025년 11월)</strong>: 2025년 말 5G 가입자 29억(전체 1/3), 2031년 64억(2/3) 전망. <strong>6G 가입자 2031년 1.8억 추정</strong>. 미국·일본·한국·중국·인도·GCC 국가가 6G 선도 시장.</li>
+      </ul>
+
+      <div class="implication">
+        <div class="implication-label">→ 산업적 의미</div>
+        주파수는 통신사업의 <strong>유한한 토지</strong>다. Verizon이 C-band에 529억 달러, T-Mobile이 2.5 GHz에 수백억 달러를 지불한 이유는 \(C = B\log_2(1+\text{SNR})\)에서 \(B\)가 선형, SNR이 로그로 작용하므로 <strong>대역폭 확보가 사업 가치의 핵심</strong>이기 때문이다.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CH8 ═══════════════ -->
+<section class="chapter" id="ch8">
+  <div class="ch-meta"><span class="ch-num">CHAPTER 08</span><span class="ch-tag">신호처리</span></div>
+  <h2>변조와 다중접속</h2>
+  <div class="ch-en">Modulation and Multiple Access</div>
+
+  <div class="zone zone-theory">
+    <div class="zone-header">
+      <div class="zone-icon">T</div>
+      <div class="zone-label">[이론] Theory</div>
+      <div class="zone-title">QAM, OFDM, 다중접속</div>
+    </div>
+    <div class="zone-body">
+      <h4>QAM 콘스텔레이션</h4>
+      <p>\(M\)-QAM의 \(k\)-번째 심볼:</p>
+      <p>$$s_k(t) = I_k\cos(2\pi f_c t) - Q_k\sin(2\pi f_c t)$$</p>
+      <p>\((I_k, Q_k) \in \sqrt{M} \times \sqrt{M}\) 격자. 평균 심볼 에너지 \(E_s = kE_b\), \(k = \log_2 M\).</p>
+
+      <h4>M-QAM BER (AWGN, Gray coding)</h4>
+      <p>$$P_b \approx \frac{4}{\log_2 M}\!\left(1 - \frac{1}{\sqrt{M}}\right) Q\!\left(\sqrt{\frac{3\log_2 M}{M-1}\cdot\frac{E_b}{N_0}}\right)$$</p>
+      <p>여기서 \(Q(x) = \frac{1}{\sqrt{2\pi}} \int_x^\infty e^{-t^2/2} dt\).</p>
+
+      <h4>OFDM 원리 (Goldsmith §12.4)</h4>
+      <p>\(N\) 부반송파, 부반송파 간격 \(\Delta f = 1/T_{\text{OFDM}}\):</p>
+      <p>송신 (IFFT): \(x_n = (1/\sqrt{N}) \sum_{k=0}^{N-1} X_k e^{j2\pi kn/N}\)<br>수신 (FFT): \(X_k = (1/\sqrt{N}) \sum_{n=0}^{N-1} y_n e^{-j2\pi kn/N}\)</p>
+
+      <h4>Cyclic Prefix (CP)</h4>
+      <p>길이 \(N_{\text{CP}} \geq\) 채널 임펄스응답 길이를 OFDM 심볼 앞에 복사 → 원형 컨볼루션 → 주파수영역 1탭 등화. <strong>ISI/ICI 제거의 결정적 메커니즘</strong>.</p>
+
+      <h4>다중접속 변형</h4>
+      <ul>
+        <li><strong>OFDMA</strong> (LTE/5G 하향): 부반송파를 사용자별 PRB(12 부반송파 × 7 심볼)로 분할.</li>
+        <li><strong>SC-FDMA</strong> (LTE 상향): DFT-precoded OFDM. PAPR 낮춤. 5G NR에서는 DFT-s-OFDM으로 진화.</li>
+        <li><strong>NOMA</strong>: 동일 자원에 다중사용자 전력 중첩 + SIC(Successive Interference Cancellation)로 분리.</li>
+      </ul>
+
+      <h4>Nyquist–Shannon 정리</h4>
+      <ul>
+        <li>Nyquist 샘플링: \(f_s \geq 2B\) (대역제한 신호)</li>
+        <li>Nyquist 무ISI 송신율: \(R \leq 2B\) (이상적 직사각형 펄스)</li>
+        <li>Shannon: \(C = B\log_2(1+\text{SNR})\) — Nyquist율 안에서 SNR과 함께 증가하는 정보율의 상한</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="zone zone-industry">
+    <div class="zone-header">
+      <div class="zone-icon">I</div>
+      <div class="zone-label">[산업 연결] Industry Application</div>
+      <div class="zone-title">5G NR 변조와 다중접속</div>
+    </div>
+    <div class="zone-body">
+      <ul>
+        <li><strong>5G NR Numerology</strong>: 부반송파 간격 \(\Delta f \in \{15, 30, 60, 120, 240\}\) kHz. FR1은 15·30 kHz, FR2는 60·120 kHz.</li>
+        <li><strong>CP-OFDM</strong>(하향·상향 데이터)와 <strong>DFT-s-OFDM</strong>(상향 저PAPR)을 동적 선택.</li>
+        <li><strong>변조 차수</strong>: QPSK, 16-QAM, 64-QAM, <strong>256-QAM</strong>, <strong>1024-QAM</strong>(Release 17 도입). 256-QAM은 SNR ≥ ~26 dB 필요.</li>
+        <li><strong>MIMO 계층</strong>: 최대 4 layer/UE(상향), 8 layer/UE(하향), MU-MIMO에서는 셀당 16 layer까지.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="zone zone-trend">
+    <div class="zone-header">
+      <div class="zone-icon">F</div>
+      <div class="zone-label">[최신 동향 2025-2026] Frontier</div>
+      <div class="zone-title">6G 변조·다중접속</div>
+    </div>
+    <div class="zone-body">
+      <ul>
+        <li><strong>RSMA (Rate-Splitting Multiple Access)</strong>: 사용자 메시지를 공통(common)·사적(private)으로 분할, 공통 부분만 SIC. <strong>SDMA·NOMA·OMA를 특수 케이스로 포괄</strong>. Clerckx et al. (Imperial College)의 첫 SDR 프로토타입(arXiv 2305.07361)에서 SDMA·NOMA 대비 우수성 실험 검증.</li>
+        <li><strong>OTFS (Orthogonal Time-Frequency Space)</strong>: 도플러 큰 환경(고속철, V2X, NTN)에서 OFDM보다 우수. <strong>지연-도플러 영역 변조</strong>.</li>
+        <li><strong>AFDM (Affine Frequency Division Multiplexing)</strong>: OTFS 후속 후보, OFDM과 공존하는 RSMA-AFDM 프레임워크가 arXiv 2505.18739에서 제안.</li>
+        <li><strong>Samsung 6G White Paper (2025년 2월)</strong>: 6G의 4대 속성 — <strong>AI-Native, Sustainable Network, Ubiquitous Coverage, Secure & Resilient</strong>. AI-기반 PHY가 변조·검출·채널 추정 전반에 결합 전망.</li>
+        <li><strong>3GPP Release 19 AI/ML for Air Interface</strong>: 빔 관리, 포지셔닝, CSI 피드백에 AI 모델 도입.</li>
+      </ul>
+
+      <div class="implication">
+        <div class="implication-label">→ 산업적 의미</div>
+        변조 효율 1 bit/s/Hz 향상은 동일 주파수에서 매출 수 % 증가를 의미한다. <strong>RSMA가 6G 표준에 채택되면 imperfect CSIT 환경(고속이동·mmWave)에서 spectral efficiency가 SDMA 대비 20–50% 개선</strong>될 수 있어, 이는 운영사 ARPU에 직접 반영된다.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CH9 ═══════════════ -->
+<section class="chapter" id="ch9">
+  <div class="ch-meta"><span class="ch-num">CHAPTER 09</span><span class="ch-tag">시스템 설계</span></div>
+  <h2>링크 버짓</h2>
+  <div class="ch-en">Link Budget</div>
+
+  <div class="zone zone-theory">
+    <div class="zone-header">
+      <div class="zone-icon">T</div>
+      <div class="zone-label">[이론] Theory</div>
+      <div class="zone-title">송수신 전력, 잡음, SNR</div>
+    </div>
+    <div class="zone-body">
+      <h4>열잡음 전력 (Thermal Noise)</h4>
+      <p>$$N = kTB \quad \text{또는 dBm: } N(\text{dBm}) = -174 + 10\log_{10}B(\text{Hz}) + NF(\text{dB})$$</p>
+      <p>여기서 \(k = 1.381 \times 10^{-23}\) J/K, \(T = 290\) K, \(NF\): 잡음지수.</p>
+      <p>예: \(B = 100\) MHz, \(NF = 5\) dB → \(N = -174 + 80 + 5 = -89\) dBm.</p>
+
+      <h4>SNR/SINR</h4>
+      <p>$$\text{SNR} = \frac{P_r}{N}, \qquad \text{SINR} = \frac{P_r}{N + I}$$</p>
+      <p>여기서 \(I\): 다른 셀/사용자 간섭.</p>
+
+      <h4>기본 링크버짓 공식</h4>
+      <p>$$P_r = P_t + G_t + G_r - L_{\text{path}} - L_{\text{misc}} \quad [\text{dBm}]$$</p>
+      <p>$$\text{Link Margin} = P_r - P_{r,\min}, \quad P_{r,\min} = N + \text{SNR}_{\text{req}}$$</p>
+
+      <h4>표준 Link Budget 표 (5G FR1 C-band, 예시)</h4>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>항목</th><th>값</th><th>비고</th></tr></thead>
+          <tbody>
+            <tr><td>기지국 송신전력 \(P_t\)</td><td>49 dBm</td><td>80 W per branch</td></tr>
+            <tr><td>송신 안테나 이득 \(G_t\)</td><td>25 dBi</td><td>64T64R 빔포밍 후</td></tr>
+            <tr><td>EIRP</td><td>74 dBm</td><td></td></tr>
+            <tr><td>경로손실 \(L_{\text{path}}\)</td><td>130 dB</td><td>UMa NLoS, \(d=500\) m</td></tr>
+            <tr><td>단말 안테나 이득 \(G_r\)</td><td>0 dBi</td><td></td></tr>
+            <tr><td>수신전력 \(P_r\)</td><td>−56 dBm</td><td></td></tr>
+            <tr><td>잡음 (100 MHz, NF 7 dB)</td><td>−87 dBm</td><td></td></tr>
+            <tr><td><strong>SNR</strong></td><td><strong>31 dB</strong></td><td>256-QAM 가능</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="zone zone-industry">
+    <div class="zone-header">
+      <div class="zone-icon">I</div>
+      <div class="zone-label">[산업 연결] Industry Application</div>
+      <div class="zone-title">실제 배포 사례</div>
+    </div>
+    <div class="zone-body">
+      <ul>
+        <li><strong>Verizon C-band</strong> (3.7–3.98 GHz, n77): 64T64R, 평균 161 MHz 대역 확보. 매크로셀 커버리지 ~500–1500 m.</li>
+        <li><strong>Verizon mmWave</strong> (28 GHz, n261): 800 MHz 대역, 셀 반경 ~150–300 m, EIRP 75 dBm, FWA·outdoor hotspot.</li>
+        <li><strong>AT&T Open RAN</strong>: Ericsson + Samsung 듀얼 벤더, AT&T가 2024년부터 70% 사이트 Open RAN 전환 발표.</li>
+        <li><strong>Samsung-Verizon vRAN 64T64R</strong>: 최초 mid-band Massive MIMO vRAN, 업계 최초.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="zone zone-trend">
+    <div class="zone-header">
+      <div class="zone-icon">F</div>
+      <div class="zone-label">[최신 동향 2025-2026] Frontier</div>
+      <div class="zone-title">5G/6G 링크 버짓 데이터</div>
+    </div>
+    <div class="zone-body">
+      <ul>
+        <li><strong>Ericsson Mobility Report 2025년 11월</strong>: 2025년 말 글로벌 5G 가입자 29억, 5G가 모바일 데이터의 43% 처리 → 2031년 83% 전망. 2025년 데이터 트래픽 Q3 대비 +20%.</li>
+        <li><strong>Samsung XDD (Cross Division Duplex)</strong>: Release 18 핵심 기술. TDD에서 상향 커버리지 한계 극복 — <strong>C-band TDD에서 상향 SINR을 +3–6 dB 개선</strong>.</li>
+        <li><strong>mmWave Link Budget 한계</strong>: 28 GHz에서 \(L_{\text{path}}\)가 6 GHz 대비 +13.4 dB(\(\lambda^2/(4\pi d)^2\) 항만 고려, 추가 산소·강우 손실 별도). 따라서 mmWave 매크로셀 반경은 sub-6 대비 1/3–1/5 수준.</li>
+        <li><strong>6G FR3 (7–24 GHz)</strong>: 2026년 본격 측정 시작. 초기 추정 셀 반경은 C-band의 70–80%, FR2의 3–5배.</li>
+      </ul>
+
+      <div class="implication">
+        <div class="implication-label">→ 산업적 의미</div>
+        링크 버짓은 <strong>CAPEX 시뮬레이터</strong>다. 1 dB의 링크 마진 개선은 셀 반경 약 12% 증가(경로지수 \(n=3.5\) 가정) → 동일 커버리지 확보에 필요한 사이트 수가 약 25% 감소를 의미. 따라서 PA 효율, 안테나 이득, 잡음지수 각 1 dB가 곧 수십억~수백억 원의 CAPEX 절감과 직결된다. 이것이 <strong>통신사가 벤더 RFP에서 "RF 성능 1 dB"를 집요하게 요구하는 이유</strong>다.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CH10 ═══════════════ -->
+<section class="chapter" id="ch10">
+  <div class="ch-meta"><span class="ch-num">CHAPTER 10</span><span class="ch-tag">종합</span></div>
+  <h2>삼성 네트워크 사업 종합</h2>
+  <div class="ch-en">Samsung Networks: Synthesis</div>
+
+  <div class="zone zone-theory">
+    <div class="zone-header">
+      <div class="zone-icon">T</div>
+      <div class="zone-label">[이론] 핵심 기술 포지셔닝</div>
+      <div class="zone-title">Samsung Networks의 4대 축</div>
+    </div>
+    <div class="zone-body">
+      <h4>1. mmWave / Massive MIMO 리더십</h4>
+      <ul>
+        <li><strong>64T64R Massive MIMO Radio</strong>: 업계 최초 mid-band(C-band) Massive MIMO를 vRAN에서 상용 지원. Verizon 5G UWB의 핵심 RU.</li>
+        <li><strong>28 GHz/39 GHz CPE 및 라디오</strong>: Verizon 5G Home FWA에 Samsung CPE 단독 공급(2018~).</li>
+        <li><strong>XDD (Cross Division Duplex)</strong>: 3GPP Release 18 기여 핵심 기술. TDD 상향 커버리지·용량·지연 동시 개선.</li>
+      </ul>
+
+      <h4>2. vRAN / Open RAN 리더십</h4>
+      <ul>
+        <li><strong>Verizon 대규모 vRAN 상용 배포</strong> (수백만 가입자 서비스 중, 2024 기준).</li>
+        <li><strong>Vodafone Europe Open RAN 핵심 파트너</strong>: 독일 Wismar가 Vodafone 독일 첫 완전 Open RAN 도시(2025).</li>
+        <li><strong>Intel Xeon 6 SoC 기반 vRAN</strong>: 업계 최초 Tier-1 미국 통신사 라이브 망에서 Xeon 6700P-B(72 코어) vRAN 호 시연(2025).</li>
+        <li><strong>MWC 2026</strong>: Samsung·Vodafone·Intel·Dell·Wind River 공동 — 유럽 최초 Intel Xeon 6 SoC vRAN 호 완료 발표. 2026년 상용 배포 예정.</li>
+      </ul>
+
+      <h4>3. AI-RAN / 6G AI-Native 비전</h4>
+      <ul>
+        <li><strong>Samsung 6G White Paper</strong> (2020 v1, 2025년 2월 v2 "AI-Native & Sustainable Communication"): 6G 4대 속성 정립.</li>
+        <li><strong>6G 핵심 서비스</strong>: Immersive XR, Digital Twin, Massive Communication, Ubiquitous Connectivity (지상-NTN 통합), FWA.</li>
+        <li><strong>6G 성능 요구</strong>: peak 1000 Gbps (5G의 50배), air latency &lt;100 μs (5G의 1/10).</li>
+        <li><strong>Samsung-SKT MOU(2025)</strong>: AI-RAN 핵심 기술 공동 개발.</li>
+        <li><strong>IEEE ICC 2025 Best Paper Award</strong>: GenAI 기반 디지털 트윈 — Samsung Research 수상.</li>
+      </ul>
+
+      <h4>4. 표준화 기여</h4>
+      <ul>
+        <li><strong>3GPP</strong>: Release 17/18/19 핵심 기여자 (XDD, Massive MIMO, AI/ML, NES).</li>
+        <li><strong>O-RAN Alliance</strong>: Open Fronthaul, RIC 사양 기여.</li>
+        <li><strong>AI-RAN Alliance</strong>: 2024년 출범, MWC 2025 Samsung 공동 시연.</li>
+        <li><strong>Silicon Valley Future Wireless Summit 2024·2025 호스트</strong>: AI-RAN 산업 리더십.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="zone zone-industry">
+    <div class="zone-header">
+      <div class="zone-icon">I</div>
+      <div class="zone-label">[산업 연결] 핵심 상용 솔루션</div>
+      <div class="zone-title">제품 포트폴리오 매트릭스</div>
+    </div>
+    <div class="zone-body">
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>솔루션</th><th>핵심 사양</th><th>주요 고객</th></tr></thead>
+          <tbody>
+            <tr><td>C-band 64T64R Massive MIMO</td><td>3.7–3.98 GHz, n77</td><td>Verizon, KDDI, Vodafone</td></tr>
+            <tr><td>28/39 GHz mmWave RU</td><td>n257/n260/n261, 800 MHz BW</td><td>Verizon, KT, US Cellular</td></tr>
+            <tr><td>Samsung vRAN 3.0</td><td>Intel Xeon 6 SoC, 단일서버</td><td>Verizon, Vodafone(2026)</td></tr>
+            <tr><td><strong>CognitiV NOS</strong></td><td>AI 기반 네트워크 자동화</td><td>Vodafone, KDDI</td></tr>
+            <tr><td>Compact 5G Core</td><td>Cloud-native, Container</td><td>DISH, Vodafone</td></tr>
+            <tr><td>Open RAN RU</td><td>O-RAN 7.2x split</td><td>NTT Docomo, Vodafone</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="zone zone-trend">
+    <div class="zone-header">
+      <div class="zone-icon">F</div>
+      <div class="zone-label">[최신 동향] 사업 가치 명제 & 2030 전망</div>
+      <div class="zone-title">Coulomb부터 Shannon까지 → cost per bit</div>
+    </div>
+    <div class="zone-body">
+      <p>학부 전자기학에서 출발한 모든 원리는 결국 운영사의 <strong>단위 비트당 비용(cost per bit) · 단위 비트당 에너지(energy per bit)</strong> 두 지표로 수렴한다.</p>
+
+      <ol>
+        <li><strong>Coulomb·Maxwell → PA 효율</strong>: GaN/SiC PA 1% PAE 개선 = 셀당 연간 수십 kWh 절감.</li>
+        <li><strong>안테나·어레이 인자 → 빔포밍 이득</strong>: 64T64R = sub-6 GHz 셀 용량 5–7배 = 동일 매출에 사이트 수 1/5.</li>
+        <li><strong>Maxwell 파동방정식·채널모델 → 정확한 셀 플래닝</strong>: TR 38.901·디지털 트윈 = CAPEX 오차 ±5% 이하.</li>
+        <li><strong>Shannon·MIMO 용량 → 스펙트럼 자산 가치</strong>: C-band 161 MHz × \(\log_2(1+\text{SNR})\) 가치가 529억 달러 입찰가의 산정 근거.</li>
+        <li><strong>변조·다중접속 → ARPU</strong>: 256-QAM·1024-QAM·MU-MIMO·RSMA 진화 = 동일 주파수에서 매출 누적 증가.</li>
+        <li><strong>링크 버짓 → 사이트 수와 OPEX</strong>: 1 dB 마진 = 사이트 25% 감소 가능성.</li>
+      </ol>
+
+      <h4>2030년 전망</h4>
+      <ul>
+        <li>Ericsson Mobility Report 2025: 2031년 5G 가입자 64억(전체 2/3), 6G 1.8억.</li>
+        <li>3GPP Release 21 = 첫 6G 사양, <strong>2028년 말 동결, 2029–2030 첫 상용화</strong>.</li>
+        <li>Samsung 전망: 2028년 6G 표준 완성 가능, 2030년 본격 상용화. <strong>AI-Native·Sustainable·Ubiquitous·Secure 4대 속성</strong>으로 5G 한계 극복.</li>
+      </ul>
+
+      <div class="implication">
+        <div class="implication-label">→ B2B 해외영업 관점의 의미</div>
+        통신사 CTO와의 대화는 <strong>Coulomb부터 Shannon까지의 전 스펙트럼</strong>에서 이뤄진다. PA 효율, 안테나 이득, 채널모델 가정, MIMO 차수, 변조 차수, 링크 마진, 그리고 이 모든 것의 표준화 기여 — 각 변수가 통신사의 5년 CAPEX·OPEX 시나리오에 정량적으로 들어간다. <strong>Samsung Networks의 경쟁력은 이 모든 층위(반도체·라디오·SW·AI·표준)를 수직 통합한 유일한 vRAN/Open RAN 리더라는 점에 있으며, 이는 Verizon·Vodafone·KDDI·SKT 등 Tier-1 수주의 학술적·공학적 근거</strong>다.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ APPENDIX ═══════════════ -->
+<section class="appendix" id="refs">
+  <h2>부록 A. 표준 참고문헌</h2>
+  <p style="font-family:'Noto Sans KR',sans-serif;font-size:11px;color:var(--ink-muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">Authoritative References</p>
+
+  <h3>전자기학 교과서</h3>
+  <ul>
+    <li>D. J. Griffiths, <em>Introduction to Electrodynamics</em>, 4th ed., Pearson, 2013.</li>
+    <li>D. M. Pozar, <em>Microwave Engineering</em>, 4th ed., Wiley, 2012.</li>
+    <li>C. A. Balanis, <em>Antenna Theory: Analysis and Design</em>, 4th ed., Wiley, 2016.</li>
+  </ul>
+
+  <h3>통신·무선이론 교과서</h3>
+  <ul>
+    <li>T. S. Rappaport, <em>Wireless Communications: Principles and Practice</em>, 2nd ed., Prentice Hall, 2002.</li>
+    <li>A. Goldsmith, <em>Wireless Communications</em>, Cambridge Univ. Press, 2005.</li>
+    <li>E. Telatar, "Capacity of Multi-Antenna Gaussian Channels," <em>Eur. Trans. Telecommun.</em>, 1999.</li>
+    <li>C. E. Shannon, "A Mathematical Theory of Communication," <em>Bell Syst. Tech. J.</em>, 1948.</li>
+  </ul>
+
+  <h3>표준 문서</h3>
+  <ul>
+    <li>3GPP TR 38.901, "Study on channel model for frequencies from 0.5 to 100 GHz."</li>
+    <li>3GPP Release 18·19·20·21 specifications (3gpp.org).</li>
+    <li>ITU-R M.2516, "Future technology trends of terrestrial IMT for 2030 and beyond."</li>
+    <li>ITU-R Recommendations P-series (전파전파), M-series (IMT).</li>
+    <li>WRC-23 Final Acts (2023년 12월).</li>
+  </ul>
+
+  <h3>산업 백서·보고서 (2024–2026)</h3>
+  <ul>
+    <li>Samsung Research, <em>6G White Paper: AI-Native & Sustainable Communication</em>, February 2025.</li>
+    <li>Samsung Research, <em>The Next Hyper-Connected Experience for All</em>, July 2020.</li>
+    <li>Ericsson, <em>Mobility Report</em>, November 2025.</li>
+    <li>Ericsson, <em>Energy performance of 6G Radio Access Networks</em>, 2024.</li>
+    <li>Nokia, <em>The path to 6G with unparalleled energy savings</em>, February 2025.</li>
+  </ul>
+
+  <h3>대표 IEEE 논문 (2024–2025)</h3>
+  <ul>
+    <li>T. Gong et al., "Holographic MIMO Communications: Theoretical Foundations, Enabling Technologies, and Future Directions," <em>IEEE Commun. Surveys & Tutorials</em>, 2023.</li>
+    <li>3GPP Release 19 channel modeling enhancements, arXiv:2507.19266 (2025).</li>
+    <li>E. Basar et al., "Reconfigurable Intelligent Surfaces for 6G," <em>IEEE Veh. Technol. Mag.</em>, 2024.</li>
+    <li>B. Clerckx et al., "Rate-Splitting Multiple Access: First Prototype," arXiv:2305.07361.</li>
+  </ul>
+</section>
+
+<footer class="site-footer">
+  본 백서는 학습 목적의 정리 자료이며, 모든 수치·표준 인용은 1차 자료 기준으로 검증되었다.<br>
+  6G 관련 일정·성능 수치는 2026년 4월 현재 ITU-R/3GPP 공식 로드맵 및 벤더 백서 기준의 전망치이며, 표준 확정 시 변경될 수 있다.<br><br>
+  <strong>전자기학 × 통신산업 백서 v2.0</strong> · 최유진 · 삼성전자 네트워크사업부 B2B 해외영업 대비 · 2026.04.30
+</footer>
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" 
+  onload="renderMathInElement(document.body, {
+    delimiters: [
+      {left: '$$', right: '$$', display: true},
+      {left: '\\(', right: '\\)', display: false},
+      {left: '\\[', right: '\\]', display: true}
+    ],
+    throwOnError: false
+  });"></script>
+
+<script>
+// Progress bar
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  document.getElementById('progLine').style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100 + '%';
+});
+
+// Active TOC
+const sections = document.querySelectorAll('.chapter, .preamble, .appendix');
+const pills = document.querySelectorAll('.toc-pill');
+const obs = new IntersectionObserver(es => {
+  es.forEach(e => {
+    if (e.isIntersecting) {
+      pills.forEach(p => p.classList.remove('active'));
+      const p = document.querySelector(`.toc-pill[data-target="${e.target.id}"]`);
+      if (p) {
+        p.classList.add('active');
+        p.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
+      }
+    }
+  });
+}, { rootMargin: '-100px 0px -60% 0px' });
+sections.forEach(s => obs.observe(s));
+</script>
+
+</body>
+</html>
