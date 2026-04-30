@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>모의면접 시뮬레이터 — 삼성 네트워크사업부</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f172a;--card:#1e293b;--blue:#3b82f6;--cyan:#06b6d4;--green:#10b981;--amber:#f59e0b;--rose:#f43f5e;--violet:#8b5cf6;--text:#f1f5f9;--sub:#94a3b8;--mute:#64748b;--border:#334155}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;-webkit-font-smoothing:antialiased}
+.container{max-width:520px;width:100%}
+h1{font-size:20px;font-weight:900;text-align:center;margin-bottom:4px}
+.sub{text-align:center;font-size:12px;color:var(--mute);margin-bottom:24px}
+.panel{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:16px}
+.stats{display:flex;justify-content:center;gap:20px;margin-bottom:20px}
+.stat{text-align:center}
+.stat-num{font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:700}
+.stat-num.timer{color:var(--cyan)}
+.stat-num.count{color:var(--green)}
+.stat-label{font-size:10px;color:var(--mute);letter-spacing:1px;text-transform:uppercase}
+.tags{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap;justify-content:center}
+.tag{font-size:11px;padding:3px 10px;border-radius:12px;font-weight:500}
+.tag.cat{border:1px solid var(--blue);color:var(--blue)}
+.tag.diff-easy{background:rgba(16,185,129,0.15);color:var(--green)}
+.tag.diff-mid{background:rgba(245,158,11,0.15);color:var(--amber)}
+.tag.diff-hard{background:rgba(244,63,94,0.15);color:var(--rose)}
+.question{font-size:18px;font-weight:700;line-height:1.5;text-align:center;margin:20px 0;min-height:80px;display:flex;align-items:center;justify-content:center}
+.hint-box{background:rgba(6,182,212,0.08);border:1px solid rgba(6,182,212,0.2);border-radius:10px;padding:14px;margin:12px 0;display:none;font-size:13px;line-height:1.7;color:var(--sub)}
+.hint-box strong{color:var(--text)}
+.btns{display:flex;gap:8px;margin-top:16px}
+.btn{flex:1;padding:14px;border-radius:10px;font-size:14px;font-weight:700;border:none;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:transform 0.1s}
+.btn:active{transform:scale(0.97)}
+.btn.primary{background:var(--blue);color:white}
+.btn.secondary{background:var(--border);color:var(--sub)}
+.btn.hint-btn{background:rgba(6,182,212,0.15);color:var(--cyan);font-size:12px;font-weight:500}
+.btn.start{background:linear-gradient(135deg,var(--blue),var(--violet));color:white;font-size:16px;padding:16px}
+.mode-select{display:flex;gap:8px;margin:16px 0}
+.mode-btn{flex:1;padding:12px;border-radius:10px;font-size:13px;font-weight:500;border:2px solid var(--border);background:transparent;color:var(--sub);cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all 0.2s}
+.mode-btn.active{border-color:var(--blue);color:var(--blue);background:rgba(59,130,246,0.08)}
+.progress-bar{height:4px;background:var(--border);border-radius:2px;margin:16px 0;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--cyan),var(--blue));transition:width 0.3s;border-radius:2px}
+.result{text-align:center}
+.result h2{font-size:22px;font-weight:900;margin-bottom:8px}
+.result .score{font-family:'JetBrains Mono',monospace;font-size:48px;font-weight:700;color:var(--cyan);margin:16px 0}
+.hidden{display:none!important}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>🎙️ 모의면접 시뮬레이터</h1>
+  <div class="sub">삼성전자 네트워크사업부 B2B해외영업 · 전형 면접 예상 질문 35개</div>
+
+  <!-- START SCREEN -->
+  <div id="startScreen" class="panel">
+    <div style="text-align:center;margin-bottom:16px;font-size:14px;color:var(--sub)">모드를 선택하세요</div>
+    <div class="mode-select">
+      <button class="mode-btn active" onclick="setMode('random')" id="mRandom">🎲 랜덤 10문제</button>
+      <button class="mode-btn" onclick="setMode('full')" id="mFull">📋 전체 35문제</button>
+    </div>
+    <div class="mode-select">
+      <button class="mode-btn active" onclick="setTimer(60)" id="t60">⏱ 60초</button>
+      <button class="mode-btn" onclick="setTimer(90)" id="t90">⏱ 90초</button>
+      <button class="mode-btn" onclick="setTimer(0)" id="t0">♾️ 무제한</button>
+    </div>
+    <button class="btn start" onclick="startQuiz()" style="width:100%;margin-top:12px">시작하기</button>
+  </div>
+
+  <!-- QUIZ SCREEN -->
+  <div id="quizScreen" class="panel hidden">
+    <div class="stats">
+      <div class="stat"><div class="stat-num timer" id="timerDisplay">60</div><div class="stat-label">초</div></div>
+      <div class="stat"><div class="stat-num count" id="qCount">1/10</div><div class="stat-label">진행</div></div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progFill" style="width:10%"></div></div>
+    <div class="tags" id="qTags"></div>
+    <div class="question" id="qText"></div>
+    <div class="hint-box" id="hintBox"></div>
+    <div class="btns">
+      <button class="btn hint-btn" onclick="showHint()">💡 힌트 보기</button>
+      <button class="btn secondary" onclick="skipQ()">건너뛰기</button>
+      <button class="btn primary" onclick="nextQ()">다음 →</button>
+    </div>
+  </div>
+
+  <!-- RESULT SCREEN -->
+  <div id="resultScreen" class="panel hidden">
+    <div class="result">
+      <h2>모의면접 완료! 🎉</h2>
+      <div class="score" id="resultScore">10/10</div>
+      <div style="color:var(--sub);font-size:13px;margin-bottom:16px" id="resultMsg"></div>
+      <button class="btn primary" onclick="restart()" style="width:100%">다시 하기</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const allQuestions = [
+  // ─── 자기소개 / 인성 ───
+  {q:"1분 자기소개 부탁드립니다.",cat:"자기소개",diff:"기본",hint:"두괄식: 한 줄 정체성 → 핵심 경험 2~3개 → 입사 후 기여 포인트. 시간 엄수."},
+  {q:"본인의 강점과 약점을 말해보세요.",cat:"인성",diff:"기본",hint:"강점은 직무 연결성 있게 (ex. 로데이터 독해 → 분석 역량). 약점은 솔직하되 개선 노력까지 함께."},
+  {q:"본인을 한 단어로 표현한다면?",cat:"인성",diff:"기본",hint:"환경 설계자 / 번역가 / 찹쌀떡 등. 단어 + 이유 + 사례 1개."},
+  {q:"가장 힘들었던 경험과 극복 방법은?",cat:"인성",diff:"기본",hint:"학사경고 또는 Lornamead. 구조적 원인 분석 + 회복 증거. STAR 구조."},
+  {q:"성공 경험을 하나 말씀해주세요.",cat:"인성",diff:"기본",hint:"한고재 30페이지 보고서 2주 완성 → C레벨 보고. 또는 OPIc AM 3개월 취득."},
+
+  // ─── 지원 동기 ───
+  {q:"우리 네트워크사업부에 지원한 이유가 무엇인가요?",cat:"지원동기",diff:"기본",hint:"개인 지향(SOC 해외영업) + 사업부 매력(B2B/B2G, 기술 전환기) + 본인의 차별성(공공조달 분석 경험)."},
+  {q:"왜 다른 회사가 아닌 삼성전자입니까?",cat:"지원동기",diff:"기본",hint:"기술적 연속성(2009 mmWave→6G 백서), 모기업 R&D 35조, 갤럭시 사용자 경험으로 본 생태계 완성도."},
+  {q:"왜 다른 사업부가 아닌 네트워크사업부인가요?",cat:"지원동기",diff:"중급",hint:"통신 인프라가 SOC라는 점, 5G→6G 전환기, B2B/B2G 영업 구조가 본인 분석 역량과 직결."},
+  {q:"왜 영업 직무를 선택하셨나요?",cat:"지원동기",diff:"기본",hint:"책상에서 끝나는 분석보다 사람 앞에서 성과 만드는 일에서 보람. 현경연 경험 → 분석가가 아닌 제안자가 되고 싶다."},
+  {q:"B2B영업 직무에 대해 어떻게 이해하고 있나요?",cat:"지원동기",diff:"중급",hint:"고객사 사업 구조 이해 → 가치 제안 설계 → 장기 신뢰관계. RFI→RFP→PoC→계약→운영 프로세스 전반 리드."},
+
+  // ─── 커리어 / 비전 ───
+  {q:"삼성전자에서 이루고 싶은 커리어 목표를 말해보세요.",cat:"커리어",diff:"기본",hint:"단기(직무 적응 + 기술 학습) → 중기(독립 영업) → 장기(글로벌 시장 개척 전문가). 6G 시대까지 연결."},
+  {q:"입사 후 5년 뒤 본인의 모습은 어떨 것 같습니까?",cat:"커리어",diff:"기본",hint:"5년 차에 신규 시장 1개 개척 또는 기존 고객 확장 책임. 구체 지역(유럽/동남아) + 역량 발전 단계."},
+  {q:"입사 후 가장 먼저 하고 싶은 일은?",cat:"커리어",diff:"기본",hint:"기존 고객사 히스토리 학습 + 사내 기술팀과 라포 형성. 3개월 안의 구체 행동 계획."},
+  {q:"10년 뒤에 무엇이 되고 싶나요?",cat:"커리어",diff:"중급",hint:"네트워크사업부 글로벌 영업 리더, 또는 신규 시장 개척 전문가. 삼성에 남아 성장하는 그림."},
+  {q:"본인이 생각하는 이상적인 영업인의 모습은?",cat:"커리어",diff:"중급",hint:"고객의 사업 구조를 가장 잘 이해하는 사람 + 기술의 비즈니스 가치를 번역하는 사람."},
+
+  // ─── 직무 역량 ───
+  {q:"본인이 이 직무에 적합하다고 생각하는 이유는?",cat:"직무역량",diff:"기본",hint:"분석 역량(현경연 RA), 글로벌 커뮤니케이션(교환학생), 다양한 이해관계자 조율(학회장+GDGoC) 3축."},
+  {q:"가장 자신 있는 역량은 무엇입니까?",cat:"직무역량",diff:"기본",hint:"로데이터 직접 독해. CFR 원문 읽고 변호사 의견 뒤집은 경험 또는 CEZ 분류 오류 발견."},
+  {q:"본인의 직무 관련 경험을 말씀해주세요.",cat:"직무역량",diff:"기본",hint:"현경연 RA(EU 공공조달) + 한고재(경쟁기관 분석) + GDGoC(이해관계자 조율) 3개 묶기."},
+  {q:"학창 시절 가장 의미 있는 경험을 들려주세요.",cat:"직무역량",diff:"기본",hint:"교환학생을 취업 준비의 장으로 설계한 경험. 환경 설계 프레임의 핵심 사례."},
+  {q:"리더십을 발휘했던 경험을 말씀해주세요.",cat:"직무역량",diff:"중급",hint:"국제정치학회 33기 학회장 1년 운영 또는 GDGoC 운영팀장 (비SW전공 유일). 구체 의사결정과 결과."},
+  {q:"팀 프로젝트에서 갈등이 있었다면 어떻게 해결했나요?",cat:"직무역량",diff:"중급",hint:"GDGoC 개발자-비개발자 소통 갈등. 각자의 언어로 번역해 공통 목표 재정의. 구체 에피소드."},
+  {q:"실패 경험과 그로부터 배운 점을 말해보세요.",cat:"직무역량",diff:"상급",hint:"학사경고를 구조적 오판으로 프레임. 변수 식별 실패 → 회복 증거. 휴학 리듬 언급 X."},
+
+  // ─── 회사 / 산업 이해 ───
+  {q:"삼성전자 네트워크사업부에 대해 아는 대로 말씀해주세요.",cat:"회사이해",diff:"기본",hint:"5G RAN(mMIMO/mmWave) + Cloud Network(vRAN/vCore) + AI-RAN. 글로벌 vRAN 38,000+ 사이트, mmWave 원조."},
+  {q:"통신 산업의 현재 동향에 대해 어떻게 보고 있습니까?",cat:"산업이해",diff:"중급",hint:"5G 1차 투자 사이클 종료, AI-RAN 가속, Open RAN 확산, Private 5G 폭발 성장, 6G 선행 연구."},
+  {q:"우리 사업부의 강점과 약점이 무엇이라 생각하나요?",cat:"산업이해",diff:"중급",hint:"강점 3개(기술 연속성/Open이면서 Complete/지정학 포지션). 약점(시장점유율, 고객집중, 레거시 관계 부족)."},
+  {q:"우리 회사의 경쟁사는 누구라고 생각하시나요?",cat:"산업이해",diff:"기본",hint:"Huawei(30%, 1위, 서방 배제), Ericsson(24%, 2위, 레거시), Nokia(16%, 3위, mmWave 약점)."},
+  {q:"5G와 6G의 차이를 비전공자에게 설명한다면?",cat:"산업이해",diff:"중급",hint:"5G는 빠른 인터넷+초저지연(B2B 시작), 6G는 1Tbps+0.1ms+AI 네이티브+THz+위성 통합(2030 상용)."},
+  {q:"네트워크 슬라이싱이 무엇인지 설명해주세요.",cat:"산업이해",diff:"중급",hint:"1 물리망 → 여러 가상 전용망. 각 슬라이스 다른 SLA·가격 → 통신사 B2B 프리미엄 매출원."},
+
+  // ─── 상황 / 가치관 ───
+  {q:"입사한다면 어떤 점에서 회사에 기여할 수 있을까요?",cat:"가치관",diff:"기본",hint:"공공조달 분석 역량(B2G), 지정학 분석(통상환경 변화 대응), 기술의 비즈니스 번역."},
+  {q:"본인이 우리 회사를 선택한 만큼, 우리가 본인을 선택해야 하는 이유는?",cat:"가치관",diff:"중급",hint:"분석 역량(공공조달/경쟁기관) + 환경 설계(목표 → 구조 설계 → 성과) + 번역 역량(기술↔비즈니스)."},
+  {q:"존경하는 인물과 그 이유를 말씀해주세요.",cat:"가치관",diff:"기본",hint:"김연경 — '해보자, 후회하지 말고.' 도쿄올림픽 한일전 명언. 환경 어려워도 결과로 증명하는 태도."},
+  {q:"좌우명이나 가치관이 있다면?",cat:"가치관",diff:"기본",hint:"'성공할 수밖에 없는 환경을 먼저 설계하라' — 환경 설계 프레임의 핵심."},
+  {q:"입사 후 야근이 잦거나 해외 출장이 많을 텐데 괜찮나요?",cat:"가치관",diff:"기본",hint:"교환학생을 취업 장으로 설계해 매일 커리어센터 출근한 경험. 해외 영업의 본질을 이해하고 지원."},
+  {q:"마지막으로 하고 싶은 말이 있다면?",cat:"마무리",diff:"기본",hint:"하강기에 입사해 상승기를 만드는 사람이 되고 싶다. 기술의 비즈니스 번역가로 기여하겠다는 의지."},
+  {q:"저희에게 궁금한 점 있으십니까?",cat:"마무리",diff:"기본",hint:"신입에게 기대하는 첫 1년 역할 / 사업부 내 멘토링 문화 / 해외 출장·주재원 기회 시점 등 구체 질문 1-2개."}
+];
+
+let mode='random', timerSec=60, questions=[], qi=0, answered=0, skipped=0, timer=null;
+
+function setMode(m){mode=m;document.getElementById('mRandom').classList.toggle('active',m==='random');document.getElementById('mFull').classList.toggle('active',m==='full')}
+function setTimer(s){timerSec=s;['t60','t90','t0'].forEach(id=>document.getElementById(id).classList.remove('active'));if(s===60)document.getElementById('t60').classList.add('active');else if(s===90)document.getElementById('t90').classList.add('active');else document.getElementById('t0').classList.add('active')}
+
+function shuffle(a){for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+
+function startQuiz(){
+  questions=mode==='random'?shuffle([...allQuestions]).slice(0,10):[...allQuestions];
+  qi=0;answered=0;skipped=0;
+  document.getElementById('startScreen').classList.add('hidden');
+  document.getElementById('resultScreen').classList.add('hidden');
+  document.getElementById('quizScreen').classList.remove('hidden');
+  showQuestion();
+}
+
+function showQuestion(){
+  if(qi>=questions.length){showResult();return}
+  const q=questions[qi];
+  document.getElementById('qText').textContent=q.q;
+  document.getElementById('qCount').textContent=`${qi+1}/${questions.length}`;
+  document.getElementById('progFill').style.width=((qi+1)/questions.length*100)+'%';
+  const diffClass=q.diff==='기본'?'diff-easy':q.diff==='중급'?'diff-mid':'diff-hard';
+  document.getElementById('qTags').innerHTML=`<span class="tag cat">${q.cat}</span><span class="tag ${diffClass}">${q.diff}</span>`;
+  document.getElementById('hintBox').style.display='none';
+  document.getElementById('hintBox').innerHTML=`<strong>💡 답변 포인트:</strong> ${q.hint}`;
+  if(timerSec>0)startTimer();else document.getElementById('timerDisplay').textContent='∞';
+}
+
+function startTimer(){
+  clearInterval(timer);
+  let t=timerSec;
+  document.getElementById('timerDisplay').textContent=t;
+  document.getElementById('timerDisplay').style.color='var(--cyan)';
+  timer=setInterval(()=>{
+    t--;document.getElementById('timerDisplay').textContent=t;
+    if(t<=10)document.getElementById('timerDisplay').style.color='var(--rose)';
+    if(t<=0){clearInterval(timer);document.getElementById('timerDisplay').textContent='⏰'}
+  },1000);
+}
+
+function showHint(){document.getElementById('hintBox').style.display='block'}
+function nextQ(){clearInterval(timer);answered++;qi++;showQuestion()}
+function skipQ(){clearInterval(timer);skipped++;qi++;showQuestion()}
+
+function showResult(){
+  clearInterval(timer);
+  document.getElementById('quizScreen').classList.add('hidden');
+  document.getElementById('resultScreen').classList.remove('hidden');
+  document.getElementById('resultScore').textContent=`${answered}/${questions.length}`;
+  const pct=answered/questions.length*100;
+  let msg=pct>=90?'완벽에 가깝다! 면접 준비 만반. 💪':pct>=70?'잘했어! 건너뛴 질문 힌트 복습하면 완벽.':pct>=50?'중간이야. 힌트 보면서 한 번 더 돌려봐.':'더 연습이 필요해. 치트시트 먼저 복습하고 다시!';
+  if(skipped>0)msg+=` (건너뛴 ${skipped}개)`;
+  document.getElementById('resultMsg').textContent=msg;
+}
+
+function restart(){
+  document.getElementById('resultScreen').classList.add('hidden');
+  document.getElementById('startScreen').classList.remove('hidden');
+}
+</script>
+</body>
+</html>
