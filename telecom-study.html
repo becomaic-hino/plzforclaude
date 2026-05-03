@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>통신산업 기술 기초 — 삼성 네트워크사업부 직무면접 완전정복</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-deep: #0a0e17;
+  --bg-card: #111827;
+  --bg-card-hover: #1a2332;
+  --bg-surface: #1e293b;
+  --bg-highlight: #0f172a;
+  --accent-blue: #3b82f6;
+  --accent-cyan: #06b6d4;
+  --accent-emerald: #10b981;
+  --accent-orange: #f97316;
+  --accent-rose: #f43f5e;
+  --accent-violet: #8b5cf6;
+  --accent-amber: #f59e0b;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --border: #1e293b;
+  --border-light: #334155;
+  --samsung-blue: #1428a0;
+  --glow-blue: rgba(59,130,246,0.15);
+  --glow-cyan: rgba(6,182,212,0.1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  line-height: 1.75;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── HEADER ─── */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(10,14,23,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  transition: transform 0.3s;
+}
+
+.header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
+}
+
+.logo-sub {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--text-muted);
+  display: block;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  -webkit-text-fill-color: var(--text-muted);
+}
+
+.progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue), var(--accent-violet));
+  transition: width 0.15s;
+  width: 0%;
+}
+
+/* ─── NAV PILLS ─── */
+.nav-toggle {
+  display: none;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  color: var(--text-primary);
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.module-nav {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  background: rgba(10,14,23,0.9);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.module-nav::-webkit-scrollbar { display: none; }
+
+.nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 8px 16px;
+  display: flex;
+  gap: 6px;
+  min-width: max-content;
+}
+
+.nav-pill {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid var(--border-light);
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+  text-decoration: none;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+.nav-pill:hover, .nav-pill.active {
+  background: var(--accent-blue);
+  border-color: var(--accent-blue);
+  color: white;
+}
+
+/* ─── HERO ─── */
+.hero {
+  padding: 140px 20px 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, var(--glow-blue) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.hero-label {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent-cyan);
+  border: 1px solid rgba(6,182,212,0.3);
+  padding: 4px 16px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 900;
+  line-height: 1.3;
+  margin-bottom: 16px;
+  letter-spacing: -1px;
+}
+
+.hero h1 .grad {
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+  color: var(--text-secondary);
+  font-size: 15px;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* ─── MODULE SECTIONS ─── */
+.module-section {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 60px 20px 40px;
+}
+
+.module-header {
+  margin-bottom: 36px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.module-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.module-header h2 {
+  font-size: clamp(22px, 4vw, 32px);
+  font-weight: 900;
+  line-height: 1.3;
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+
+.module-header .subtitle {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+/* ─── CONTENT BLOCKS ─── */
+.content-block {
+  margin-bottom: 36px;
+}
+
+.content-block h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.content-block h3 .icon {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.content-block h4 {
+  font-size: 15px;
+  font-weight: 700;
+  margin: 20px 0 8px;
+  color: var(--accent-cyan);
+}
+
+.content-block p {
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  font-size: 14.5px;
+}
+
+.content-block strong { color: var(--text-primary); font-weight: 500; }
+
+/* ─── ANALOGY BOX ─── */
+.analogy {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent-amber);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin: 16px 0;
+}
+.analogy-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--accent-amber);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+.analogy p { margin-bottom: 0; font-size: 14px; }
+
+/* ─── INTERVIEW BOX ─── */
+.interview-box {
+  background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(139,92,246,0.06));
+  border: 1px solid rgba(59,130,246,0.2);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 0;
+}
+.interview-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent-blue);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.interview-box blockquote {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--text-primary);
+  font-weight: 300;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* ─── TABLE ─── */
+.table-wrap {
+  overflow-x: auto;
+  margin: 16px 0;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  min-width: 480px;
+}
+
+thead {
+  background: var(--bg-surface);
+}
+
+th {
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: 500;
+  font-size: 12px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--border);
+}
+
+td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: var(--bg-card-hover); }
+td:first-child { color: var(--text-primary); font-weight: 500; }
+
+/* ─── KEY FORMULA ─── */
+.formula-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  margin: 16px 0;
+}
+.formula {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--accent-cyan);
+  margin-bottom: 8px;
+}
+.formula-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ─── ARCHITECTURE DIAGRAM ─── */
+.arch-diagram {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 16px 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--text-secondary);
+  overflow-x: auto;
+  white-space: pre;
+  line-height: 1.6;
+}
+
+/* ─── CARDS GRID ─── */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.tech-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px;
+  transition: border-color 0.2s, transform 0.15s;
+}
+.tech-card:hover {
+  border-color: var(--border-light);
+  transform: translateY(-2px);
+}
+.tech-card .card-num {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+.tech-card h5 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.tech-card p {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+.tech-card .samsung-tag {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: rgba(59,130,246,0.1);
+  color: var(--accent-blue);
+  display: inline-block;
+}
+
+/* ─── COLLAPSIBLE ─── */
+.collapsible {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin: 8px 0;
+  overflow: hidden;
+}
+.collapsible-header {
+  padding: 14px 18px;
+  background: var(--bg-card);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.2s;
+  user-select: none;
+}
+.collapsible-header:hover { background: var(--bg-card-hover); }
+.collapsible-header .arrow {
+  font-size: 12px;
+  color: var(--text-muted);
+  transition: transform 0.3s;
+}
+.collapsible.open .arrow { transform: rotate(180deg); }
+.collapsible-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  background: var(--bg-highlight);
+}
+.collapsible.open .collapsible-body { max-height: 2000px; }
+.collapsible-body-inner { padding: 16px 18px; }
+
+/* ─── DIVIDER ─── */
+.section-divider {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.section-divider hr {
+  border: none;
+  border-top: 1px solid var(--border);
+}
+
+/* ─── VOCAB LIST ─── */
+.vocab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 8px;
+  margin: 16px 0;
+}
+.vocab-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+.vocab-term {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--accent-cyan);
+  margin-bottom: 2px;
+}
+.vocab-def {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ─── FINAL SUMMARY ─── */
+.final-summary {
+  max-width: 860px;
+  margin: 40px auto 80px;
+  padding: 0 20px;
+}
+
+.summary-card {
+  background: linear-gradient(135deg, var(--bg-card), rgba(59,130,246,0.05));
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px 24px;
+  text-align: center;
+}
+
+.summary-card h2 {
+  font-size: 22px;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+
+.summary-modules {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.summary-module {
+  background: var(--bg-surface);
+  border-radius: 8px;
+  padding: 12px;
+  text-align: left;
+}
+.summary-module .sm-num {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--accent-cyan);
+  letter-spacing: 1px;
+}
+.summary-module .sm-title {
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: 2px;
+}
+.summary-module .sm-key {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  .module-section { padding: 40px 16px 30px; }
+  .card-grid { grid-template-columns: 1fr; }
+  .vocab-grid { grid-template-columns: 1fr 1fr; }
+  .summary-modules { grid-template-columns: 1fr 1fr; }
+  table { font-size: 12px; }
+  th, td { padding: 8px 10px; }
+  .hero { padding: 130px 16px 40px; }
+}
+
+@media (max-width: 480px) {
+  body { font-size: 14px; }
+  .vocab-grid { grid-template-columns: 1fr; }
+  .nav-pill { font-size: 11px; padding: 5px 10px; }
+  .formula { font-size: 17px; }
+  .arch-diagram { font-size: 10px; padding: 14px; }
+}
+
+/* ─── COLOR ACCENTS PER MODULE ─── */
+.mod-1 .module-tag { background: rgba(249,115,22,0.15); color: var(--accent-orange); }
+.mod-2 .module-tag { background: rgba(249,115,22,0.15); color: var(--accent-orange); }
+.mod-3 .module-tag { background: rgba(139,92,246,0.15); color: var(--accent-violet); }
+.mod-4 .module-tag { background: rgba(139,92,246,0.15); color: var(--accent-violet); }
+.mod-5 .module-tag { background: rgba(6,182,212,0.15); color: var(--accent-cyan); }
+.mod-6 .module-tag { background: rgba(6,182,212,0.15); color: var(--accent-cyan); }
+.mod-7 .module-tag { background: rgba(59,130,246,0.15); color: var(--accent-blue); }
+.mod-8 .module-tag { background: rgba(59,130,246,0.15); color: var(--accent-blue); }
+
+/* Subtle animation */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.module-section { animation: fadeUp 0.5s ease-out; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <div class="logo">TELECOM 101<span class="logo-sub">Samsung Networks Interview Prep</span></div>
+    <button class="nav-toggle" id="navToggle" onclick="document.querySelector('.module-nav').classList.toggle('hidden')">M1–M8 ▾</button>
+  </div>
+  <div class="progress-bar" id="progressBar"></div>
+</header>
+
+<!-- MODULE NAV -->
+<nav class="module-nav" id="moduleNav">
+  <div class="nav-inner">
+    <a href="#m1" class="nav-pill active" data-mod="m1">M1 전자기파</a>
+    <a href="#m2" class="nav-pill" data-mod="m2">M2 변조·다중접속</a>
+    <a href="#m3" class="nav-pill" data-mod="m3">M3 셀룰러 구조</a>
+    <a href="#m4" class="nav-pill" data-mod="m4">M4 세대 진화</a>
+    <a href="#m5" class="nav-pill" data-mod="m5">M5 5G 핵심기술</a>
+    <a href="#m6" class="nav-pill" data-mod="m6">M6 아키텍처</a>
+    <a href="#m7" class="nav-pill" data-mod="m7">M7 vRAN·AI-RAN</a>
+    <a href="#m8" class="nav-pill" data-mod="m8">M8 기술→비즈니스</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-label">삼성전자 네트워크사업부 · B2B 해외영업</div>
+  <h1>통신산업 기술 기초<br><span class="grad">직무면접 완전정복</span></h1>
+  <p>전자기파 기초부터 TCO·수주 구조까지 — 문과 출신이 면접에서 기술을 비즈니스 언어로 말할 수 있는 8개 모듈</p>
+</section>
+
+<!-- ═══════════════════════════════════════ M1 ═══════════════════════════════════════ -->
+<section class="module-section mod-1" id="m1">
+  <div class="module-header">
+    <div class="module-tag">MODULE 01</div>
+    <h2>전자기파 기초</h2>
+    <p class="subtitle">주파수, 파장, 전파 특성, 감쇠 — 통신의 물리적 토대</p>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="icon">⚡</span> 전자기파란?</h3>
+    <p>전기장과 자기장이 서로를 만들어내며 공간을 타고 퍼져나가는 에너지. 빛, 와이파이, 5G 신호 모두 같은 전자기파다 — 주파수가 다를 뿐.</p>
+    <div class="analogy">
+      <div class="analogy-label">💡 비유</div>
+      <p>돌을 물에 던지면 물결이 퍼져나간다. 전자기파도 같은 "파동"인데, 물이 필요 없다. 우주 진공에서도 퍼져나간다.</p>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="icon">📐</span> 핵심 공식</h3>
+    <div class="formula-box">
+      <div class="formula">λ = c / f</div>
+      <div class="formula-desc">λ(파장) = c(빛의 속도, 30만km/s) ÷ f(주파수) → 주파수↑ = 파장↓ = 반비례</div>
+    </div>
+    <p>이 하나의 공식이 통신 산업 전체를 지배한다:</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>대역</th><th>주파수</th><th>특성</th><th>영업적 의미</th></tr></thead>
+        <tbody>
+          <tr><td>Sub-1GHz</td><td>700MHz 등</td><td>멀리 감, 건물 투과</td><td>농촌/전국망 커버리지용</td></tr>
+          <tr><td>Sub-6GHz</td><td>3.5GHz 등</td><td>속도↑ + 커버리지 균형</td><td>5G 주력 대역, 대부분의 딜</td></tr>
+          <tr><td>mmWave</td><td>28GHz</td><td>초고속, 100m, 벽 못 뚫음</td><td><strong>삼성 핵심 강점</strong> 영역</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="icon">🧱</span> 물리적 한계를 우회하는 4가지 기술</h3>
+    <div class="card-grid">
+      <div class="tech-card">
+        <span class="card-num" style="background:rgba(249,115,22,0.15);color:var(--accent-orange);">우회 1</span>
+        <h5>빔포밍</h5>
+        <p>전구 대신 손전등 — 신호를 사용자 방향으로만 집중 조준</p>
+        <span class="samsung-tag">삼성 28GHz 핵심 기술</span>
+      </div>
+      <div class="tech-card">
+        <span class="card-num" style="background:rgba(16,185,129,0.15);color:var(--accent-emerald);">우회 2</span>
+        <h5>Massive MIMO</h5>
+        <p>안테나 64~256개로 동시에 여러 빔 — 1차선→64차선</p>
+        <span class="samsung-tag">삼성 주력 제품군</span>
+      </div>
+      <div class="tech-card">
+        <span class="card-num" style="background:rgba(244,63,94,0.15);color:var(--accent-rose);">우회 3</span>
+        <h5>AI-RAN</h5>
+        <p>AI가 실시간으로 빔 방향·강도를 최적화 — 뇌가 생긴 기지국</p>
+        <span class="samsung-tag">삼성 × Nvidia 협업</span>
+      </div>
+      <div class="tech-card">
+        <span class="card-num" style="background:rgba(139,92,246,0.15);color:var(--accent-violet);">우회 4</span>
+        <h5>RIS (지능형 반사면)</h5>
+        <p>건물 벽에 "스마트 거울" — 신호를 꺾어서 골목까지</p>
+        <span class="samsung-tag">6G 선행 연구</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="interview-box">
+    <div class="interview-label">🎤 면접 킬러 멘트</div>
+    <blockquote>"통신 인프라 영업은 물리 법칙이 만드는 제약 안에서 고객의 비즈니스 니즈를 최적화하는 일입니다. 삼성이 28GHz mmWave에서 강한 건, 빔포밍으로 이 물리적 한계를 극복했기 때문이고, 이걸 비용과 성능의 언어로 전달하는 게 B2B 해외영업의 핵심입니다."</blockquote>
+  </div>
+</section>
+
+<div class="section-divider"><hr></div>
+
+<!-- ═══════════════════════════════════════ M2 ═══════════════════════════════════════ -->
+<section class="module-section mod-2" id="m2">
+  <div class="module-header">
+    <div class="module-tag">MODULE 02</div>
+    <h2>변조, 다중접속, 스펙트럼</h2>
+    <p class="subtitle">데이터를 전파에 싣고, 여러 사용자가 나눠 쓰고, 주파수를 사고파는 방법</p>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="icon">📡</span> 변조 (Modulation) — QAM</h3>
+    <div class="analogy">
+      <div class="analogy-label">💡 비유</div>
+      <p>전파 = 빈 트럭. 데이터 = 짐. 변조 = 짐을 트럭에 싣는 방법. QAM은 진폭+위상을 동시에 조절해 한 신호에 다량의 데이터를 싣는다.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>변조</th><th>비트/신호</th><th>비유</th><th>세대</th></tr></thead>
+        <tbody>
+          <tr><td>QPSK</td><td>2 bits</td><td>신호등 4색</td><td>3G/4G 기본</td></tr>
+          <tr><td>64QAM</td><td>6 bits</td><td>64색 크레용</td><td>4G LTE</td></tr>
+          <tr><td><strong>256QAM</strong></td><td><strong>8 bits</strong></td><td><strong>256색 모니터</strong></td><td><strong>5G</strong></td></tr>
+          <tr><td>1024QAM</td><td>10 bits</td><td>전문가 모니터</td><td>5G-Advanced</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><strong>핵심 트레이드오프:</strong> 변조 차수↑ = 더 빠르지만, 신호 품질(SNR)이 좋아야 함 → <strong>빔포밍이 SNR을 올려줘야 고차 변조가 가능</strong></p>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="icon">👥</span> 다중접속 — 세대별 진화</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>세대</th><th>방식</th><th>비유</th><th>핵심</th></tr></thead>
+        <tbody>
+          <tr><td>1G</td><td>FDMA</td><td>전용 창구</td><td>채널 수 = 통화 수</td></tr>
+          <tr><td>2G</td><td>TDMA/CDMA</td><td>시간 나누기 / 다른 언어</td><td>디지털화</td></tr>
+          <tr><td>3G</td><td>WCDMA</td><td>전원 동시 발화 + 코드</td><td>퀄컴 특허 기반</td></tr>
+          <tr><td><strong>4G/5G</strong></td><td><strong>OFDMA</strong></td><td><strong>뷔페 — 필요한 만큼 가져감</strong></td><td><strong>자원 블록 배분 = 슬라이싱 기반</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>OFDMA의 핵심: 주파수를 수백 조각(자원 블록)으로 쪼개 사용자별로 필요한 만큼 배분. 이 자원 블록을 용도별로 묶으면 = <strong>네트워크 슬라이싱</strong>.</p>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="icon">🏗️</span> 스펙트럼 — 통신의 부동산</h3>
+    <div class="analogy">
+      <div class="analogy-label">💡 비유</div>
+      <p>스펙트럼 = 땅. 통신사가 정부에서 경매로 사는 주파수 사용권. 미국 C-band 경매: $81B(약 100조원). 삼성이 파는 건 "장비"가 아니라 "비싸게 산 땅의 ROI를 극대화하는 방법"이다.</p>
+    </div>
+  </div>
+
+  <div class="interview-box">
+    <div class="interview-label">🎤 면접 킬러 멘트</div>
+    <blockquote>"통신장비 B2B 영업의 핵심 가치 제안은 '스펙트럼 효율성'이라는 한 단어로 수렴합니다. 통신사가 경매에서 수조 원을 들여 산 주파수에서, 삼성의 Massive MIMO·빔포밍·256QAM·AI-RAN이 얼마나 더 많은 데이터를 뽑아내느냐가 곧 장비의 가치입니다."</blockquote>
+  </div>
+</section>
+
+<div class="section-divider"><hr></div>
+
+<!-- ═══════════════════════════════════════ M3 ═══════════════════════════════════════ -->
+<section class="module-section mod-3" id="m3">
+  <div class="module-header">
+    <div class="module-tag">MODULE 03</div>
+    <h2>셀룰러 네트워크 구조</h2>
+    <p class="subtitle">셀, 기지국 내부(RU/DU/CU), 핸드오버, 코어 네트워크</p>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="icon">🐝</span> 셀(Cell) — 벌집 구조</h3>
+    <p>도시를 벌집처럼 작은 육각형으로 나누고 각각에 기지국 배치. 삼성 제품: 매크로 셀 → Massive MIMO Radio, 스몰 셀 → <strong>Link Cell</strong>(3.8L, 2.8kg 삼성 차별화 제품).</p>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="icon">🍽️</span> 기지국 = RU + DU + CU</h3>
+    <div class="analogy">
+      <div class="analogy-label">💡 레스토랑 비유</div>
+      <p><strong>RU</strong>(홀 서버) = 전파 송수신, 손님과 직접 대면<br>
+      <strong>DU</strong>(라인쿡) = 실시간 신호 처리, 즉시 조리<br>
+      <strong>CU</strong>(총주방장) = 세션 관리·핸드오버, 전체 흐름 관리</p>
+    </div>
+    <p>전통 기지국: 3개가 한 박스 → 무겁고 비쌈. <strong>5G 분리형</strong>: DU/CU를 소프트웨어로 → 이것이 <strong>vRAN의 기반</strong>.</p>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="icon">🏃</span> 핸드오버 — 이어달리기 바톤 터치</h3>
+    <p>이동 중 한 셀→다음 셀로 끊김 없이 넘어가는 것. 삼성 <strong>Mobility Enhancer</strong>: mmWave 환경에서 핸드오버 성능 30% 향상.</p>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="icon">🧠</span> 코어 네트워크 — 도시의 중앙 관제센터</h3>
+    <p>인증, 세션 관리, 라우팅, 과금, 슬라이싱을 담당. 4G 코어(EPC) = 일체형, 5G 코어(5GC) = <strong>마이크로서비스 기반 클라우드 네이티브</strong>. 삼성 = <strong>vCore</strong>로 end-to-end SA 솔루션 제공.</p>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="icon">🔗</span> 전체 아키텍처</h3>
+    <div class="arch-diagram">[단말] ←전파→ [RU] ──프론트홀── [DU] ──미드홀── [CU] ──백홀── [Core] ──→ 인터넷
+                    ↑                  ↑              ↑            ↑
+              무선 구간          Fronthaul      Midhaul      Backhaul
+              
+삼성이 파는 것: RU + DU + CU (= RAN) + Core (= vCore) = end-to-end</div>
+  </div>
+</section>
+
+<div class="section-divider"><hr></div>
+
+<!-- ═══════════════════════════════════════ M4 ═══════════════════════════════════════ -->
+<section class="module-section mod-4" id="m4">
+  <div class="module-header">
+    <div class="module-tag">MODULE 04</div>
+    <h2>이동통신 세대별 진화 — 1G → 6G</h2>
+    <p class="subtitle">기술 업그레이드가 아니라 비즈니스 모델의 전환</p>
+  </div>
+
+  <div class="content-block">
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>세대</th><th>연도</th><th>킬러앱</th><th>비즈니스 변화</th></tr></thead>
+        <tbody>
+          <tr><td>1G</td><td>1984</td><td>이동 전화</td><td>"걸어다니며 통화"</td></tr>
+          <tr><td>2G</td><td>1991</td><td>문자(SMS)</td><td>디지털화, 글로벌 로밍</td></tr>
+          <tr><td>3G</td><td>2001</td><td>모바일 인터넷</td><td>브라우징, 앱스토어 초기</td></tr>
+          <tr><td>4G</td><td>2009</td><td>영상 스트리밍</td><td><strong>스마트폰 혁명</strong></td></tr>
+          <tr><td><strong>5G</strong></td><td>2019</td><td>초저지연, IoT</td><td><strong>B2B 전환</strong> — 공장, 자율주행</td></tr>
+          <tr><td>6G</td><td>~2030</td><td>디지털트윈, 홀로그램</td><td>물리-디지털 융합</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="icon">🎯</span> 5G의 3대 시나리오 — 면접 필수</h3>
+    <div class="card-grid">
+      <div class="tech-card">
+        <span class="card-num" style="background:rgba(6,182,212,0.15);color:var(--accent-cyan);">시나리오 1</span>
+        <h5>eMBB 초고속</h5>
+        <p>피크 20Gbps. 4K/8K, AR/VR. 소비자 대상, 4G의 연장선.</p>
+      </div>
+      <div class="tech-card">
+        <span class="card-num" style="background:rgba(244,63,94,0.15);color:var(--accent-rose);">시나리오 2</span>
+        <h5>URLLC 초저지연</h5>
+        <p>1ms 이하, 99.999%. 자율주행, 원격수술. <strong>B2B의 핵심 가치.</strong></p>
+      </div>
+      <div class="tech-card">
+        <span class="card-num" style="background:rgba(16,185,129,0.15);color:var(--accent-emerald);">시나리오 3</span>
+        <h5>mMTC 대규모 IoT</h5>
+        <p>1km²당 100만 기기. 스마트시티 센서, 물류 추적.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="icon">🔮</span> 6G — 2030년</h3>
+    <p><strong>목표</strong>: 피크 1Tbps(50배), 지연 0.1ms(10배), THz 대역, AI 네이티브, NTN(위성+드론), 디지털 트윈, 센싱+통신 융합.<br>
+    <strong>삼성 포지션</strong>: 2020년 업계 최초 6G 백서 발간. UCSB와 sub-THz 12Gbps 시연. "5G mmWave 양산 경험 → 6G THz로 자연 연장" 논리.</p>
+  </div>
+
+  <div class="interview-box">
+    <div class="interview-label">🎤 면접 킬러 멘트</div>
+    <blockquote>"5G의 진짜 비즈니스 가치는 eMBB(초고속)가 아니라 URLLC(초저지연)입니다. '빠른 인터넷'은 ARPU를 높이지 못하지만, '1ms 전용 네트워크'는 프리미엄 과금이 가능합니다. 이 B2B 전환이 삼성 네트워크사업부가 해외영업을 강화하는 이유입니다."</blockquote>
+  </div>
+</section>
+
+<div class="section-divider"><hr></div>
+
+<!-- ═══════════════════════════════════════ M5 ═══════════════════════════════════════ -->
+<section class="module-section mod-5" id="m5">
+  <div class="module-header">
+    <div class="module-tag">MODULE 05</div>
+    <h2>5G 핵심 기술 심화</h2>
+    <p class="subtitle">Massive MIMO, 빔포밍, mmWave, 네트워크 슬라이싱을 하나의 시스템으로</p>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="icon">📊</span> Massive MIMO의 3가지 이득</h3>
+    <div class="card-grid">
+      <div class="tech-card">
+        <h5>어레이 게인</h5>
+        <p>64개 안테나 동시 송출 → 신호 세기 64배(≈18dB) 증가. 같은 출력으로 훨씬 먼 거리.</p>
+      </div>
+      <div class="tech-card">
+        <h5>공간 다중화</h5>
+        <p>16명에게 동시에 다른 데이터 전송(MU-MIMO). 셀 용량 16배 효과.</p>
+      </div>
+      <div class="tech-card">
+        <h5>간섭 제거</h5>
+        <p>원치 않는 방향 신호를 "null 빔"으로 억제. 인접 셀 간섭 감소.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="icon">🎯</span> 3D 자원 관리</h3>
+    <div class="formula-box">
+      <div class="formula">공간(빔포밍) × 주파수(OFDMA) × 시간(스케줄링)</div>
+      <div class="formula-desc">Massive MIMO 기지국이 매 밀리초마다 수행하는 3차원 자원 최적화. AI-RAN이 여기에 투입.</div>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="icon">🔪</span> 네트워크 슬라이싱 (Q24 직접 대응)</h3>
+    <div class="analogy">
+      <div class="analogy-label">💡 고속도로 전용차로 비유</div>
+      <p><strong>1차로</strong> = URLLC 슬라이스 (자율주행, 원격수술) — 초저지연<br>
+      <strong>2~3차로</strong> = eMBB 슬라이스 (스마트폰, 영상) — 고속<br>
+      <strong>갓길</strong> = mMTC 슬라이스 (IoT 센서) — 저전력, 소량</p>
+    </div>
+    <p><strong>비즈니스 임팩트</strong>: 각 슬라이스에 다른 SLA, 다른 가격 → 통신사의 B2B 프리미엄 매출원. 삼성 = vRAN + vCore로 end-to-end SA 슬라이싱 지원.</p>
+  </div>
+</section>
+
+<div class="section-divider"><hr></div>
+
+<!-- ═══════════════════════════════════════ M6 ═══════════════════════════════════════ -->
+<section class="module-section mod-6" id="m6">
+  <div class="module-header">
+    <div class="module-tag">MODULE 06</div>
+    <h2>네트워크 아키텍처</h2>
+    <p class="subtitle">RAN, Core, Transport, SA vs NSA, O-RAN</p>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="icon">⚖️</span> SA vs NSA — 진짜 5G vs 가짜 5G</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th></th><th>NSA (Non-Standalone)</th><th>SA (Standalone)</th></tr></thead>
+        <tbody>
+          <tr><td>구성</td><td>5G 기지국 + <strong>4G 코어</strong></td><td>5G 기지국 + <strong>5G 코어</strong></td></tr>
+          <tr><td>슬라이싱</td><td>❌ 불가</td><td>✅ 핵심 기능</td></tr>
+          <tr><td>URLLC</td><td>불완전</td><td>완전 지원</td></tr>
+          <tr><td>현재 상황</td><td>대부분의 통신사</td><td>전환 진행 중</td></tr>
+          <tr><td>삼성 기회</td><td>—</td><td><strong>end-to-end SA 벤더</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>SA 전환 = 슬라이싱 시작 = B2B 매출 시작 = <strong>다음 5G 투자 사이클의 핵심</strong></p>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="icon">🔓</span> Open RAN — 벤더 록인 탈피</h3>
+    <p><strong>기존</strong>: 에릭슨 RU+DU+CU = 에릭슨 것만 사용 (폐쇄형).<br>
+    <strong>Open RAN</strong>: 표준 인터페이스로 다른 벤더 장비를 섞어 사용 가능.<br>
+    <strong>삼성의 해법</strong>: "Open이면서 Complete" — O-RAN 호환 + 풀스택 단일 벤더 옵션 동시 제공.</p>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="icon">🏗️</span> 5G Core (SBA) — 레고 블록</h3>
+    <div class="vocab-grid">
+      <div class="vocab-item"><div class="vocab-term">AMF</div><div class="vocab-def">접속 관리 — 호텔 프런트</div></div>
+      <div class="vocab-item"><div class="vocab-term">SMF</div><div class="vocab-def">세션 관리 — 객실 배정</div></div>
+      <div class="vocab-item"><div class="vocab-term">UPF</div><div class="vocab-def">데이터 전달 — 엘리베이터</div></div>
+      <div class="vocab-item"><div class="vocab-term">NSSF</div><div class="vocab-def">슬라이스 선택 — 층 안내</div></div>
+      <div class="vocab-item"><div class="vocab-term">PCF</div><div class="vocab-def">정책 제어 — 등급별 서비스</div></div>
+      <div class="vocab-item"><div class="vocab-term">NEF</div><div class="vocab-def">외부 API — 파트너 개방</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"><hr></div>
+
+<!-- ═══════════════════════════════════════ M7 ═══════════════════════════════════════ -->
+<section class="module-section mod-7" id="m7">
+  <div class="module-header">
+    <div class="module-tag">MODULE 07</div>
+    <h2>vRAN / Open RAN / AI-RAN</h2>
+    <p class="subtitle">삼성 네트워크사업부의 3대 차별화 무기</p>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="icon">🎮</span> vRAN — 게임 콘솔에서 게이밍 PC로</h3>
+    <p><strong>전통 RAN</strong> = PS5 (전용 하드웨어에서만 동작).<br>
+    <strong>vRAN</strong> = 게이밍 PC (범용 서버에서 소프트웨어로 동작). 업그레이드 = SW 업데이트.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>벤더</th><th>vRAN 상태</th><th>특징</th></tr></thead>
+        <tbody>
+          <tr><td><strong>삼성</strong></td><td><strong>38,000+ 사이트 (1위)</strong></td><td>멀티세대 단일 플랫폼, O-RAN 호환</td></tr>
+          <tr><td>Ericsson</td><td>점진 전환 중</td><td>기존 전용 HW 기반</td></tr>
+          <tr><td>Nokia</td><td>anyRAN 전략</td><td>전용 HW + COTS 모두</td></tr>
+          <tr><td>Huawei</td><td>제한적</td><td>자체 생태계, O-RAN 소극적</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="icon">🔀</span> vRAN vs Open RAN — Q22 직접 대응</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th></th><th>vRAN</th><th>Open RAN</th></tr></thead>
+        <tbody>
+          <tr><td>핵심 질문</td><td>HW를 <strong>어디서</strong> 실행?</td><td>인터페이스가 <strong>개방</strong>?</td></tr>
+          <tr><td>핵심 변화</td><td>전용 HW → 범용 서버</td><td>폐쇄 → 표준 인터페이스</td></tr>
+          <tr><td>효과</td><td>SW 유연성, 비용↓</td><td>멀티벤더, 록인 탈피</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="icon">🧠</span> AI-RAN — NVIDIA 협업의 의미</h3>
+    <p>기지국 DU에 <strong>NVIDIA Grace CPU + L4 GPU</strong> 탑재 → AI가 매 밀리초마다 빔포밍·스케줄링 최적화.</p>
+    <div class="card-grid">
+      <div class="tech-card">
+        <h5>AI MIMO Beamformer</h5>
+        <p>ML로 채널 추정 정확도 개선 → throughput 향상</p>
+      </div>
+      <div class="tech-card">
+        <h5>AI 에너지 절감</h5>
+        <p>트래픽 적을 때 안테나 슬립 → 전력 20~30% 절감</p>
+      </div>
+      <div class="tech-card">
+        <h5>AI 스케줄링</h5>
+        <p>사용자별 최적 자원 블록 배정 → spectral efficiency↑</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="interview-box">
+    <div class="interview-label">🎤 Q22 완성 답변</div>
+    <blockquote>"vRAN은 기지국의 DU/CU를 범용 서버에서 소프트웨어로 실행하는 것이고, Open RAN은 인터페이스를 표준화해 멀티벤더 조합을 가능하게 하는 것입니다. 삼성은 두 가지를 모두 선도해 38,000+ O-RAN 호환 vRAN 사이트를 운영 중이며, 'Open이면서 Complete' — 멀티벤더 유연성과 단일 벤더 안정성을 동시에 제공합니다."</blockquote>
+  </div>
+</section>
+
+<div class="section-divider"><hr></div>
+
+<!-- ═══════════════════════════════════════ M8 ═══════════════════════════════════════ -->
+<section class="module-section mod-8" id="m8">
+  <div class="module-header">
+    <div class="module-tag">MODULE 08 · 최종</div>
+    <h2>기술 → 비즈니스 연결</h2>
+    <p class="subtitle">TCO, 수주 구조, 고객 가치 제안 — 기술을 "통신사 CFO가 듣고 싶은 언어"로</p>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="icon">💰</span> TCO (Total Cost of Ownership)</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th></th><th>CapEx (30~40%)</th><th>OpEx (60~70%)</th></tr></thead>
+        <tbody>
+          <tr><td>정의</td><td>장비 구매, 인프라 건설</td><td>유지보수, 전기, 인건비, 임대</td></tr>
+          <tr><td>비유</td><td>집 사는 돈</td><td>관리비+전기+수리비</td></tr>
+          <tr><td>주기</td><td>5~10년마다</td><td><strong>매달</strong> 발생</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><strong>핵심</strong>: 장비 가격(CapEx)만 비교하면 화웨이가 가장 싸다. 하지만 <strong>10년 TCO로 보면</strong> OpEx를 줄이는 삼성 기술(vRAN, AI-RAN, 소형화)이 경쟁력.</p>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="icon">📋</span> 수주 프로세스</h3>
+    <div class="arch-diagram">1. RFI (정보 요청)     → 삼성: 기술 역량·레퍼런스 소개
+2. RFP/RFQ (제안 요청)  → 삼성: 기술+가격 제안서 + TCO 분석
+3. PoC (필드 트라이얼)  → 실제 환경에서 삼성 장비 테스트 (수 개월)
+4. 벤더 선정 + 계약    → Verizon 딜: $6.65B 다년 계약
+5. 배포 (Deployment)   → 단계적 롤아웃 (수 개월~수 년)
+6. 유지보수 + 확장     → 장기 지원, SW 업데이트, 추가 수주</div>
+    <p><strong>영업 담당자의 역할</strong>: 이 전체 과정을 리드하며, 기술팀-고객 간 <strong>"기술의 비즈니스 번역가"</strong> 역할.</p>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="icon">🎯</span> 고객 유형별 가치 제안</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>고객 유형</th><th>고민</th><th>삼성의 가치</th></tr></thead>
+        <tbody>
+          <tr><td>Tier-1 (Verizon, Vodafone)</td><td>5G 투자 회수, ARPU 정체</td><td>슬라이싱 B2B 매출 + AI-RAN OpEx↓</td></tr>
+          <tr><td>화웨이 교체 통신사</td><td>빠른 교체 + 성능 유지</td><td>Open RAN + 검증된 vRAN 실적</td></tr>
+          <tr><td>신흥시장 통신사</td><td>초기 투자 최소화</td><td>vRAN SW 업그레이드 + 멀티세대</td></tr>
+          <tr><td>정부/공공 (ESN)</td><td>보안, 안정성</td><td>비(非)중국 풀스택 + 삼성 재무력</td></tr>
+          <tr><td>기업 (Private 5G)</td><td>공장 자동화</td><td>Link Cell + 슬라이싱 + URLLC</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="icon">📖</span> 핵심 산업 용어</h3>
+    <div class="vocab-grid">
+      <div class="vocab-item"><div class="vocab-term">CapEx</div><div class="vocab-def">자본적 지출 (장비 구매)</div></div>
+      <div class="vocab-item"><div class="vocab-term">OpEx</div><div class="vocab-def">운영 비용 (전기, 유지보수)</div></div>
+      <div class="vocab-item"><div class="vocab-term">TCO</div><div class="vocab-def">총소유비용</div></div>
+      <div class="vocab-item"><div class="vocab-term">ARPU</div><div class="vocab-def">가입자당 평균 매출</div></div>
+      <div class="vocab-item"><div class="vocab-term">SLA</div><div class="vocab-def">서비스 수준 계약</div></div>
+      <div class="vocab-item"><div class="vocab-term">RFP/RFQ</div><div class="vocab-def">제안/견적 요청서</div></div>
+      <div class="vocab-item"><div class="vocab-term">PoC</div><div class="vocab-def">개념 검증 (필드 테스트)</div></div>
+      <div class="vocab-item"><div class="vocab-term">Greenfield</div><div class="vocab-def">신규 구축 (ex: Jio 4G)</div></div>
+      <div class="vocab-item"><div class="vocab-term">Brownfield</div><div class="vocab-def">기존 교체/업그레이드</div></div>
+      <div class="vocab-item"><div class="vocab-term">Vendor lock-in</div><div class="vocab-def">벤더 종속</div></div>
+      <div class="vocab-item"><div class="vocab-term">MNO</div><div class="vocab-def">이동통신사업자</div></div>
+      <div class="vocab-item"><div class="vocab-term">FWA</div><div class="vocab-def">고정 무선 접속 (유선 대체)</div></div>
+    </div>
+  </div>
+
+  <div class="interview-box">
+    <div class="interview-label">🎤 최종 통합 면접 답변 — "삼성 네트워크의 경쟁력은?"</div>
+    <blockquote>"세 가지입니다. 첫째, <strong>기술적 연속성</strong> — 2009년 mmWave 빔포밍 연구부터 2020년 업계 최초 6G 백서까지, 매 단계마다 선도적 위치를 확보했습니다. 둘째, <strong>'Open이면서 Complete'</strong> — O-RAN 호환 멀티벤더와 풀스택 단일 벤더를 동시에 제공하는 유일한 벤더입니다. 셋째, <strong>지정학적 포지션</strong> — 화웨이가 서방권에서 배제되는 흐름 속에, 유일한 비유럽·비중국 풀스택 통신장비 벤더입니다."</blockquote>
+  </div>
+
+  <div class="interview-box">
+    <div class="interview-label">🎤 "비전공자로서 기술 이해가 부족하지 않을까요?"</div>
+    <blockquote>"통신장비 B2B 영업에서 가장 중요한 건 기술 자체를 개발하는 능력이 아니라, 기술의 가치를 고객의 비즈니스 언어로 번역하는 역량입니다. 빔포밍을 수식으로 설명하는 건 엔지니어의 일이지만, 빔포밍이 통신사의 스펙트럼 ROI를 어떻게 높이는지 설명하는 건 영업의 일입니다."</blockquote>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ FINAL SUMMARY ═══════════════════════════════════════ -->
+<div class="final-summary">
+  <div class="summary-card">
+    <h2>🎉 M1–M8 학습 완료 로드맵</h2>
+    <p style="color:var(--text-secondary);font-size:14px;">전자기파 기초부터 TCO·수주 구조까지 — 직무면접에서 문과 중 이길 사람 없음</p>
+    <div class="summary-modules">
+      <div class="summary-module"><div class="sm-num">M1</div><div class="sm-title">전자기파 기초</div><div class="sm-key">λ=c/f, 주파수 트레이드오프</div></div>
+      <div class="summary-module"><div class="sm-num">M2</div><div class="sm-title">변조·다중접속</div><div class="sm-key">QAM, OFDMA, 스펙트럼 ROI</div></div>
+      <div class="summary-module"><div class="sm-num">M3</div><div class="sm-title">셀룰러 구조</div><div class="sm-key">RU/DU/CU, 핸드오버, 코어</div></div>
+      <div class="summary-module"><div class="sm-num">M4</div><div class="sm-title">세대별 진화</div><div class="sm-key">eMBB/URLLC/mMTC, 6G</div></div>
+      <div class="summary-module"><div class="sm-num">M5</div><div class="sm-title">5G 핵심기술</div><div class="sm-key">mMIMO, 빔포밍, 슬라이싱</div></div>
+      <div class="summary-module"><div class="sm-num">M6</div><div class="sm-title">아키텍처</div><div class="sm-key">SA vs NSA, 5GC SBA, O-RAN</div></div>
+      <div class="summary-module"><div class="sm-num">M7</div><div class="sm-title">vRAN·AI-RAN</div><div class="sm-key">삼성 3대 차별화 무기</div></div>
+      <div class="summary-module"><div class="sm-num">M8</div><div class="sm-title">기술→비즈니스</div><div class="sm-key">TCO, 수주, 가치 제안</div></div>
+    </div>
+  </div>
+</div>
+
+<footer style="text-align:center;padding:20px;color:var(--text-muted);font-size:11px;border-top:1px solid var(--border);">
+  삼성전자 네트워크사업부 B2B해외영업 직무면접 준비 자료 · 최유진 · 2026
+</footer>
+
+<!-- SCRIPTS -->
+<script>
+// Progress bar
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+  document.getElementById('progressBar').style.width = pct + '%';
+});
+
+// Active nav pill
+const sections = document.querySelectorAll('.module-section');
+const pills = document.querySelectorAll('.nav-pill');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      pills.forEach(p => p.classList.remove('active'));
+      const id = e.target.id;
+      const pill = document.querySelector(`.nav-pill[data-mod="${id}"]`);
+      if (pill) { pill.classList.add('active'); pill.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'}); }
+    }
+  });
+}, { rootMargin: '-100px 0px -60% 0px', threshold: 0 });
+sections.forEach(s => observer.observe(s));
+
+// Collapsibles
+document.querySelectorAll('.collapsible-header').forEach(h => {
+  h.addEventListener('click', () => h.parentElement.classList.toggle('open'));
+});
+</script>
+</body>
+</html>
