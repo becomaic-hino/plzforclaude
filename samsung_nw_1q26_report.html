@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1Q26 통신산업 & 삼성전자 네트워크사업부 리서치 — PT면접 준비</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;900&family=IBM+Plex+Sans+KR:wght@300;400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0f1419;
+  --ink-2:#2a2f37;
+  --paper:#f5f1e8;
+  --paper-2:#ebe5d3;
+  --accent:#1428a0;       /* samsung blue */
+  --accent-soft:#3c50c6;
+  --warn:#a82828;
+  --good:#1a6b3f;
+  --rule:#1f2530;
+  --grid:rgba(15,20,25,.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'IBM Plex Sans KR',-apple-system,sans-serif;
+  font-weight:400;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  font-feature-settings:"liga","kern";
+}
+.page{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+
+/* ================ MASTHEAD ================ */
+.masthead{
+  border-top:6px solid var(--ink);
+  border-bottom:1px solid var(--ink);
+  padding:32px 0 18px;
+  margin-bottom:0;
+  background:var(--paper);
+  position:relative;
+}
+.masthead-top{
+  display:flex;justify-content:space-between;align-items:baseline;
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);
+  border-bottom:1px solid var(--ink-2);padding-bottom:10px;margin-bottom:18px;
+}
+.masthead h1{
+  font-family:'Noto Serif KR',serif;
+  font-weight:900;
+  font-size:clamp(28px,5.2vw,52px);
+  line-height:1.05;letter-spacing:-.02em;
+  color:var(--ink);
+}
+.masthead h1 em{font-style:italic;color:var(--accent);font-weight:900}
+.masthead .deck{
+  margin-top:14px;
+  font-family:'Noto Serif KR',serif;
+  font-size:clamp(15px,2.2vw,19px);
+  font-weight:400;
+  font-style:italic;
+  color:var(--ink-2);
+  max-width:780px;
+  line-height:1.55;
+}
+.byline{
+  margin-top:18px;display:flex;gap:24px;flex-wrap:wrap;
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ink-2);
+  border-top:1px solid var(--ink-2);padding-top:10px;
+}
+.byline span strong{color:var(--accent);font-weight:700}
+
+/* ================ TYPO ================ */
+section{padding:44px 0;border-bottom:1px solid var(--rule)}
+section:last-of-type{border-bottom:none}
+h2{
+  font-family:'Noto Serif KR',serif;
+  font-size:clamp(22px,3.4vw,30px);
+  font-weight:900;
+  letter-spacing:-.01em;
+  margin-bottom:6px;line-height:1.2;
+}
+h2 .num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.55em;color:var(--accent);font-weight:700;
+  margin-right:14px;letter-spacing:.05em;
+}
+h3{
+  font-family:'Noto Serif KR',serif;
+  font-size:clamp(17px,2.4vw,21px);
+  font-weight:600;margin-top:28px;margin-bottom:10px;
+  border-left:3px solid var(--accent);padding-left:12px;
+}
+.section-deck{
+  font-family:'Noto Serif KR',serif;font-style:italic;color:var(--ink-2);
+  font-size:15px;margin-bottom:24px;border-bottom:1px dashed var(--ink-2);padding-bottom:14px;
+}
+p{margin-bottom:14px}
+p strong{font-weight:700;color:var(--ink)}
+em.term{
+  font-style:normal;font-weight:500;background:linear-gradient(transparent 60%,#ffe97a 60%);
+  padding:0 2px;
+}
+small.src{
+  display:block;margin-top:8px;
+  font-family:'JetBrains Mono',monospace;font-size:10.5px;
+  color:var(--ink-2);letter-spacing:.03em;
+}
+
+/* ================ KPI STRIP ================ */
+.kpi-strip{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+  border:1px solid var(--ink);background:var(--ink);
+  margin:24px 0 8px;
+}
+.kpi{
+  background:var(--paper);padding:18px 16px;
+  display:flex;flex-direction:column;justify-content:space-between;
+  min-height:120px;
+}
+.kpi-label{
+  font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-2);
+}
+.kpi-value{
+  font-family:'Noto Serif KR',serif;font-weight:900;font-size:clamp(20px,3.2vw,30px);
+  line-height:1.1;margin:8px 0 4px;color:var(--ink);
+}
+.kpi-delta{
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.02em;
+}
+.kpi-delta.up{color:var(--good)}
+.kpi-delta.down{color:var(--warn)}
+.kpi-delta.flat{color:var(--ink-2)}
+@media(max-width:720px){.kpi-strip{grid-template-columns:repeat(2,1fr)}}
+
+/* ================ TABLES ================ */
+.tbl{
+  width:100%;border-collapse:collapse;margin:16px 0;
+  font-size:14px;background:var(--paper);
+  border:1px solid var(--ink);
+}
+.tbl thead th{
+  background:var(--ink);color:var(--paper);
+  padding:10px 12px;text-align:left;font-weight:500;
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.04em;
+  text-transform:uppercase;
+}
+.tbl td,.tbl th.row{
+  padding:10px 12px;border-bottom:1px solid var(--grid);
+  vertical-align:top;
+}
+.tbl tbody tr:last-child td{border-bottom:none}
+.tbl tbody tr:hover{background:var(--paper-2)}
+.tbl .num{font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.tbl .down{color:var(--warn);font-weight:700}
+.tbl .up{color:var(--good);font-weight:700}
+.tbl .flag{font-weight:700;color:var(--accent)}
+@media(max-width:720px){
+  .tbl{font-size:12.5px}
+  .tbl td,.tbl th{padding:8px 7px}
+}
+
+/* ================ CHARTS ================ */
+.chart-wrap{
+  margin:24px 0;background:#fff;border:1px solid var(--ink);
+  padding:24px 20px 14px;position:relative;
+}
+.chart-title{
+  font-family:'Noto Serif KR',serif;font-weight:600;font-size:15px;
+  margin-bottom:4px;
+}
+.chart-sub{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--ink-2);
+  text-transform:uppercase;letter-spacing:.05em;margin-bottom:16px}
+svg{display:block;width:100%;height:auto}
+
+/* ================ CALLOUTS ================ */
+.callout{
+  border-left:4px solid var(--accent);background:var(--paper-2);
+  padding:18px 20px;margin:22px 0;
+  font-family:'Noto Serif KR',serif;font-style:italic;font-size:16px;
+  line-height:1.55;
+}
+.callout strong{font-style:normal;color:var(--accent);font-weight:700;display:block;
+  font-family:'IBM Plex Sans KR';font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  margin-bottom:8px}
+.callout.warn{border-left-color:var(--warn)}
+.callout.warn strong{color:var(--warn)}
+.callout.good{border-left-color:var(--good)}
+.callout.good strong{color:var(--good)}
+
+/* ================ EVENT CARDS ================ */
+.events{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+@media(max-width:720px){.events{grid-template-columns:1fr}}
+.event{
+  border:1px solid var(--ink);background:var(--paper);
+  padding:18px;position:relative;display:flex;flex-direction:column;
+}
+.event .date{
+  font-family:'JetBrains Mono',monospace;font-size:10.5px;
+  letter-spacing:.08em;color:var(--accent);margin-bottom:6px;text-transform:uppercase;font-weight:700;
+}
+.event h4{
+  font-family:'Noto Serif KR',serif;font-weight:700;font-size:17px;
+  margin-bottom:8px;line-height:1.3;
+}
+.event .impact{
+  margin-top:auto;padding-top:10px;border-top:1px dashed var(--ink-2);
+  font-size:12.5px;
+}
+.event .impact strong{color:var(--warn);font-weight:700;display:block;
+  font-size:10.5px;font-family:'JetBrains Mono',monospace;letter-spacing:.06em;
+  text-transform:uppercase;margin-bottom:4px}
+.event.opp .impact strong{color:var(--good)}
+
+/* ================ SWOT ================ */
+.swot{
+  display:grid;grid-template-columns:1fr 1fr;
+  border:2px solid var(--ink);margin-top:18px;
+}
+.swot > div{
+  padding:20px;border-bottom:1px solid var(--ink);
+}
+.swot > div:nth-child(odd){border-right:1px solid var(--ink)}
+.swot > div:nth-last-child(-n+2){border-bottom:none}
+.swot h4{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;
+  padding-bottom:6px;border-bottom:1px solid var(--ink-2);
+}
+.swot.s h4{color:var(--good)}
+.swot.w h4{color:var(--warn)}
+.swot.o h4{color:var(--accent)}
+.swot.t h4{color:#7c3a16}
+.swot ul{list-style:none;padding:0;font-size:13.5px}
+.swot li{padding:7px 0;border-bottom:1px dotted var(--grid);line-height:1.5}
+.swot li:last-child{border-bottom:none}
+.swot li::before{content:"▸ ";color:var(--ink-2);font-weight:700}
+@media(max-width:720px){.swot{grid-template-columns:1fr}.swot > div:nth-child(odd){border-right:none}}
+
+/* ================ PT POINTS ================ */
+.pt-points{
+  background:var(--ink);color:var(--paper);
+  padding:32px 28px;margin-top:24px;
+  border-radius:0;
+}
+.pt-points h3{
+  color:var(--paper);border-left-color:#ffe97a;
+  margin-top:0;
+}
+.pt-points h3:first-child{margin-top:0}
+.pt-points .pt-item{
+  padding:14px 0;border-bottom:1px solid #2a2f37;
+}
+.pt-points .pt-item:last-child{border-bottom:none}
+.pt-points .pt-q{
+  font-family:'Noto Serif KR',serif;font-weight:600;font-size:15.5px;
+  color:#ffe97a;margin-bottom:6px;
+}
+.pt-points .pt-a{font-size:13.5px;color:var(--paper-2);line-height:1.6}
+.pt-points .pt-a strong{color:#fff;font-weight:600}
+
+/* ================ TOC ================ */
+.toc{
+  margin:28px 0;padding:18px 22px;background:var(--paper-2);
+  border:1px solid var(--ink-2);
+}
+.toc-label{
+  font-family:'JetBrains Mono',monospace;font-size:10.5px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:700;
+  margin-bottom:8px;
+}
+.toc ol{list-style:none;padding:0;counter-reset:tocnum}
+.toc li{
+  counter-increment:tocnum;padding:5px 0;font-size:14px;
+  display:flex;align-items:baseline;gap:10px;
+}
+.toc li::before{
+  content:counter(tocnum,decimal-leading-zero);
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  color:var(--accent);font-weight:700;flex-shrink:0;
+}
+.toc a{color:var(--ink);text-decoration:none;border-bottom:1px solid transparent}
+.toc a:hover{border-bottom-color:var(--accent);color:var(--accent)}
+
+/* ================ FOOTER ================ */
+footer{
+  margin-top:60px;padding:24px 0;border-top:6px solid var(--ink);
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  color:var(--ink-2);letter-spacing:.04em;
+}
+footer p{margin-bottom:8px}
+
+.pull{
+  font-family:'Noto Serif KR',serif;font-weight:600;
+  font-size:clamp(18px,2.6vw,22px);line-height:1.4;
+  border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);
+  padding:18px 0;margin:24px 0;color:var(--ink);
+}
+.pull::before{content:"❝ ";color:var(--accent);font-size:1.2em}
+
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ============ MASTHEAD ============ -->
+<header class="masthead">
+  <div class="masthead-top">
+    <span>Vol.01 · Internal Briefing</span>
+    <span>2026.05.06 · YJ — Samsung NW PT 준비용</span>
+  </div>
+  <h1>5G의 잔향 속, <em>네트워크사업부</em>는<br>가장 조용한 분기를 지나고 있다</h1>
+  <div class="deck">
+    1Q26 삼성전자가 분기 사상 최고 영업익(57.2조원, +756% YoY)을 기록하는 동안,
+    네트워크사업부는 <strong>YoY -25%</strong>의 매출 감소를 겪었다 —
+    5G 출범 이래 가장 낮은 1분기 실적이다.
+    같은 분기 Ericsson(+6% organic), Nokia(+4% constant)는 반등했고, 
+    Samsung만 두 자릿수 후퇴했다. 시장이 안정화 단계에 진입한 직후, 왜 그런가.
+  </div>
+  <div class="byline">
+    <span><strong>Scope.</strong> 글로벌 RAN 시장 / 1Q26 Big 3 비교 / SWOT</span>
+    <span><strong>Source.</strong> 삼성전자 IR · Light Reading · Omdia · Dell'Oro</span>
+    <span><strong>Use.</strong> 네트워크사업부 직무역량(PT) 면접</span>
+  </div>
+</header>
+
+<!-- ============ TOC ============ -->
+<div class="toc">
+  <div class="toc-label">Contents</div>
+  <ol>
+    <li><a href="#s1">한 회사, 두 개의 경제 — 1Q26 삼성전자 전사 실적</a></li>
+    <li><a href="#s2">네트워크사업부 1Q26 — 5G 출범 이래 가장 낮은 1분기</a></li>
+    <li><a href="#s3">Big 3 비교 — Samsung vs Ericsson vs Nokia</a></li>
+    <li><a href="#s4">글로벌 RAN 시장 구조 — $35B에 갇힌 시장</a></li>
+    <li><a href="#s5">네 개의 결정적 사건 — 왜 1Q26이 이토록 부진했나</a></li>
+    <li><a href="#s6">AI-RAN과 6G — Nvidia 동맹의 그림자</a></li>
+    <li><a href="#s7">SWOT — 해외영업 직무 관점에서 본 사업부 위치</a></li>
+    <li><a href="#s8">PT 면접 활용 포인트 — 4가지 답변 카드</a></li>
+  </ol>
+</div>
+
+<!-- ============ SECTION 1 ============ -->
+<section id="s1">
+  <h2><span class="num">01</span>한 회사, 두 개의 경제</h2>
+  <div class="section-deck">
+    1Q26 삼성전자는 <em class="term">반도체가 견인한 사상 최고 분기</em>였다. 그러나 그 광휘 뒤에서 네트워크사업부는 정반대 방향으로 움직였다.
+  </div>
+
+  <div class="kpi-strip">
+    <div class="kpi">
+      <div class="kpi-label">Revenue</div>
+      <div class="kpi-value">133.9조원</div>
+      <div class="kpi-delta up">▲ +69% YoY · +43% QoQ</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Operating Profit</div>
+      <div class="kpi-value">57.2조원</div>
+      <div class="kpi-delta up">▲ +756% YoY · 분기 사상 최고</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Operating Margin</div>
+      <div class="kpi-value">42.7%</div>
+      <div class="kpi-delta up">▲ 21% → 43% (QoQ)</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">DS 영업익 비중</div>
+      <div class="kpi-value">93.9%</div>
+      <div class="kpi-delta flat">전사 OP의 대부분을 반도체 단독 견인</div>
+    </div>
+  </div>
+
+  <h3>부문별 실적 분해</h3>
+  <table class="tbl">
+    <thead>
+      <tr><th>사업부문</th><th class="num">매출(조원)</th><th class="num">영업익(조원)</th><th>특이사항</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>DS (반도체)</strong></td>
+        <td class="num">81.7</td>
+        <td class="num up">53.7</td>
+        <td>메모리 매출 74.8조원 (2분기 연속 신기록), HBM4 출하 본격화, AI 데이터센터 수요로 OP 48배↑</td>
+      </tr>
+      <tr>
+        <td><strong>MX/NW</strong></td>
+        <td class="num">38.1</td>
+        <td class="num">2.8</td>
+        <td>MX 단독 37.5조원 (+4% YoY), <span class="flag">NW는 0.6조원 추정 · 영업익 QoQ/YoY 동반 감소</span></td>
+      </tr>
+      <tr>
+        <td>VD/DA</td>
+        <td class="num">14.3</td>
+        <td class="num">0.2</td>
+        <td>관세·부품가 압박 · 프리미엄 TV로 일부 상쇄</td>
+      </tr>
+      <tr>
+        <td>Samsung Display (SDC)</td>
+        <td class="num">6.7</td>
+        <td class="num">0.4</td>
+        <td>중소형 패널 계절성 + 메모리가 상승 부담</td>
+      </tr>
+    </tbody>
+  </table>
+  <small class="src">Source. 삼성전자 1Q26 어닝 콜 (2026.04.30) · DCD · CNBC · GuruFocus 어닝 하이라이트</small>
+
+  <div class="callout">
+    <strong>핵심 진단</strong>
+    1Q26 영업익 57.2조원의 약 94%가 DS(반도체)에서 나왔다. 네트워크사업부의 부진은 모기업 차원에서 <em class="term">희석되어 보이지만 사라지지 않는다</em> — 이게 PT면접에서 입사 지원자가 정확히 짚을 수 있는 차별 포인트다.
+  </div>
+</section>
+
+<!-- ============ SECTION 2 ============ -->
+<section id="s2">
+  <h2><span class="num">02</span>네트워크사업부 1Q26</h2>
+  <div class="section-deck">
+    삼성전자 IR 발표는 NW 매출을 단독 공시하지 않는다. 그러나 MX/NW(38.1조) − MX(37.5조) = <em class="term">약 6,000억원</em>이 NW 추정 매출로 도출된다. Light Reading의 추정도 동일하다($410M).
+  </div>
+
+  <div class="kpi-strip">
+    <div class="kpi">
+      <div class="kpi-label">NW 매출 (추정)</div>
+      <div class="kpi-value">~6,000억원</div>
+      <div class="kpi-delta down">▼ -25% YoY</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">5G 출범 이후 1Q 비교</div>
+      <div class="kpi-value">최저 수준</div>
+      <div class="kpi-delta down">2018년 이후 1분기 최저</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">2019년 1Q 대비</div>
+      <div class="kpi-value">절반 이하</div>
+      <div class="kpi-delta down">5G 출범 직전(1.28조원) 대비 -53%</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">영업이익</div>
+      <div class="kpi-value">동반 감소</div>
+      <div class="kpi-delta down">QoQ·YoY 모두 적자 방향</div>
+    </div>
+  </div>
+
+  <div class="chart-wrap">
+    <div class="chart-title">삼성 네트워크사업부 1Q 매출 추이 (조원)</div>
+    <div class="chart-sub">5G 출범 이후 매출 궤적 / 1Q26은 5G 시대 최저</div>
+    <svg viewBox="0 0 600 260" role="img" aria-label="네트워크사업부 1Q 매출 차트">
+      <!-- grid -->
+      <line x1="50" y1="220" x2="580" y2="220" stroke="#0f1419" stroke-width="1.5"/>
+      <line x1="50" y1="40" x2="50" y2="220" stroke="#0f1419" stroke-width="1.5"/>
+      <!-- y labels -->
+      <text x="44" y="44" text-anchor="end" font-family="JetBrains Mono" font-size="10" fill="#2a2f37">1.5</text>
+      <text x="44" y="105" text-anchor="end" font-family="JetBrains Mono" font-size="10" fill="#2a2f37">1.0</text>
+      <text x="44" y="166" text-anchor="end" font-family="JetBrains Mono" font-size="10" fill="#2a2f37">0.5</text>
+      <text x="44" y="224" text-anchor="end" font-family="JetBrains Mono" font-size="10" fill="#2a2f37">0</text>
+      <!-- gridlines -->
+      <line x1="50" y1="40" x2="580" y2="40" stroke="#0f1419" stroke-opacity=".08"/>
+      <line x1="50" y1="100" x2="580" y2="100" stroke="#0f1419" stroke-opacity=".08"/>
+      <line x1="50" y1="160" x2="580" y2="160" stroke="#0f1419" stroke-opacity=".08"/>
+      <!-- bars: x=year positions / scale: 1.5조 = 180px height -->
+      <!-- 2019:1.28 -> h=153, y=67 -->
+      <!-- 2020:0.95 -> h=114, y=106 -->
+      <!-- 2021:1.10 -> h=132, y=88 -->
+      <!-- 2022:0.94 -> h=113, y=107 -->
+      <!-- 2023:0.78 -> h=94, y=126 -->
+      <!-- 2024:0.85 -> h=102, y=118 -->
+      <!-- 2025:0.80 -> h=96, y=124 -->
+      <!-- 2026:0.60 -> h=72, y=148 (highlight) -->
+      <g font-family="JetBrains Mono" font-size="10" fill="#2a2f37" text-anchor="middle">
+        <rect x="80" y="67" width="42" height="153" fill="#3c50c6" opacity=".7"/>
+        <text x="101" y="234">2019</text>
+        <rect x="142" y="106" width="42" height="114" fill="#3c50c6" opacity=".55"/>
+        <text x="163" y="234">2020</text>
+        <rect x="204" y="88" width="42" height="132" fill="#3c50c6" opacity=".6"/>
+        <text x="225" y="234">2021</text>
+        <rect x="266" y="107" width="42" height="113" fill="#3c50c6" opacity=".55"/>
+        <text x="287" y="234">2022</text>
+        <rect x="328" y="126" width="42" height="94" fill="#3c50c6" opacity=".5"/>
+        <text x="349" y="234">2023</text>
+        <rect x="390" y="118" width="42" height="102" fill="#3c50c6" opacity=".5"/>
+        <text x="411" y="234">2024</text>
+        <rect x="452" y="124" width="42" height="96" fill="#3c50c6" opacity=".5"/>
+        <text x="473" y="234">2025</text>
+        <rect x="514" y="148" width="42" height="72" fill="#a82828"/>
+        <text x="535" y="234" font-weight="700" fill="#a82828">2026</text>
+      </g>
+      <!-- value labels -->
+      <g font-family="JetBrains Mono" font-size="9" fill="#0f1419" text-anchor="middle">
+        <text x="101" y="62">1.28</text>
+        <text x="163" y="101">0.95</text>
+        <text x="225" y="83">1.10</text>
+        <text x="287" y="102">0.94</text>
+        <text x="349" y="121">0.78</text>
+        <text x="411" y="113">0.85</text>
+        <text x="473" y="119">0.80</text>
+        <text x="535" y="143" font-weight="700" fill="#a82828">0.60</text>
+      </g>
+      <!-- annotation -->
+      <line x1="535" y1="148" x2="535" y2="50" stroke="#a82828" stroke-dasharray="2,3" stroke-width="1"/>
+      <text x="535" y="44" text-anchor="middle" font-family="IBM Plex Sans KR" font-size="11" fill="#a82828" font-weight="700">5G 시대 최저</text>
+    </svg>
+  </div>
+  <small class="src">Note. 1Q 단독 매출 추정치 · MX/NW 통합공시에서 MX 차감 방식. Light Reading(2026.05.01), 삼성전자 분기보고서 기반.</small>
+
+  <h3>회사가 직접 사용한 두 단어</h3>
+  <p>삼성은 1Q26 어닝 발표에서 NW 부진을 두 표현으로 정의했다.</p>
+  <ul style="list-style:none;padding:0;margin:14px 0">
+    <li style="padding:14px 18px;background:var(--paper-2);border-left:3px solid var(--warn);margin-bottom:10px">
+      <strong style="display:block;font-size:11px;letter-spacing:.08em;color:var(--warn);margin-bottom:6px">"telecom industry investment headwinds"</strong>
+      통신사 투자 둔화로 외부 환경을 설명. 그러나 <strong>Omdia·Dell'Oro 데이터 모두 RAN 시장이 2025년 안정화, 2026년 flat 전망</strong>이라고 본다. headwinds라기보다 <em class="term">시장은 멈춰 있는데 삼성만 후퇴</em>하는 그림이다.
+    </li>
+    <li style="padding:14px 18px;background:var(--paper-2);border-left:3px solid var(--warn)">
+      <strong style="display:block;font-size:11px;letter-spacing:.08em;color:var(--warn);margin-bottom:6px">"structural cost discipline"</strong>
+      "구조적 비용 통제." 통신장비 업계에서 이 표현은 거의 항상 <strong>인력 재배치 또는 감축</strong>을 의미한다. 실제로 2024년 한국 NW 인력 4,000명 중 약 700명을 다른 사업부로 재배치한 바 있고, 2024-2025년 미국 Plano(Texas) 캠퍼스에서도 정리가 있었다.
+    </li>
+  </ul>
+
+  <p class="pull">
+    "overseas sales expansion" — 삼성이 1Q26 발표에서 직접 명시한 NW의 핵심 전략. 한국 시장은 통신 3사·5천만명에 그치는 만큼, <strong>해외영업의 성패가 사업부 회생의 변수</strong>다.
+  </p>
+</section>
+
+<!-- ============ SECTION 3 ============ -->
+<section id="s3">
+  <h2><span class="num">03</span>Big 3 비교 — 1Q26</h2>
+  <div class="section-deck">
+    같은 분기, 글로벌 RAN 시장에서 가장 가시적인 두 경쟁사는 어떻게 움직였나.
+  </div>
+
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th>지표 (1Q26)</th>
+        <th class="num">Samsung Networks</th>
+        <th class="num">Ericsson — Networks</th>
+        <th class="num">Nokia — Mobile Infra.</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>RAN/모바일 매출</td>
+        <td class="num down">~$410M</td>
+        <td class="num">SEK 32.9B (≈$3.3B)</td>
+        <td class="num">€2,495M (≈$2.7B)</td>
+      </tr>
+      <tr>
+        <td>YoY 성장 (reported)</td>
+        <td class="num down">−25%</td>
+        <td class="num down">−8%</td>
+        <td class="num up">+2~3%</td>
+      </tr>
+      <tr>
+        <td>YoY 성장 (constant currency)</td>
+        <td class="num">미공개</td>
+        <td class="num up">+7% organic</td>
+        <td class="num up">+3% constant</td>
+      </tr>
+      <tr>
+        <td>영업이익률</td>
+        <td class="num down">감소 (수치 미공개)</td>
+        <td class="num">11.3% (group adj.)</td>
+        <td class="num up">8.9% (Mobile Infra · +380bp YoY)</td>
+      </tr>
+      <tr>
+        <td>구조조정/인력</td>
+        <td>비용 통제 시그널 + 인력 재배치 진행</td>
+        <td>SEK 3.8B 구조조정 charge (스웨덴 인력)</td>
+        <td>전사 안정화 단계</td>
+      </tr>
+      <tr>
+        <td>1Q26 핵심 동력</td>
+        <td>—</td>
+        <td>5G + 인도 + 일본</td>
+        <td>Optical/IP +18~20% (Network Infra)<br>+ Nvidia AI-RAN 동맹</td>
+      </tr>
+    </tbody>
+  </table>
+  <small class="src">Source. Samsung Q1 2026 IR / Ericsson Q1 2026 (4/17) / Nokia Q1 2026 (4/23) · Light Reading · Converge Digest · Tricity</small>
+
+  <div class="callout warn">
+    <strong>읽어내야 할 것</strong>
+    환율 효과로 변명할 수 없는 격차다. Ericsson은 SEK 7.8B 환율 영향에도 organic +6%였고, Nokia는 constant currency로 +4%였다. 같은 시장에서 <em class="term">삼성만 두 자릿수 후퇴</em>는 시장 변수가 아니라 <strong>회사별 변수</strong>가 작용했다는 뜻이다 — 그 변수가 무엇이었는지가 다음 섹션의 주제다.
+  </div>
+</section>
+
+<!-- ============ SECTION 4 ============ -->
+<section id="s4">
+  <h2><span class="num">04</span>글로벌 RAN 시장 구조</h2>
+  <div class="section-deck">
+    "성장이 멈춘 시장." 그러나 그 안에서 점유 이동은 활발하다.
+  </div>
+
+  <div class="chart-wrap">
+    <div class="chart-title">글로벌 RAN 시장 규모 추이</div>
+    <div class="chart-sub">2022 정점 $45B → 2024 $35B (-22%) → 2025-26 안정화 / 2025-30 CAGR 1%</div>
+    <svg viewBox="0 0 600 220" role="img" aria-label="글로벌 RAN 시장 규모">
+      <line x1="50" y1="180" x2="580" y2="180" stroke="#0f1419" stroke-width="1.5"/>
+      <line x1="50" y1="30" x2="50" y2="180" stroke="#0f1419" stroke-width="1.5"/>
+      <text x="44" y="34" text-anchor="end" font-family="JetBrains Mono" font-size="10" fill="#2a2f37">$50B</text>
+      <text x="44" y="84" text-anchor="end" font-family="JetBrains Mono" font-size="10" fill="#2a2f37">$40B</text>
+      <text x="44" y="134" text-anchor="end" font-family="JetBrains Mono" font-size="10" fill="#2a2f37">$30B</text>
+      <text x="44" y="184" text-anchor="end" font-family="JetBrains Mono" font-size="10" fill="#2a2f37">$0</text>
+      <!-- y axis: 50→0 in 150px height, so 1B = 3px -->
+      <!-- 2021:42 → y=180-126=54  2022:45→y=45  2023:39→y=63  2024:35→y=75  2025:35→y=75  2026F:35→y=75  2030F:37→y=69 -->
+      <!-- line path -->
+      <polyline points="80,54 160,45 240,63 320,75 400,75 480,75 560,69" 
+                fill="none" stroke="#1428a0" stroke-width="2.5"/>
+      <!-- area -->
+      <polygon points="80,54 160,45 240,63 320,75 400,75 480,75 560,69 560,180 80,180" 
+               fill="#1428a0" opacity=".08"/>
+      <!-- dots -->
+      <g fill="#1428a0">
+        <circle cx="80" cy="54" r="4"/>
+        <circle cx="160" cy="45" r="4"/>
+        <circle cx="240" cy="63" r="4"/>
+        <circle cx="320" cy="75" r="4"/>
+        <circle cx="400" cy="75" r="4"/>
+        <circle cx="480" cy="75" r="4" fill="#a82828"/>
+        <circle cx="560" cy="69" r="4" stroke="#0f1419" stroke-dasharray="2,2" fill="#fff" stroke-width="1.5"/>
+      </g>
+      <!-- labels -->
+      <g font-family="JetBrains Mono" font-size="10" fill="#2a2f37" text-anchor="middle">
+        <text x="80" y="200">2021</text>
+        <text x="160" y="200">2022</text>
+        <text x="240" y="200">2023</text>
+        <text x="320" y="200">2024</text>
+        <text x="400" y="200">2025</text>
+        <text x="480" y="200" fill="#a82828" font-weight="700">2026F</text>
+        <text x="560" y="200">2030F</text>
+      </g>
+      <g font-family="JetBrains Mono" font-size="9" fill="#0f1419" text-anchor="middle">
+        <text x="80" y="48">$42B</text>
+        <text x="160" y="38" font-weight="700">$45B</text>
+        <text x="240" y="58">$39B</text>
+        <text x="320" y="69">$35B</text>
+        <text x="400" y="69">$35B</text>
+        <text x="480" y="69" fill="#a82828" font-weight="700">$35B</text>
+        <text x="560" y="63">$37B</text>
+      </g>
+      <text x="160" y="20" text-anchor="middle" font-family="IBM Plex Sans KR" font-size="11" fill="#0f1419">5G 정점</text>
+      <text x="320" y="100" text-anchor="middle" font-family="IBM Plex Sans KR" font-size="11" fill="#a82828">−22% 하락</text>
+    </svg>
+  </div>
+  <small class="src">Source. Omdia RAN Market Tracker (2026 Q1), Dell'Oro Group 4Q25 RAN Report, TelecomTV (2026.02.18)</small>
+
+  <h3>2025년 글로벌 RAN 점유율 (벤더별)</h3>
+  <table class="tbl">
+    <thead><tr><th>순위</th><th>벤더</th><th>특징</th><th class="num">변동</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td><strong>Huawei</strong></td><td>중국·중동·아프리카 우호적 지역 믹스로 점유 확대</td><td class="num up">↑</td></tr>
+      <tr><td>2</td><td><strong>Ericsson</strong></td><td>유럽·인도·일본 5G 모더나이제이션 견인</td><td class="num">≒</td></tr>
+      <tr><td>3</td><td><strong>Nokia</strong></td><td>Nvidia 동맹으로 AI-RAN/6G 헤드라인 점유</td><td class="num">≒</td></tr>
+      <tr><td>4</td><td>ZTE</td><td>중국 익스포저로 점유 하락</td><td class="num down">↓</td></tr>
+      <tr><td>5</td><td><strong>Samsung</strong></td><td>점유 유지 — 그러나 1Q26 가속 후퇴</td><td class="num">≒</td></tr>
+    </tbody>
+  </table>
+  <small class="src">Source. Omdia 2025 연간 RAN 점유율 분석. Top 5 합산 점유율: 95%. ZTE를 제외하면 Top 4가 사실상 시장.</small>
+</section>
+
+<!-- ============ SECTION 5 ============ -->
+<section id="s5">
+  <h2><span class="num">05</span>네 개의 결정적 사건</h2>
+  <div class="section-deck">
+    삼성 NW의 1Q26 부진은 분기 단독 변수가 아니라 2025년 4분기 누적된 사건들의 매출 시차 반영이다.
+  </div>
+
+  <div class="events">
+    <div class="event">
+      <div class="date">2025.09 · UK</div>
+      <h4>VodafoneThree 패배</h4>
+      <p>VodafoneThree($2.7B / £2B 8년 계약, 17,000 사이트)가 Ericsson(10,000+ 사이트, ~$1.3B + 코어망 전체) + Nokia(7,000 사이트)에 분할 배정. 4년간 영국 Open RAN 협력을 이어온 Samsung은 <strong>최종 0 사이트</strong>. VodafoneThree의 Iain Milligan은 명시적으로 "speed of deployment, obligation to hit, professional services capability"를 이유로 들었다.</p>
+      <div class="impact">
+        <strong>매출 영향</strong>
+        영국 5G 모더나이제이션 진입 차단 + Open RAN 챔피언 지위 상실 신호. 2026~2030년 영국 RAN 매출 기회 사실상 소멸.
+      </div>
+    </div>
+
+    <div class="event">
+      <div class="date">2025.08 · US</div>
+      <h4>EchoStar/Dish 5G망 폐지</h4>
+      <p>EchoStar가 AT&T에 $23B 스펙트럼(50MHz) 매각 + 이후 SpaceX에 추가 매각. Boost Mobile은 AT&T 인프라 기반 하이브리드 MNO로 전환, <strong>RAN 점진 폐지</strong>. Samsung은 이 망에 24,000 라디오를 공급한 핵심 벤더였다 — 세계 최초 Open RAN 상용망의 종언.</p>
+      <div class="impact">
+        <strong>매출 영향</strong>
+        Samsung 미국 대형 고객 4개 → 사실상 Verizon 1개로 축소. 신규 24,000 사이트 확장 기회 소멸.
+      </div>
+    </div>
+
+    <div class="event">
+      <div class="date">2025.10 · US</div>
+      <h4>Nvidia–Nokia $1B 동맹</h4>
+      <p>Nvidia가 Nokia에 $1B 투자(2.9% 지분)하며 ARC-Pro RAN 컴퓨터 공동 개발. T-Mobile은 2026년 Seattle AI-RAN Innovation Center에서 Nokia anyRAN+Nvidia GPU 필드 트라이얼 시작. <strong>Nokia가 6G AI-RAN 헤드라인을 선점</strong>한 시점.</p>
+      <div class="impact">
+        <strong>매출 영향</strong>
+        T-Mobile 진입 시나리오 약화. Samsung CEO Woojune Kim은 "AI does not equal GPU"로 차별화 시도 중이지만, 미국 통신사 인식 차원에서 Nokia 우위.
+      </div>
+    </div>
+
+    <div class="event opp">
+      <div class="date">2025-26 · 유럽/일본</div>
+      <h4>Vodafone Spring 6 진입</h4>
+      <p>15개국 다국가 RAN 계약에서 Samsung이 "주요 벤더(major vendor)"로 선정. <strong>독일 일부 + 그 외 다국가</strong> 진입의 신호. Orange France와도 2026년 vRAN/Open RAN 사이트 확대 합의. 일본 KDDI 협력도 지속.</p>
+      <div class="impact">
+        <strong>기회 영향</strong>
+        매출 규모는 미공개·소규모 추정이지만, 유럽 다변화 거점. 화웨이 강제 철거(EU·UK 2027) 후 빈자리에 진입할 잠재력.
+      </div>
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <strong>구조적 진단</strong>
+    이 네 사건은 공통 패턴이 있다 — <em class="term">미국과 유럽의 대형 통신사들이 "managed services" 기반의 Big 2(Ericsson/Nokia)로 회귀</em>하고 있다는 것. Open RAN의 다중 벤더 통합 책임을 통신사가 직접 지지 않으려 한다. 삼성의 vRAN 기술 우위가 "통합 운영 부담"이라는 변수에 발목을 잡힌 분기다.
+  </div>
+</section>
+
+<!-- ============ SECTION 6 ============ -->
+<section id="s6">
+  <h2><span class="num">06</span>AI-RAN과 6G — Nvidia 동맹의 그림자</h2>
+  <div class="section-deck">
+    Samsung은 AI-RAN과 6G에서 보수적이다. 이게 약점일까, 합리적 베팅일까.
+  </div>
+
+  <h3>두 진영의 베팅 구조</h3>
+  <table class="tbl">
+    <thead>
+      <tr><th>진영</th><th>아키텍처</th><th>대표 사례</th><th>리스크</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>GPU 진영</strong><br>(Nvidia + Nokia)</td>
+        <td>RAN Layer 1을 GPU에서 직접 처리, 셀사이트에 ARC-Pro 배치 / Dell PowerEdge 통합</td>
+        <td>T-Mobile US Seattle 트라이얼(2026) · SoftBank · Indosat · TIM Brasil</td>
+        <td>전력·발열(GPU "egg fried"), 셀사이트 단가 폭증, ROI 미검증</td>
+      </tr>
+      <tr>
+        <td><strong>vRAN/CPU 진영</strong><br>(Samsung + Intel + Ericsson)</td>
+        <td>Intel Xeon 6700P-B 등 표준 CPU 단일 서버에서 vRAN 통합 운용 / GPU는 핫스팟에만 선택적 배치</td>
+        <td>Verizon 15,000+ 사이트 / Orange France / Vodafone Spring 6</td>
+        <td>"AI-RAN 소외" 인식, Nvidia 마케팅 우위 노출</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Woojune Kim CEO 발언 (MWC 2026, 3월)</h3>
+  <ul style="list-style:none;padding:0">
+    <li style="padding:10px 0;border-bottom:1px dotted var(--grid)"><strong>6G에 대해:</strong> "6G bump 없을 것, 5G가 마지막 G라고 봤다. 점진적 투자 흐름이 될 것."</li>
+    <li style="padding:10px 0;border-bottom:1px dotted var(--grid)"><strong>GPU AI-RAN에 대해:</strong> "AI does not equal GPU. 경기장 같은 핫스팟에선 의미가 있지만, 500명이 지나가는 교외에선 GPU가 합리적인가."</li>
+    <li style="padding:10px 0"><strong>Nvidia와의 관계:</strong> "긴밀한 파트너십. 다만 경제성을 아직 풀지 못했다." — Samsung도 Nvidia와 vRAN+AI 멀티셀 테스트 진행 중.</li>
+  </ul>
+  <small class="src">Source. TelecomTV (2026.03.23), Light Reading (2026.04 GPU 발열 인터뷰), MWC 2026 분석가 브리핑</small>
+
+  <div class="callout">
+    <strong>해석</strong>
+    Samsung의 입장은 <em class="term">"AI-RAN ≠ GPU 도배"</em>라는 차별화 메시지다. 단기적으론 Nvidia·Nokia 동맹의 마케팅에 밀리지만, GPU의 발열·전력·단가 문제가 본격화될 때 vRAN/CPU 기반의 경제성이 입증될 가능성도 있다. <strong>리스크는 그 검증 시점이 6G 본격 투자(2028~2030) 이전인지 이후인지</strong>다.
+  </div>
+</section>
+
+<!-- ============ SECTION 7 ============ -->
+<section id="s7">
+  <h2><span class="num">07</span>SWOT — 해외영업 직무 관점</h2>
+  <div class="section-deck">
+    PT면접 대비용. 지원자는 SWOT를 단순 나열이 아니라 "해외영업이 어디에 들어갈 수 있는가"의 좌표로 봐야 한다.
+  </div>
+
+  <div class="swot s">
+    <div>
+      <h4>STRENGTHS — 우위</h4>
+      <ul>
+        <li><strong>vRAN 글로벌 1위.</strong> Verizon 15,000+ 사이트는 단일 통신사 vRAN 최대 deployment</li>
+        <li><strong>모기업 보호막.</strong> 1Q26 영업익 57.2조원 — 손실 견디며 장기 경쟁 가능 ("Samsung could run NW at a loss for years" — Light Reading)</li>
+        <li><strong>28GHz mmWave 기술 선도</strong>, MU-MIMO, 64T64R Massive MIMO 라디오</li>
+        <li><strong>2020년 6G 백서</strong> 발간 첫 통신장비사. R&D 트랙 레코드</li>
+        <li>한국 통신 3사 + Verizon + 일본 KDDI + 영국 ESN B2G 사례</li>
+      </ul>
+    </div>
+    <div class="swot w" style="display:contents"><div>
+      <h4>WEAKNESSES — 약점</h4>
+      <ul>
+        <li><strong>R&D 규모 격차.</strong> Ericsson/Nokia 합산 ~$5B vs Samsung 추정 $2.5B</li>
+        <li><strong>Managed Services 역량 부족.</strong> VodafoneThree가 "speed + obligation"으로 명시</li>
+        <li><strong>인력 규모.</strong> Ericsson+Nokia 16.3만명 vs Samsung NW 한국 4,000명+해외</li>
+        <li>1Q26 매출 -25% — 시장 안정화기에 단독 후퇴</li>
+        <li>국내 시장 협소 (3사·5천만 명) → 해외 의존도 100%</li>
+      </ul>
+    </div></div>
+  </div>
+  <div class="swot o">
+    <div>
+      <h4>OPPORTUNITIES — 기회</h4>
+      <ul>
+        <li><strong>화웨이 EU·UK 강제 철거(2027).</strong> 빈자리 입찰 경쟁에 미국 동맹국 우선 공급처로 진입</li>
+        <li><strong>Vodafone Spring 6.</strong> 15개국 다국적 계약 — 독일 등 진입 거점</li>
+        <li><strong>Orange France 확대.</strong> 2026년 vRAN/Open RAN 사이트 추가 합의</li>
+        <li>Nvidia와의 자체 멀티셀 테스트 — AI-RAN 진영 분화 시 차별화 가능</li>
+        <li>인도 Reliance Jio 외 신흥시장 (중동·아프리카·동남아) 화웨이 대안</li>
+      </ul>
+    </div>
+    <div class="swot t" style="display:contents"><div>
+      <h4>THREATS — 위협</h4>
+      <ul>
+        <li><strong>VodafoneThree 17,000 사이트 패배.</strong> 영국 매출 회복 경로 없음</li>
+        <li><strong>EchoStar/Dish 망 폐지.</strong> 미국 24,000 라디오 매출 기회 소멸</li>
+        <li><strong>Nvidia–Nokia $1B 동맹.</strong> T-Mobile US 진입 어려움</li>
+        <li>AT&T → Ericsson 단독 잠식 지속</li>
+        <li><strong>RAN 시장 5년 CAGR 1%.</strong> 파이가 자라지 않아 점유 싸움이 제로섬</li>
+      </ul>
+    </div></div>
+  </div>
+</section>
+
+<!-- ============ SECTION 8 ============ -->
+<section id="s8">
+  <h2><span class="num">08</span>PT 면접 활용 포인트</h2>
+  <div class="section-deck">
+    PT면접에서 그대로 인용 가능한 4개의 답변 카드. 각 카드는 데이터 1개 + 해석 1개 + 직무 연결 1개의 3단 구조다.
+  </div>
+
+  <div class="pt-points">
+    <h3>4개의 답변 카드</h3>
+
+    <div class="pt-item">
+      <div class="pt-q">CARD 1 — "1Q26 회사 실적과 사업부 위치를 어떻게 보십니까?"</div>
+      <div class="pt-a">
+        <strong>데이터:</strong> 1Q26 삼성전자는 분기 사상 최고 영업익 57.2조원을 기록했지만, 그중 약 94%는 DS(반도체) 단독 기여입니다. NW는 약 6,000억원 매출에 YoY −25%로 5G 출범 이후 1분기 최저였습니다.<br><br>
+        <strong>해석:</strong> 모기업의 호실적이 사업부의 부진을 가려서는 안 된다고 봅니다. 오히려 반도체가 만든 재무 여력이 NW의 장기 경쟁 자금줄로 작동할 수 있다는 점이 Ericsson·Nokia가 갖지 못한 구조적 이점입니다.<br><br>
+        <strong>직무 연결:</strong> 해외영업 직무는 이 자금 여력을 시간 변수로 활용해 화웨이 철거 빈자리(2027)와 Vodafone Spring 6에 진입할 수 있는 위치에 있습니다.
+      </div>
+    </div>
+
+    <div class="pt-item">
+      <div class="pt-q">CARD 2 — "VodafoneThree 패배 원인이 뭐라고 보십니까?"</div>
+      <div class="pt-a">
+        <strong>데이터:</strong> VodafoneThree CNO Iain Milligan은 명시적으로 "speed of deployment + obligation to hit + professional services"를 이유로 들었습니다. 즉 기술 열위가 아니라 <strong>통합 운영 책임을 통신사가 직접 지지 않으려는 흐름</strong>이었습니다.<br><br>
+        <strong>해석:</strong> Samsung의 vRAN 기술은 Verizon 15,000+ 사이트로 검증되어 있지만, 통합 책임을 vendor에게 일임하는 managed services 시장에서는 Big 2 대비 인력 규모(Ericsson+Nokia 16.3만 vs Samsung NW 한국 4,000명대) 격차가 영향을 줍니다.<br><br>
+        <strong>직무 연결:</strong> 해외영업은 단순 장비 공급 제안이 아니라 <strong>현지 파트너 SI/타워사와의 컨소시엄 구성 능력</strong>이 새 평가 변수가 됩니다. 행정학·국제통상학 복수전공으로 공공조달과 다국적 계약 구조를 이해해 온 강점을 이 지점에 연결할 수 있습니다.
+      </div>
+    </div>
+
+    <div class="pt-item">
+      <div class="pt-q">CARD 3 — "AI-RAN/6G에서 삼성 전략을 어떻게 평가하십니까?"</div>
+      <div class="pt-a">
+        <strong>데이터:</strong> Nvidia는 2025년 10월 Nokia에 $1B 투자, T-Mobile과 2026년 Seattle 트라이얼을 시작했습니다. Samsung CEO Woojune Kim은 MWC 2026에서 "AI does not equal GPU"라며 vRAN/CPU 중심 + 핫스팟 선택적 GPU 전략을 밝혔습니다.<br><br>
+        <strong>해석:</strong> Nvidia·Nokia 동맹은 마케팅 헤드라인을 가져갔지만, GPU의 전력·발열·셀사이트 단가가 본격화되는 2027년 이후엔 vRAN/CPU 기반 경제성이 재평가될 수 있습니다. Samsung도 Nvidia와 별도 멀티셀 테스트를 운영 중이라 양다리 옵션을 유지하고 있습니다.<br><br>
+        <strong>직무 연결:</strong> 해외영업은 통신사 CTO에게 <strong>"GPU AI-RAN의 TCO(총소유비용) 방어 가능성"</strong>을 데이터로 제시해야 하는 단계로 진입했습니다. 사업부의 6G 백서·R&D 자산을 영업 설득 자료로 번역하는 능력이 핵심 경쟁력이 됩니다.
+      </div>
+    </div>
+
+    <div class="pt-item">
+      <div class="pt-q">CARD 4 — "그래서, 사업부의 단기·중기 진입 우선순위는 어디입니까?"</div>
+      <div class="pt-a">
+        <strong>데이터 + 우선순위 도출:</strong>
+        <br>① <strong>유럽 화웨이 빈자리 (2027 철거)</strong> — Vodafone Spring 6 거점화, Orange France 확장, 독일·체코·그리스 화웨이 대체
+        <br>② <strong>일본 KDDI 심화 + 동남아 진입</strong> — 미국 동맹국 우선 공급 흐름의 자연스러운 연장
+        <br>③ <strong>Verizon 차세대 vRAN 락인</strong> — 미국 단일 대형 고객 방어가 모든 전략의 전제
+        <br>④ <strong>중동·아프리카 화웨이 대안</strong> — Omdia가 2025 NW 시장에서 MEA를 유일한 성장 지역으로 지목한 만큼, B2G 결합 진입 시도
+        <br><br>
+        <strong>직무 연결:</strong> 한국 시장은 통신 3사·5천만 명에 그치고, 회사도 1Q26 발표에서 <strong>"overseas sales expansion"</strong>을 직접 명시했습니다. 사업부의 회생은 곧 해외영업의 성패와 동의어입니다 — 신입 첫 3년의 임팩트가 실적에 즉각 반영되는 직무라는 의미입니다.
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p><strong>SOURCES.</strong> 삼성전자 1Q26 어닝 콜(2026.04.30) · Samsung Global Newsroom · Light Reading(2026.05.01, 2025.09, 2025.11, 2026.03~04) · Omdia RAN Market Tracker(2026 Q1) · Dell'Oro Group 4Q25 RAN Report · TelecomTV(2026.02, 2026.03) · Ericsson Q1 2026 IR(2026.04.17) · Nokia Q1 2026 IR(2026.04.23) · Fierce Network · DCD · CNBC · Converge Digest · NVIDIA Newsroom(2025.10) · T-Mobile Newsroom(2026.03)</p>
+  <p><strong>BUILT FOR.</strong> YJ — 삼성전자 DX 네트워크사업부 26-1 신입공채 · 직무역량(PT) 면접 준비</p>
+  <p><strong>UPDATED.</strong> 2026.05.06 · v1.0 — 추가 리서치(한국 통신3사 동향, 인도 Jio, 사우디·UAE B2G 등) 시 v1.1로 갱신</p>
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>네트워크사업부 해외영업 — PT면접 발표</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;900&family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0a0e14;
+  --ink-2:#1a1f29;
+  --paper:#f5f1e8;
+  --paper-2:#ebe5d3;
+  --accent:#1428a0;
+  --accent-bright:#3754d8;
+  --hi:#ffe97a;
+  --warn:#d64545;
+  --good:#1a6b3f;
+  --line:#0a0e14;
+  --muted:#5a6371;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow-x:hidden}
+body{
+  background:var(--ink);
+  color:var(--paper);
+  font-family:'IBM Plex Sans KR',-apple-system,sans-serif;
+  font-weight:400;line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  font-feature-settings:"liga","kern","ss01";
+  cursor:default;
+}
+
+/* ============= MAIN BLUEPRINT ============= */
+.blueprint{
+  min-height:100vh;width:100%;
+  display:flex;flex-direction:column;
+  padding:32px 56px 28px;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(20,40,160,.18), transparent 50%),
+    radial-gradient(circle at 90% 85%, rgba(255,233,122,.06), transparent 50%),
+    var(--ink);
+  position:relative;
+}
+
+.bp-header{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  border-bottom:1px solid rgba(245,241,232,.15);
+  padding-bottom:20px;
+}
+.bp-meta{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  color:var(--muted);letter-spacing:.1em;text-transform:uppercase;
+}
+.bp-meta strong{color:var(--hi);font-weight:500}
+.bp-title{
+  font-family:'Noto Serif KR',serif;
+  font-size:clamp(22px,2.6vw,36px);
+  font-weight:900;line-height:1.15;letter-spacing:-.015em;
+  color:var(--paper);max-width:80%;
+}
+.bp-title em{font-style:italic;color:var(--hi);font-weight:900}
+.bp-question{
+  margin-top:14px;padding:14px 18px;
+  background:rgba(245,241,232,.05);
+  border-left:3px solid var(--hi);
+  font-family:'Noto Serif KR',serif;font-style:italic;
+  font-size:clamp(13px,1.4vw,16px);color:var(--paper-2);
+  max-width:760px;
+}
+.bp-question::before{content:"Q. ";color:var(--hi);font-style:normal;font-weight:700}
+
+/* DIAGRAM */
+.diagram{
+  flex:1;display:grid;
+  grid-template-columns:1fr 1.1fr 1fr;
+  gap:36px;align-items:center;
+  padding:28px 0 16px;
+  position:relative;
+  min-height:0;
+}
+.col-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);font-weight:500;
+  padding-bottom:8px;border-bottom:1px dashed rgba(245,241,232,.18);
+  margin-bottom:14px;
+}
+.col-label .num{
+  color:var(--hi);margin-right:8px;font-weight:700;
+}
+.col-stack{display:flex;flex-direction:column;gap:14px}
+
+.box{
+  background:rgba(245,241,232,.04);
+  border:1px solid rgba(245,241,232,.18);
+  padding:18px 20px;
+  cursor:pointer;
+  position:relative;
+  transition:all .25s ease;
+  display:flex;flex-direction:column;gap:6px;
+  min-height:104px;
+}
+.box::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(135deg,transparent 60%,rgba(255,233,122,.08));
+  opacity:0;transition:opacity .25s;
+  pointer-events:none;
+}
+.box:hover{
+  border-color:var(--hi);
+  background:rgba(255,233,122,.06);
+  transform:translateY(-2px);
+}
+.box:hover::before{opacity:1}
+.box:hover .box-num{color:var(--ink);background:var(--hi)}
+.box-num{
+  position:absolute;top:-1px;left:-1px;
+  font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;
+  letter-spacing:.08em;
+  color:var(--paper);background:var(--ink-2);
+  padding:4px 9px;
+  border:1px solid rgba(245,241,232,.18);
+  transition:all .25s;
+}
+.box-cat{
+  font-family:'JetBrains Mono',monospace;font-size:10px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+  margin-top:8px;
+}
+.box-h{
+  font-family:'Noto Serif KR',serif;
+  font-size:clamp(15px,1.4vw,18px);font-weight:600;
+  color:var(--paper);line-height:1.25;
+  margin-top:2px;
+}
+.box-d{
+  font-size:12.5px;color:var(--paper-2);line-height:1.45;
+  margin-top:4px;
+}
+.box-cta{
+  margin-top:auto;padding-top:6px;
+  font-family:'JetBrains Mono',monospace;font-size:9.5px;
+  color:var(--accent-bright);letter-spacing:.08em;
+}
+.box:hover .box-cta{color:var(--ink);font-weight:700}
+.box:hover .box-cta::after{content:" ➜"}
+
+/* CENTER BIG BOX */
+.center-box{
+  background:linear-gradient(135deg,#1428a0,#0d1d6e);
+  border:1px solid var(--accent-bright);
+  padding:28px 26px;
+  cursor:pointer;
+  position:relative;
+  display:flex;flex-direction:column;gap:14px;
+  min-height:340px;
+  transition:all .25s;
+}
+.center-box:hover{
+  border-color:var(--hi);
+  box-shadow:0 0 0 4px rgba(255,233,122,.12);
+}
+.center-box:hover .box-num{background:var(--hi);color:var(--ink)}
+.center-box .core-label{
+  font-family:'JetBrains Mono',monospace;font-size:10.5px;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--hi);font-weight:700;
+}
+.center-box .core-h{
+  font-family:'Noto Serif KR',serif;font-weight:900;
+  font-size:clamp(20px,2vw,26px);line-height:1.2;
+  color:#fff;letter-spacing:-.01em;
+}
+.center-box .core-h em{
+  font-style:normal;
+  background:linear-gradient(transparent 60%,rgba(255,233,122,.6) 60%);
+  padding:0 4px;color:#fff;
+}
+.center-box .core-eq{
+  font-family:'JetBrains Mono',monospace;font-size:13px;
+  color:var(--paper-2);letter-spacing:.02em;
+  padding:14px 16px;
+  background:rgba(0,0,0,.3);
+  border-left:2px solid var(--hi);
+  margin-top:6px;line-height:1.65;
+}
+.center-box .core-eq strong{color:var(--hi)}
+.center-box .core-cta{
+  margin-top:auto;padding-top:8px;
+  font-family:'JetBrains Mono',monospace;font-size:10px;
+  color:var(--hi);letter-spacing:.08em;
+  border-top:1px dashed rgba(255,233,122,.3);
+}
+
+/* CONNECTORS */
+.diagram::before,
+.diagram::after{
+  content:"";position:absolute;
+  height:1px;background:rgba(255,233,122,.25);
+  pointer-events:none;
+  top:50%;
+  width:36px;
+}
+.diagram::before{left:33%;transform:translateX(-18px)}
+.diagram::after{right:33%;transform:translateX(18px)}
+
+/* FOOTER */
+.bp-footer{
+  border-top:1px solid rgba(245,241,232,.15);
+  padding-top:18px;margin-top:8px;
+  display:flex;justify-content:space-between;align-items:center;gap:24px;
+  flex-wrap:wrap;
+}
+.bp-thesis{
+  font-family:'Noto Serif KR',serif;font-weight:600;
+  font-size:clamp(15px,1.5vw,19px);color:var(--paper);
+  letter-spacing:-.005em;flex:1;
+}
+.bp-thesis em{font-style:normal;color:var(--hi);font-weight:700}
+.bp-help{
+  font-family:'JetBrains Mono',monospace;font-size:10.5px;
+  color:var(--muted);letter-spacing:.05em;
+  text-align:right;line-height:1.7;
+}
+.bp-help kbd{
+  display:inline-block;padding:2px 6px;border:1px solid var(--muted);
+  font-size:9.5px;border-radius:2px;color:var(--paper-2);
+  margin:0 2px;
+}
+
+/* ============= MODAL SLIDES ============= */
+.modal{
+  position:fixed;inset:0;
+  background:var(--paper);color:var(--ink);
+  z-index:100;
+  opacity:0;visibility:hidden;
+  transition:opacity .3s ease,visibility .3s;
+  overflow-y:auto;
+  display:flex;flex-direction:column;
+}
+.modal.on{opacity:1;visibility:visible}
+.modal-bar{
+  position:sticky;top:0;z-index:5;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px 36px;
+  background:var(--ink);color:var(--paper);
+  border-bottom:1px solid var(--paper);
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:.08em;text-transform:uppercase;
+}
+.modal-bar .crumb strong{color:var(--hi);margin-right:10px}
+.modal-bar .nav{display:flex;gap:6px;align-items:center}
+.modal-bar button{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  background:transparent;color:var(--paper);
+  border:1px solid var(--paper);
+  padding:5px 12px;cursor:pointer;
+  letter-spacing:.06em;text-transform:uppercase;
+  transition:all .15s;
+}
+.modal-bar button:hover{background:var(--hi);color:var(--ink);border-color:var(--hi)}
+.modal-bar button:disabled{opacity:.3;cursor:not-allowed}
+.modal-bar .close{background:var(--warn);border-color:var(--warn);color:#fff}
+
+.slide{
+  flex:1;padding:40px 56px 60px;
+  max-width:1280px;width:100%;margin:0 auto;
+}
+.slide-eyebrow{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:.15em;text-transform:uppercase;
+  color:var(--accent);font-weight:700;
+  margin-bottom:6px;
+}
+.slide-title{
+  font-family:'Noto Serif KR',serif;font-weight:900;
+  font-size:clamp(28px,3.4vw,42px);line-height:1.1;
+  letter-spacing:-.018em;color:var(--ink);
+  margin-bottom:8px;
+}
+.slide-title em{font-style:italic;color:var(--accent);font-weight:900}
+.slide-deck{
+  font-family:'Noto Serif KR',serif;font-style:italic;
+  font-size:clamp(15px,1.5vw,18px);
+  color:var(--ink-2);
+  border-bottom:1px solid var(--ink);
+  padding-bottom:16px;margin-bottom:28px;max-width:880px;
+}
+
+.kpi-row{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border:1px solid var(--ink);background:var(--ink);gap:1px;
+  margin:18px 0;
+}
+.kpi-row > div{
+  background:var(--paper);padding:16px 18px;
+  display:flex;flex-direction:column;justify-content:space-between;
+  min-height:108px;
+}
+.kpi-l{
+  font-family:'JetBrains Mono',monospace;font-size:10px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+}
+.kpi-v{
+  font-family:'Noto Serif KR',serif;font-weight:900;
+  font-size:clamp(20px,2.4vw,28px);line-height:1.05;margin:6px 0 4px;
+}
+.kpi-d{
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.02em;
+}
+.kpi-d.up{color:var(--good)}
+.kpi-d.down{color:var(--warn)}
+.kpi-d.flat{color:var(--muted)}
+@media(max-width:880px){.kpi-row{grid-template-columns:repeat(2,1fr)}}
+
+.tbl{
+  width:100%;border-collapse:collapse;font-size:14px;
+  border:1px solid var(--ink);margin:14px 0;
+}
+.tbl th{
+  background:var(--ink);color:var(--paper);
+  padding:10px 12px;text-align:left;
+  font-family:'JetBrains Mono',monospace;font-size:10.5px;
+  letter-spacing:.06em;text-transform:uppercase;font-weight:500;
+}
+.tbl td{
+  padding:11px 12px;border-bottom:1px solid rgba(10,14,20,.1);
+  vertical-align:top;
+}
+.tbl tbody tr:nth-child(even){background:rgba(20,40,160,.03)}
+.tbl .num{font-family:'JetBrains Mono',monospace;text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tbl .down{color:var(--warn);font-weight:700}
+.tbl .up{color:var(--good);font-weight:700}
+.tbl strong{font-weight:700}
+
+.split2{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:18px 0}
+@media(max-width:780px){.split2{grid-template-columns:1fr}}
+.split3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:18px 0}
+@media(max-width:780px){.split3{grid-template-columns:1fr}}
+
+.callout{
+  border-left:4px solid var(--accent);background:var(--paper-2);
+  padding:18px 22px;margin:20px 0;
+  font-family:'Noto Serif KR',serif;font-size:16px;line-height:1.55;
+}
+.callout strong{display:block;font-family:'IBM Plex Sans KR';
+  font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:8px;font-weight:700;}
+.callout.warn{border-left-color:var(--warn)}
+.callout.warn strong{color:var(--warn)}
+.callout.good{border-left-color:var(--good)}
+.callout.good strong{color:var(--good)}
+.callout em.term{
+  font-style:normal;font-weight:600;
+  background:linear-gradient(transparent 60%,#ffe97a 60%);padding:0 2px;
+}
+
+h3.s-h{
+  font-family:'Noto Serif KR',serif;font-weight:600;
+  font-size:clamp(17px,1.8vw,22px);
+  margin:24px 0 8px;line-height:1.25;
+  border-left:3px solid var(--accent);padding-left:12px;
+}
+
+.q-block{
+  background:var(--ink);color:var(--paper);
+  padding:22px 26px;margin:18px 0;
+  font-family:'Noto Serif KR',serif;font-style:italic;font-size:15.5px;
+  line-height:1.6;border-left:4px solid var(--hi);
+}
+.q-block .who{
+  font-family:'JetBrains Mono',monospace;font-style:normal;
+  font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--hi);font-weight:700;display:block;margin-bottom:8px;
+}
+.q-block .read{
+  margin-top:14px;padding-top:14px;border-top:1px dashed rgba(255,233,122,.3);
+  font-style:normal;font-family:'IBM Plex Sans KR';font-size:13.5px;
+  color:var(--paper-2);
+}
+.q-block .read strong{color:var(--hi);font-weight:600}
+
+.compare{
+  border:2px solid var(--ink);
+  display:grid;grid-template-columns:120px 1fr 1fr;
+}
+.compare > div{padding:14px 16px;border-bottom:1px solid rgba(10,14,20,.15)}
+.compare > div:nth-child(3n+2){border-right:1px solid rgba(10,14,20,.15);border-left:1px solid rgba(10,14,20,.15)}
+.compare > div:nth-last-child(-n+3){border-bottom:none}
+.compare-h{background:var(--ink);color:var(--paper)}
+.compare-h .h{font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:.08em;text-transform:uppercase;font-weight:600;}
+.compare .label{
+  background:var(--paper-2);
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  font-weight:600;color:var(--accent);
+}
+.compare .ko{background:rgba(214,69,69,.05)}
+.compare .yes{background:rgba(26,107,63,.05)}
+.compare .verdict{
+  font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;
+}
+
+.swot4{
+  display:grid;grid-template-columns:1fr 1fr;
+  border:2px solid var(--ink);margin:14px 0;
+}
+.swot4 > div{padding:18px 20px;border-bottom:1px solid var(--ink)}
+.swot4 > div:nth-child(odd){border-right:1px solid var(--ink)}
+.swot4 > div:nth-last-child(-n+2){border-bottom:none}
+.swot4 h4{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:.12em;text-transform:uppercase;
+  margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid currentColor;
+}
+.swot4 ul{list-style:none;padding:0;font-size:13px;line-height:1.5}
+.swot4 li{padding:6px 0}
+.swot4 li::before{content:"▸ ";color:var(--muted);font-weight:700}
+.swot4 li strong{font-weight:700}
+.swot4 .S h4{color:var(--good)}
+.swot4 .W h4{color:var(--warn)}
+.swot4 .O h4{color:var(--accent)}
+.swot4 .T h4{color:#7c3a16}
+@media(max-width:780px){.swot4{grid-template-columns:1fr}.swot4 > div:nth-child(odd){border-right:none}}
+
+.target-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:14px 0;
+}
+.target{
+  border:1px solid var(--ink);padding:18px 20px;
+  background:var(--paper);position:relative;
+}
+.target .pri{
+  font-family:'JetBrains Mono',monospace;font-size:10px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:700;
+}
+.target h4{
+  font-family:'Noto Serif KR',serif;font-weight:700;font-size:17px;
+  margin:6px 0 8px;line-height:1.3;
+}
+.target .why{font-size:13px;line-height:1.55;color:var(--ink-2)}
+.target .why strong{color:var(--ink);font-weight:700}
+@media(max-width:780px){.target-grid{grid-template-columns:1fr}}
+
+.matrix{
+  width:100%;border-collapse:collapse;font-size:13.5px;
+  margin:18px 0;border:2px solid var(--ink);
+}
+.matrix th{
+  background:var(--ink);color:var(--paper);padding:14px 16px;
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:.08em;text-transform:uppercase;font-weight:600;
+  text-align:left;
+}
+.matrix td{padding:14px 16px;border-bottom:1px solid rgba(10,14,20,.1);vertical-align:top;line-height:1.5}
+.matrix .weapon{
+  background:var(--paper-2);font-weight:700;color:var(--accent);
+  font-family:'Noto Serif KR',serif;
+}
+.matrix tbody tr:last-child td{border-bottom:none}
+
+.closer{
+  margin-top:32px;padding:28px 30px;
+  background:var(--ink);color:var(--paper);
+  border-left:6px solid var(--hi);
+}
+.closer .label{
+  font-family:'JetBrains Mono',monospace;font-size:10.5px;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--hi);font-weight:700;margin-bottom:10px;
+}
+.closer .line{
+  font-family:'Noto Serif KR',serif;font-weight:600;
+  font-size:clamp(17px,1.8vw,22px);line-height:1.5;
+}
+.closer .line em{font-style:normal;color:var(--hi);font-weight:700}
+
+/* responsive */
+@media(max-width:1100px){
+  .blueprint{padding:24px 32px}
+  .diagram{gap:20px}
+  .slide{padding:32px 36px 50px}
+  .modal-bar{padding:12px 24px}
+}
+@media(max-width:880px){
+  .diagram{grid-template-columns:1fr;gap:14px}
+  .diagram::before,.diagram::after{display:none}
+  .center-box{min-height:auto;padding:22px}
+  .blueprint{padding:20px 18px}
+  .bp-question{font-size:13px}
+  .slide{padding:24px 18px 50px}
+  .modal-bar{padding:10px 14px;font-size:10px}
+}
+
+.print-tip{
+  position:fixed;bottom:14px;right:14px;z-index:50;
+  background:var(--hi);color:var(--ink);
+  font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;
+  padding:8px 14px;letter-spacing:.05em;
+  pointer-events:none;
+  animation:fade 4s ease 1s forwards;
+}
+@keyframes fade{to{opacity:0}}
+</style>
+</head>
+<body>
+
+<!-- ============================== BLUEPRINT MAIN ============================== -->
+<div class="blueprint" id="bp">
+  <div class="bp-header">
+    <div>
+      <div class="bp-meta"><strong>SAMSUNG ELECTRONICS DX · NETWORKS BUSINESS</strong> &nbsp;·&nbsp; PT INTERVIEW · 26-1 NEW HIRE · YJ</div>
+      <h1 class="bp-title" style="margin-top:14px">네트워크사업부 해외영업 — <em>무엇이</em> 막혀 있고, <em>어떻게</em> 다시 풀 것인가</h1>
+      <div class="bp-question">네트워크사업부의 해외영업전략 및 특징을 분석한 뒤, 전략적 개선방안을 제안하시오.</div>
+    </div>
+  </div>
+
+  <div class="diagram">
+    <!-- LEFT: 진단 -->
+    <div>
+      <div class="col-label"><span class="num">A.</span>진단 — 무엇이 보이는가</div>
+      <div class="col-stack">
+        <div class="box" data-slide="1">
+          <span class="box-num">01</span>
+          <div class="box-cat">Diagnose · Earnings</div>
+          <div class="box-h">1Q26 사업부 실적의 두 얼굴</div>
+          <div class="box-d">전사 OP 57.2조 vs NW 매출 −25%</div>
+          <div class="box-cta">CLICK TO OPEN</div>
+        </div>
+        <div class="box" data-slide="2">
+          <span class="box-num">02</span>
+          <div class="box-cat">Diagnose · Lost Deal</div>
+          <div class="box-h">VodafoneThree 패배의 진짜 이유</div>
+          <div class="box-d">기술이 아니라 SI capacity 문제</div>
+          <div class="box-cta">CLICK TO OPEN</div>
+        </div>
+        <div class="box" data-slide="3">
+          <span class="box-num">03</span>
+          <div class="box-cat">Diagnose · Tech Race</div>
+          <div class="box-h">AI-RAN 진영 분화 속 위치</div>
+          <div class="box-d">Nvidia·Nokia 헤드라인 vs vRAN/CPU</div>
+          <div class="box-cta">CLICK TO OPEN</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CENTER: 원인 -->
+    <div>
+      <div class="col-label"><span class="num">B.</span>본질 — 왜 그런가</div>
+      <div class="center-box" data-slide="4">
+        <span class="box-num" style="background:var(--hi);color:var(--ink)">04</span>
+        <div class="core-label">Root Cause · 한 문장으로</div>
+        <div class="core-h">기술 우위는 살아 있다.<br>문제는 <em>Feet on the Ground</em>다.</div>
+        <div class="core-eq">
+          SW · 빔포밍 · vRAN&nbsp;<strong>강함</strong><br>
+          현장 인력 · SI capacity · 24/7 지원&nbsp;<strong>약함</strong><br>
+          ─────────────────<br>
+          Ericsson + Nokia <strong>~16.3만명</strong><br>
+          Samsung NW (KR) <strong>~4,000명</strong><br>
+          <strong style="color:var(--hi)">≈ 40배 격차</strong>
+        </div>
+        <div class="core-cta">CLICK · SWOT 4분면으로 구조 펼치기 ➜</div>
+      </div>
+    </div>
+
+    <!-- RIGHT: 제안 -->
+    <div>
+      <div class="col-label"><span class="num">C.</span>제안 — 어떻게 풀 것인가</div>
+      <div class="col-stack">
+        <div class="box" data-slide="5">
+          <span class="box-num">05</span>
+          <div class="box-cat">Propose · Where to Play</div>
+          <div class="box-h">타겟 시장 재정의</div>
+          <div class="box-d">약점이 덜 치명적인 4개 시장</div>
+          <div class="box-cta">CLICK TO OPEN</div>
+        </div>
+        <div class="box" data-slide="6">
+          <span class="box-num">06</span>
+          <div class="box-cat">Propose · How to Sell</div>
+          <div class="box-h">영업 방식 재설계</div>
+          <div class="box-d">고객의 진짜 변수 + SI 파트너십</div>
+          <div class="box-cta">CLICK TO OPEN</div>
+        </div>
+        <div class="box" data-slide="7">
+          <span class="box-num">07</span>
+          <div class="box-cat">Propose · Why Me</div>
+          <div class="box-h">YJ의 무기 매트릭스</div>
+          <div class="box-d">로데이터 · 환경설계 · 발주처 분석</div>
+          <div class="box-cta">CLICK TO OPEN</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bp-footer">
+    <div class="bp-thesis">
+      THESIS · <em>"기술 우위가 아니라 Deployment 환경의 재설계가 해외영업의 답이다.<br>그리고 그 재설계는 신입 1명이 들어가도 시작할 수 있는 일이다."</em>
+    </div>
+    <div class="bp-help">
+      박스 클릭 → 슬라이드 열기<br>
+      <kbd>←</kbd> <kbd>→</kbd> 이동 · <kbd>ESC</kbd> 청사진 복귀
+    </div>
+  </div>
+</div>
+
+<div class="print-tip">▶ 박스를 클릭하세요</div>
+
+<!-- ============================== MODAL ============================== -->
+<div class="modal" id="modal">
+  <div class="modal-bar">
+    <div class="crumb"><strong id="crumbN">01 / 07</strong><span id="crumbT">— Slide</span></div>
+    <div class="nav">
+      <button id="prev">◀ Prev</button>
+      <button id="next">Next ▶</button>
+      <button class="close" id="close">✕ ESC</button>
+    </div>
+  </div>
+  <div id="slideHost"></div>
+</div>
+
+<!-- ============================== SLIDE TEMPLATES (HIDDEN) ============================== -->
+<div id="slides" style="display:none">
+
+<!-- ===== SLIDE 1 ===== -->
+<div data-id="1" data-title="진단① · 1Q26 사업부 실적의 두 얼굴">
+  <div class="slide">
+    <div class="slide-eyebrow">A. 진단 ① · Earnings</div>
+    <h2 class="slide-title">1Q26 — <em>한 회사, 두 개의 경제</em></h2>
+    <div class="slide-deck">
+      삼성전자가 분기 사상 최고 영업익을 기록하는 동안, 네트워크사업부는 <strong>5G 시대 가장 낮은 1분기</strong>를 통과했다. 이 격차가 PT 분석의 출발점이다.
+    </div>
+
+    <div class="kpi-row">
+      <div>
+        <div class="kpi-l">전사 매출</div>
+        <div class="kpi-v">133.9조원</div>
+        <div class="kpi-d up">▲ +69% YoY</div>
+      </div>
+      <div>
+        <div class="kpi-l">전사 영업이익</div>
+        <div class="kpi-v">57.2조원</div>
+        <div class="kpi-d up">▲ +756% YoY · 사상 최고</div>
+      </div>
+      <div>
+        <div class="kpi-l">DS 영업익 비중</div>
+        <div class="kpi-v">93.9%</div>
+        <div class="kpi-d flat">반도체 단독 견인</div>
+      </div>
+      <div>
+        <div class="kpi-l">NW 매출 (추정)</div>
+        <div class="kpi-v" style="color:var(--warn)">~6,000억원</div>
+        <div class="kpi-d down">▼ −25% YoY · 5G 시대 1Q 최저</div>
+      </div>
+    </div>
+
+    <h3 class="s-h">부문별 실적 분해</h3>
+    <table class="tbl">
+      <thead>
+        <tr><th>사업부문</th><th class="num">매출 (조원)</th><th class="num">영업익 (조원)</th><th>특이사항</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>DS (반도체)</strong></td><td class="num">81.7</td><td class="num up">53.7</td><td>HBM4 출하, AI 데이터센터 수요로 OP 48배↑</td></tr>
+        <tr><td><strong>MX / NW</strong></td><td class="num">38.1</td><td class="num">2.8</td><td>MX 단독 37.5조원, <strong style="color:var(--warn)">NW는 0.6조원 추정 · OP 동반 감소</strong></td></tr>
+        <tr><td>VD / DA</td><td class="num">14.3</td><td class="num">0.2</td><td>관세·부품가 압박</td></tr>
+        <tr><td>Samsung Display</td><td class="num">6.7</td><td class="num">0.4</td><td>중소형 패널 계절성</td></tr>
+      </tbody>
+    </table>
+
+    <div class="split2">
+      <div class="callout warn">
+        <strong>회사가 직접 쓴 표현 ①</strong>
+        "Telecom industry investment headwinds"<br>
+        — 그러나 Omdia·Dell'Oro 모두 RAN 시장은 2025년 안정화, 2026년 flat 전망.
+        <em class="term">시장은 멈춰 있는데 삼성만 후퇴</em>.
+      </div>
+      <div class="callout warn">
+        <strong>회사가 직접 쓴 표현 ②</strong>
+        "Structural cost discipline"<br>
+        — 통신장비 업계에서 이 표현은 <em class="term">인력 재배치/감축</em>의 완곡어법. 2024년 한국 NW 4,000명 중 ~700명 타 사업부 재배치.
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>이 슬라이드의 핵심 진단</strong>
+      모기업의 호실적이 사업부 부진을 가린다. 그러나 그 자금 여력은 <em class="term">손실을 견디며 장기 경쟁할 수 있는 자산</em>으로도 작동한다 — Ericsson·Nokia가 갖지 못한 구조적 이점이다. 회사가 직접 명시한 회생 전략이 <strong>"overseas sales expansion"</strong>이라는 점, 즉 해외영업이 사업부의 시간 변수를 책임진다는 점이 PT의 출발점이다.
+    </div>
+  </div>
+</div>
+
+<!-- ===== SLIDE 2 ===== -->
+<div data-id="2" data-title="진단② · VodafoneThree 패배의 진짜 이유">
+  <div class="slide">
+    <div class="slide-eyebrow">A. 진단 ② · Lost Deal Analysis</div>
+    <h2 class="slide-title">VodafoneThree 패배 — <em>표면 이유와 실제 이유</em></h2>
+    <div class="slide-deck">
+      $2.7B / 17,000 사이트 / 8년 계약. Ericsson + Nokia에 분할, Samsung은 0 사이트. 헤드라인은 "speed of deployment"였지만, CEO 발언 전체를 읽으면 진짜 변수는 다른 곳에 있다.
+    </div>
+
+    <div class="q-block">
+      <span class="who">Iain Milligan · VodafoneThree CNO · 2026.04</span>
+      "We weren't really in the position to test out different capabilities, different solutions, for us to be the ones to pull it all together. So, Nokia and Ericsson help us do that."
+      <div class="read">
+        <strong>로데이터 독해.</strong> Vodafone은 원래 Open RAN의 "통합 책임자(System Integrator)"가 되려 했다. 그러나 자체 인력으로는 17,000 사이트의 통합·튜닝·24/7 운영을 감당할 수 없었다. 결국 <strong style="color:var(--hi)">"통신사 대신 통합·운영해줄 turnkey 서비스 capacity"</strong>를 가진 벤더가 필요했고, 그게 Big 2였다 — Samsung의 SW가 약했던 게 아니라, 이 capacity가 부족했던 것이다.
+      </div>
+    </div>
+
+    <h3 class="s-h">기술 vs Deployment — 무엇이 결정 변수였나</h3>
+    <div class="compare">
+      <div class="compare-h"><span class="h">변수</span></div>
+      <div class="compare-h"><span class="h">기술적 완성도</span></div>
+      <div class="compare-h"><span class="h">Deployment 능력</span></div>
+
+      <div class="label">정의</div>
+      <div>SW 품질, 알고리즘, 빔포밍 성능, mmWave 라디오</div>
+      <div>현장 엔지니어, 통합, 24/7 지원, 글로벌 supply chain, managed services</div>
+
+      <div class="label">Samsung</div>
+      <div class="yes verdict">강함 ✓<br><span style="font-weight:400;font-size:12px">Verizon 15,000+ vRAN 사이트로 검증</span></div>
+      <div class="ko verdict" style="color:var(--warn)">약함 ✗<br><span style="font-weight:400;font-size:12px;color:var(--ink-2)">한국 NW ~4,000명, 700명 재배치 이력</span></div>
+
+      <div class="label">Ericsson + Nokia</div>
+      <div class="yes verdict">양호 ✓<br><span style="font-weight:400;font-size:12px">표준화된 portfolio</span></div>
+      <div class="yes verdict" style="color:var(--good)">압도적 ✓✓<br><span style="font-weight:400;font-size:12px;color:var(--ink-2)">합산 ~163,000명 글로벌 인력</span></div>
+    </div>
+
+    <div class="split2" style="margin-top:24px">
+      <div class="callout">
+        <strong>장기 경제성 (vRAN 강점)</strong>
+        OPEX 5년 약 30% 절감 (벤더 추정). CAPEX는 비슷하거나 약간 높음. 자동화·SW 업그레이드 기반 유지보수.
+      </div>
+      <div class="callout warn">
+        <strong>단기 통신사 변수 (이긴 쪽)</strong>
+        17,000 사이트를 2027년 화웨이 철거 마감 안에 깔아야 함. 사이트별 튜닝 + 24/7 대응 + 단일 책임 — finger-pointing 없는 turnkey가 더 비싸도 안전.
+      </div>
+    </div>
+
+    <div class="callout warn">
+      <strong>이 슬라이드의 핵심 진단</strong>
+      통신사 vendor 선택은 "5년 후 OPEX 30% 절감"보다 <em class="term">"내년까지 17,000 사이트 확실히 깔아주는 보장"</em>을 더 가치 있게 본다. Samsung의 vRAN 기술은 인정받지만, "통신사 대신 통합 책임을 져줄 capacity"에서 격차가 발생했다. 이건 SW 문제가 아니라 SI 문제다.
+    </div>
+  </div>
+</div>
+
+<!-- ===== SLIDE 3 ===== -->
+<div data-id="3" data-title="진단③ · AI-RAN 진영 분화 속 위치">
+  <div class="slide">
+    <div class="slide-eyebrow">A. 진단 ③ · AI-RAN / 6G</div>
+    <h2 class="slide-title">AI-RAN 진영 분화 — <em>마케팅 열위, 그러나</em></h2>
+    <div class="slide-deck">
+      2025년 10월, Nvidia가 Nokia에 $1B 투자. T-Mobile US 2026 트라이얼 시작. Samsung은 헤드라인을 잃었다. 그러나 그 베팅이 옳았는지는 다른 시점에 평가될 것이다.
+    </div>
+
+    <h3 class="s-h">두 진영의 베팅 구조</h3>
+    <table class="tbl">
+      <thead>
+        <tr><th>진영</th><th>아키텍처</th><th>대표 사례</th><th>리스크</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>GPU 진영</strong><br>Nvidia + Nokia</td>
+          <td>RAN Layer 1을 GPU에서 직접 처리. 셀사이트에 ARC-Pro 배치 / Dell PowerEdge 통합</td>
+          <td>T-Mobile US Seattle (2026)<br>SoftBank · Indosat · TIM Brasil</td>
+          <td class="down">전력·발열, 셀사이트 단가 폭증, ROI 미검증</td>
+        </tr>
+        <tr>
+          <td><strong>vRAN/CPU 진영</strong><br>Samsung + Intel</td>
+          <td>Intel Xeon CPU 단일 서버 기반 vRAN 통합 운용. GPU는 핫스팟에만 선택적 배치</td>
+          <td>Verizon 15,000+ 사이트<br>Orange France · Vodafone Spring 6</td>
+          <td class="down">"AI-RAN 소외" 인식, Nvidia 마케팅 우위 노출</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="s-h">Woojune Kim CEO · MWC 2026 (3월)</h3>
+    <div class="q-block">
+      <span class="who">Samsung Networks 사장 · Light Reading + TelecomTV 인용</span>
+      "AI does not equal GPU. … 경기장 같은 핫스팟에선 GPU가 의미가 있지만, 500명이 지나가는 교외에선 합리적인가? GPU 위에 계란을 부칠 수 있다."<br><br>
+      "6G bump 없을 것. 5G가 마지막 G라고 봤다. 점진적 투자 흐름이 될 것."
+      <div class="read">
+        <strong>차별화 메시지.</strong> "AI-RAN ≠ GPU 도배"라는 입장. 단기적으론 Nvidia·Nokia 마케팅에 밀리지만, GPU의 <strong>전력·발열·셀사이트 단가</strong> 문제가 본격화되는 2027년 이후엔 vRAN/CPU 기반 경제성이 재평가될 가능성. Samsung도 Nvidia와 별도 멀티셀 테스트를 운영하며 양다리 옵션 유지.
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>이 슬라이드의 핵심 진단</strong>
+      AI-RAN/6G에서 Samsung은 <em class="term">보수적 베팅</em>을 했다. 헤드라인은 잃었지만 검증되지 않은 GPU 경제성에 모든 자원을 쏟지 않았다. 해외영업의 과제는 통신사 CTO에게 <strong>"GPU AI-RAN의 TCO 방어 가능성"</strong>을 데이터로 제시하는 것이다 — 사업부의 6G 백서·R&D 자산을 영업 설득 자료로 번역하는 능력이 핵심 경쟁력이 된다.
+    </div>
+  </div>
+</div>
+
+<!-- ===== SLIDE 4 ===== -->
+<div data-id="4" data-title="본질 · 왜 그런가 — SWOT 4분면">
+  <div class="slide">
+    <div class="slide-eyebrow">B. 본질 · Root Cause</div>
+    <h2 class="slide-title">기술 강점은 <em>살아 있다.</em> 문제는 환경이다.</h2>
+    <div class="slide-deck">
+      세 가지 진단(1Q26 / VodafoneThree / AI-RAN)을 가로질러 흐르는 하나의 구조적 변수 — 그것을 SWOT 4분면에 펼치면, 영업 전략의 좌표가 보인다.
+    </div>
+
+    <div class="swot4">
+      <div class="S">
+        <h4>S · STRENGTHS — 살아 있는 우위</h4>
+        <ul>
+          <li><strong>vRAN 글로벌 1위.</strong> Verizon 15,000+ 사이트는 단일 통신사 vRAN 최대 deployment</li>
+          <li><strong>모기업 보호막.</strong> 1Q26 OP 57.2조 → 손실 견디며 장기 경쟁 가능</li>
+          <li><strong>28GHz mmWave</strong>, MU-MIMO, 64T64R Massive MIMO 라디오 기술 선도</li>
+          <li><strong>2020년 6G 백서</strong> 발간 첫 통신장비사 — R&D 트랙 레코드</li>
+          <li>한국 통신 3사 + Verizon + KDDI + 영국 ESN B2G 사례 (자소서 Q1 인용)</li>
+        </ul>
+      </div>
+      <div class="W">
+        <h4>W · WEAKNESSES — 진짜 약점</h4>
+        <ul>
+          <li><strong>Feet on the ground.</strong> 16.3만명(E+N) vs 4,000명(Samsung NW KR) ≈ 40배</li>
+          <li><strong>Managed Services 역량.</strong> VodafoneThree가 명시적으로 지목한 변수</li>
+          <li><strong>R&D 규모.</strong> E+N 합산 ~$5B vs Samsung 추정 ~$2.5B</li>
+          <li>1Q26 매출 −25% — 시장 안정화기에 단독 후퇴</li>
+          <li>국내 협소 (3사·5천만 명) → 해외 의존도 100%</li>
+        </ul>
+      </div>
+      <div class="O">
+        <h4>O · OPPORTUNITIES — 열린 창</h4>
+        <ul>
+          <li><strong>화웨이 EU·UK 강제 철거 (2027).</strong> 빈자리 입찰에 미국 동맹국 우선 공급처로 진입</li>
+          <li><strong>Vodafone Spring 6.</strong> 15개국 다국적 계약 — 독일 등 진입 거점</li>
+          <li><strong>Orange France 확대.</strong> 2026 vRAN/Open RAN 추가 사이트 합의 완료</li>
+          <li>Nvidia와의 자체 멀티셀 테스트 — AI-RAN 진영 분화 시 차별화 가능</li>
+          <li>중동·아프리카 (Omdia 2025 RAN 유일 성장 지역) 화웨이 대안</li>
+        </ul>
+      </div>
+      <div class="T">
+        <h4>T · THREATS — 같은 패턴 반복 위험</h4>
+        <ul>
+          <li><strong>VodafoneThree 17,000 사이트 패배.</strong> 영국 매출 회복 경로 없음</li>
+          <li><strong>EchoStar/Dish 망 폐지.</strong> 미국 24,000 라디오 매출 기회 소멸</li>
+          <li><strong>Nvidia–Nokia $1B 동맹.</strong> T-Mobile US 진입 어려움</li>
+          <li>AT&T → Ericsson 단독 잠식 지속</li>
+          <li><strong>RAN 시장 5년 CAGR 1%.</strong> 파이가 자라지 않아 점유 싸움이 제로섬</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout warn">
+      <strong>본질 한 줄 — 영업 전략의 출발점</strong>
+      약점은 "기술"이 아니라 <em class="term">"통신사 대신 통합·운영해줄 capacity"</em>다. 이건 신입 채용으로 풀리는 문제가 아니고, 단기에 인력을 40배로 늘릴 수도 없다. 그렇다면 영업 전략은 <strong>"이 약점이 덜 치명적인 곳"</strong>과 <strong>"이 약점의 영향을 줄이는 방식"</strong>으로 재설계되어야 한다. 그게 다음 두 슬라이드(05·06)의 주제다.
+    </div>
+  </div>
+</div>
+
+<!-- ===== SLIDE 5 ===== -->
+<div data-id="5" data-title="제안① · 타겟 시장 재정의">
+  <div class="slide">
+    <div class="slide-eyebrow">C. 제안 ① · Where to Play</div>
+    <h2 class="slide-title">타겟 시장 재정의 — <em>약점이 덜 치명적인 곳으로</em></h2>
+    <div class="slide-deck">
+      모든 통신사를 쫓지 않는다. SI capacity 부족이 결정 변수가 되지 않는 시장 — 4개의 우선순위 좌표.
+    </div>
+
+    <div class="target-grid">
+      <div class="target">
+        <div class="pri">Priority 01 · 화웨이 빈자리</div>
+        <h4>유럽 다국가 (2027 철거 마감)</h4>
+        <div class="why">
+          <strong>왜 약점이 덜 치명적?</strong> Vodafone Spring 6에서 이미 "주요 벤더" 지위 확보. 다국가 분할 계약은 통신사 본사가 SI 책임을 분담하므로 단일 turnkey 부담이 작다. <strong>독일·체코·그리스</strong> 등 화웨이 의존도 50%+ 시장이 핵심.
+        </div>
+      </div>
+      <div class="target">
+        <div class="pri">Priority 02 · 자체 SI 능력 통신사</div>
+        <h4>Verizon 락인 + 일본 KDDI 심화</h4>
+        <div class="why">
+          <strong>왜 약점이 덜 치명적?</strong> Verizon은 자체 Open RAN 통합 능력을 가진 Tier-1. 삼성의 SW 우위가 직접 평가되는 환경. <strong>차세대 vRAN/AI-RAN 락인</strong>이 미국 단일 대형 고객 방어의 핵심. KDDI는 일본 시장 + 동남아 진출 거점 동시 확보.
+        </div>
+      </div>
+      <div class="target">
+        <div class="pri">Priority 03 · 신흥시장 + B2G</div>
+        <h4>중동·아프리카·동남아</h4>
+        <div class="why">
+          <strong>왜 약점이 덜 치명적?</strong> Omdia가 2025 RAN 시장에서 MEA를 유일한 성장 지역으로 지목. 이 시장은 <strong>화웨이 대체 + 정부 발주 결합</strong>이라 ESN(영국)·Reliance Jio 같은 B2G/B2B 결합 진입이 가능. 통신사 단독 SI 부담 < 정부 주도 통합.
+        </div>
+      </div>
+      <div class="target">
+        <div class="pri">Priority 04 · 특수 요건 시장</div>
+        <h4>mmWave · Private 5G · AI-RAN PoC</h4>
+        <div class="why">
+          <strong>왜 약점이 덜 치명적?</strong> Big 2가 약하거나 동등한 영역. <strong>28GHz mmWave</strong>는 삼성 원조 수준이고, 일본 KDDI 등과의 Private 5G는 PoC → 단계 확장 모델이 가능해 초기 deployment 부담이 작음. AI-RAN PoC는 vRAN/CPU 기반의 경제성 데이터를 만들 수 있는 무대.
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>이 슬라이드의 핵심 제안</strong>
+      "Big 2와 직접 경쟁 가능한 모든 입찰을 쫓는다"는 전략은 인력 1/40로는 불가능하다. 대신 <em class="term">SI capacity가 결정 변수가 되지 않는 4개 좌표</em>에 자원을 집중한다. 모든 것을 잃은 영국 시장에 자원을 더 쓰지 않고, Vodafone Spring 6 다국가 거점 + 화웨이 강제 철거 빈자리 + Verizon 차세대 락인에 집중한다 — 이게 "선택과 집중"이 아니라 "약점 매핑 기반의 좌표 설계"다.
+    </div>
+  </div>
+</div>
+
+<!-- ===== SLIDE 6 ===== -->
+<div data-id="6" data-title="제안② · 영업 방식 재설계">
+  <div class="slide">
+    <div class="slide-eyebrow">C. 제안 ② · How to Sell</div>
+    <h2 class="slide-title">영업 방식 재설계 — <em>고객의 진짜 변수와 SI 파트너십</em></h2>
+    <div class="slide-deck">
+      "어디서 팔 것인가"의 다음은 "어떻게 팔 것인가"다. 통신사가 표면적으로 말하는 것 vs 실제로 결정하는 변수의 격차를 영업의 출발점으로 삼는다.
+    </div>
+
+    <h3 class="s-h">① 통신사가 표면적으로 말하는 것 vs 실제 결정 변수</h3>
+    <div class="compare">
+      <div class="compare-h"><span class="h">레이어</span></div>
+      <div class="compare-h"><span class="h">통신사가 말하는 것</span></div>
+      <div class="compare-h"><span class="h">실제 결정 변수</span></div>
+
+      <div class="label">표면</div>
+      <div>"기술 성능"<br>"가격 경쟁력"<br>"포트폴리오 폭"</div>
+      <div class="ko" style="color:var(--warn)">Deployment risk<br>규제 마감일 (예: 2027 화웨이 철거)<br>Finger-pointing 없는 단일 책임</div>
+
+      <div class="label">시간 축</div>
+      <div>"5년 OPEX 30% 절감"</div>
+      <div class="ko" style="color:var(--warn)">"내년까지 17,000 사이트 확실히 깐다"</div>
+
+      <div class="label">영업 함의</div>
+      <div>스펙 시트 / 데모</div>
+      <div class="yes" style="color:var(--good)">발주처 사업 구조 + 규제 환경 분석</div>
+    </div>
+
+    <h3 class="s-h">② 외부 SI 파트너십 설계 — 인력 갭의 우회</h3>
+    <div class="split3">
+      <div class="callout">
+        <strong>로컬 SI 컨소시엄</strong>
+        VodafoneThree 발표에 명시된 4개 영국 SI 회사(Beacon, Circet Wireless, M Group, WHP Telecoms)처럼 — 현지 site-build 회사와 공동 제안 모델. Samsung은 RAN/SW, 파트너는 deployment 책임.
+      </div>
+      <div class="callout">
+        <strong>vRAN 생태계 파트너 묶음</strong>
+        Intel(CPU) + Dell(서버) + Wind River(클라우드) + 현지 SI를 하나의 turnkey package로 통신사에 제시. 이미 Verizon에서 검증된 구조를 다른 시장에 이식.
+      </div>
+      <div class="callout">
+        <strong>모회사 글로벌 자산 활용</strong>
+        삼성전자 모회사의 글로벌 파트너 네트워크 — 반도체·디스플레이 거래선이 진출한 시장의 정부·기업 관계 — 를 NW 진입 레버리지로 변환. B2G 진입 시 특히 효과적.
+      </div>
+    </div>
+
+    <div class="callout good">
+      <strong>이 슬라이드의 핵심 제안 — 두 줄 요약</strong>
+      ① 영업의 출발점은 "스펙 시트"가 아니라 <em class="term">"통신사의 규제 마감일과 deployment risk를 분석한 데이터"</em>다. 이 분석은 발주처 사업 구조를 읽는 작업이고, 본질적으로 <strong>공공조달 입찰 분석과 같은 종류의 업무</strong>다.<br>
+      ② 인력 1/40 격차는 채용으로 풀 수 없지만, <em class="term">"외부 SI와의 컨소시엄 구조"</em>로 통신사 입장에서의 단일 책임을 만들 수 있다. 이건 영업이 직접 설계하는 영역이다.
+    </div>
+  </div>
+</div>
+
+<!-- ===== SLIDE 7 ===== -->
+<div data-id="7" data-title="제안③ · YJ의 무기 매트릭스">
+  <div class="slide">
+    <div class="slide-eyebrow">C. 제안 ③ · Why Me</div>
+    <h2 class="slide-title">신입 1명이 <em>40배 격차</em>를 메우는 일은 불가능하다.<br>그러나 그 격차의 영향을 줄이는 영업 설계는 가능하다.</h2>
+    <div class="slide-deck">
+      앞 슬라이드 두 장(05·06)에서 도출한 영업 과제 — "타겟 재정의"와 "영업 방식 재설계" — 에 정확히 매핑되는 세 가지 자산이 제 이력에 있습니다.
+    </div>
+
+    <table class="matrix">
+      <thead>
+        <tr>
+          <th style="width:24%">자산</th>
+          <th style="width:32%">앞 슬라이드의 어떤 과제에 정확히 들어맞나</th>
+          <th style="width:44%">증거 — 제 이력의 어디에 있는가</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="weapon">로데이터 직접 독해</td>
+          <td>Slide 02의 "VodafoneThree CEO 발언 표면 vs 실제 의미" 분석.<br>Slide 06의 "통신사가 말하는 것 vs 실제 결정 변수" 격차 추출.</td>
+          <td>현대경제연구원 RA — EU 공공조달 1차 자료 직접 독해 → CEZ 분류 오류 정정. 이민법 CFR 원문 독해로 변호사 판단 재검증. <strong>업계 가공 보고서가 아니라 발주처 발화 자체에서 의사결정 변수를 찾아내는 훈련</strong>이 누적되어 있습니다.</td>
+        </tr>
+        <tr>
+          <td class="weapon">환경 설계 프레임</td>
+          <td>Slide 04의 "약점은 인력이 아니라 환경 변수"라는 진단.<br>Slide 05의 "약점이 덜 치명적인 시장으로 좌표를 옮긴다"는 발상.</td>
+          <td>Lornamead NYC SCM 인턴 최종 면접 합격 → J-1 비자 시기 문제로 결렬한 경험에서 도출한 사고 틀. <strong>"성공할 수밖에 없는 환경 설계"</strong>는 Big 2의 인력 우위를 따라잡는 게 아니라, 그 우위가 결정 변수가 되지 않는 환경을 찾는다는 입장과 같은 구조입니다.</td>
+        </tr>
+        <tr>
+          <td class="weapon">발주처 분석 능력</td>
+          <td>Slide 06의 "통신사 사업 구조 + 규제 환경 분석"이 영업 출발점이라는 제안.<br>Slide 05의 B2G 진입 (영국 ESN, MEA) 우선순위.</td>
+          <td>현대경제연구원 EU 건설시장 RA — 동유럽 공공조달 발주처의 사업 구조와 규제 환경 분석이 본 직무였습니다. 통신사를 발주처로 분석하는 작업은 <strong>같은 종류의 일</strong>이며, 행정학 + 국제통상학 복수전공 + 국제정치학회 학회장 경험이 지정학 변수까지 결합해줍니다.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="closer">
+      <div class="label">발표 마무리 한 줄</div>
+      <div class="line">
+        제가 면접에서 어필하고자 하는 것은 "신입이 인력 갭을 메운다"는 비현실적 약속이 아닙니다. <em>SW 우위가 살아 있는 사업부에서, 결정 변수가 deployment 환경으로 이동했다는 것을 정확히 읽고, 그 환경 자체를 영업이 재설계할 수 있는 좌표를 그릴 수 있다</em> — 그게 제가 첫 3년에 만들고자 하는 기여입니다.
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /#slides -->
+
+<script>
+const slides = Array.from(document.querySelectorAll('#slides > div'));
+const modal = document.getElementById('modal');
+const host = document.getElementById('slideHost');
+const crumbN = document.getElementById('crumbN');
+const crumbT = document.getElementById('crumbT');
+const btnPrev = document.getElementById('prev');
+const btnNext = document.getElementById('next');
+const btnClose = document.getElementById('close');
+const total = slides.length;
+let cur = 0;
+
+function open(i){
+  cur = i;
+  const s = slides[i];
+  host.innerHTML = s.innerHTML;
+  crumbN.textContent = String(i+1).padStart(2,'0') + ' / ' + String(total).padStart(2,'0');
+  crumbT.textContent = '— ' + s.dataset.title;
+  btnPrev.disabled = (i === 0);
+  btnNext.disabled = (i === total-1);
+  modal.classList.add('on');
+  modal.scrollTop = 0;
+  document.body.style.overflow = 'hidden';
+}
+function close(){
+  modal.classList.remove('on');
+  document.body.style.overflow = '';
+}
+function go(delta){
+  const next = cur + delta;
+  if(next >= 0 && next < total) open(next);
+}
+
+document.querySelectorAll('[data-slide]').forEach(el=>{
+  el.addEventListener('click', ()=> open(parseInt(el.dataset.slide,10)-1));
+});
+btnPrev.addEventListener('click', ()=> go(-1));
+btnNext.addEventListener('click', ()=> go(1));
+btnClose.addEventListener('click', close);
+document.addEventListener('keydown', e=>{
+  if(!modal.classList.contains('on')) return;
+  if(e.key === 'Escape') close();
+  else if(e.key === 'ArrowLeft') go(-1);
+  else if(e.key === 'ArrowRight') go(1);
+});
+</script>
+
+</body>
+</html>
